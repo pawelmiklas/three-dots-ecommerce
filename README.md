@@ -1,5 +1,7 @@
 ## Getting Started
 
+Please use yarn to install all dependencies and then run local server
+
 ```bash
 yarn dev
 ```
