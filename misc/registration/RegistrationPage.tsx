@@ -19,11 +19,9 @@ const { Option } = Select;
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 },
   },
 };
 
@@ -32,10 +30,6 @@ const tailFormItemLayout = {
     xs: {
       span: 24,
       offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
     },
   },
 };
@@ -66,7 +60,9 @@ const RegistrationPage = () => {
     <Row justify="center">
       <Col xs={24} md={18} lg={14} xl={10}>
         <Card>
-          <Title level={2}>Registration</Title>
+          <Title level={2} style={{ marginBottom: 24 }}>
+            Registration
+          </Title>
           <Form
             {...formItemLayout}
             form={form}
@@ -74,6 +70,7 @@ const RegistrationPage = () => {
             initialValues={{
               prefix: "48",
             }}
+            layout="vertical"
             onFinish={onFinish}
             validateTrigger="onBlur"
           >
@@ -108,7 +105,7 @@ const RegistrationPage = () => {
             </Form.Item>
             <Form.Item
               name="confirm"
-              label="Confirm Password"
+              label="Confirm password"
               dependencies={["password"]}
               hasFeedback
               rules={[
@@ -148,7 +145,7 @@ const RegistrationPage = () => {
             </Form.Item>
             <Form.Item
               name="phone"
-              label="Phone Number"
+              label="Phone number"
               rules={[
                 { required: true, message: "Please input your phone number!" },
               ]}
@@ -220,7 +217,7 @@ const RegistrationPage = () => {
                 I have read the <a href="">agreement</a>
               </Checkbox>
             </Form.Item>
-            <Form.Item {...tailFormItemLayout}>
+            <Form.Item {...tailFormItemLayout} style={{ marginBottom: 0 }}>
               <Button type="primary" htmlType="submit">
                 Register
               </Button>

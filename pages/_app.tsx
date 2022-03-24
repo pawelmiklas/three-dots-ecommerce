@@ -1,12 +1,16 @@
 import "../styles/globals.scss";
 import type { AppProps } from "next/app";
 import Layout from "../components/Layout/Layout";
+import NextNProgress from "nextjs-progressbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <NextNProgress color="#dd7230" />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }
 

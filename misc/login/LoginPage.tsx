@@ -7,11 +7,9 @@ const { Title } = Typography;
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 },
   },
 };
 
@@ -19,11 +17,6 @@ const tailFormItemLayout = {
   wrapperCol: {
     xs: {
       span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
     },
   },
 };
@@ -41,7 +34,9 @@ const LoginPage = () => {
     <Row justify="center">
       <Col xs={24} md={18} lg={14} xl={10}>
         <Card>
-          <Title level={2}>Login</Title>
+          <Title level={2} style={{ marginBottom: 24 }}>
+            Login
+          </Title>
           <Form
             {...formItemLayout}
             form={form}
@@ -49,6 +44,7 @@ const LoginPage = () => {
             initialValues={{
               prefix: "48",
             }}
+            layout="vertical"
             onFinish={onFinish}
             validateTrigger="onBlur"
           >
@@ -81,7 +77,7 @@ const LoginPage = () => {
             >
               <Input.Password />
             </Form.Item>
-            <Form.Item {...tailFormItemLayout}>
+            <Form.Item {...tailFormItemLayout} style={{ marginBottom: 0 }}>
               <Button type="primary" htmlType="submit">
                 Login
               </Button>

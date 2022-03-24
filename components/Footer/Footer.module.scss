@@ -1,0 +1,28 @@
+.wrapper {
+  text-align: center;
+  background-color: var(--black-2);
+
+  h3 {
+    color: var(--grey-1);
+  }
+
+  .company {
+    display: flex;
+    justify-content: center;
+    padding-top: 32px;
+    color: var(--grey-2);
+  }
+
+  .links {
+    display: inline-flex;
+    flex-direction: column;
+
+    a {
+      color: var(--grey-2);
+
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+  }
+}
