@@ -1,0 +1,18 @@
+.header {
+  background-color: var(--black-2) !important;
+  display: flex;
+
+  .logo {
+    cursor: pointer;
+  }
+
+  .list {
+    background-color: var(--black-2) !important;
+    width: 100%;
+    margin-left: 16px;
+  }
+
+  .titleContent {
+    color: white;
+  }
+}
