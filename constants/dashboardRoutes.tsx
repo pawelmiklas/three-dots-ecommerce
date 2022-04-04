@@ -5,7 +5,7 @@ import {
   FileTextOutlined,
   TagOutlined,
   DollarOutlined,
-  MessageOutlined,
+  CommentOutlined,
 } from "@ant-design/icons";
 
 const dashboardRoutes = [
@@ -41,7 +41,7 @@ const dashboardRoutes = [
   },
   {
     name: "Reviews",
-    icon: <MessageOutlined />,
+    icon: <CommentOutlined />,
     route: "/dashboard/reviews",
   },
 ];

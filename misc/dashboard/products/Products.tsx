@@ -1,4 +1,5 @@
 import DashboardLayout from "@components/DashboardLayout/DashboardLayout";
+import { ArrowDownOutlined } from "@ant-design/icons";
 import {
   Typography,
   Table,
@@ -8,6 +9,7 @@ import {
   Button,
   Row,
   Col,
+  Statistic,
 } from "antd";
 import { products } from "mock/products";
 import React from "react";
@@ -39,7 +41,16 @@ const ProductsPage = () => {
       title: "Discount",
       dataIndex: "discount",
       key: "discount",
-      render: (discount: string) => `${discount}%`,
+      render: (discount: number) => (
+        <Statistic
+          value={discount > 0 ? discount : "-"}
+          precision={2}
+          valueStyle={{ color: discount > 0 ? "#3f8600" : "" }}
+          prefix={discount > 0 ? <ArrowDownOutlined /> : null}
+          suffix={discount > 0 ? "%" : undefined}
+          className={classes.statistics}
+        />
+      ),
     },
     {
       title: "Properties",

@@ -1,6 +1,13 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import {
+  LogoutOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UserOutlined,
+  FormOutlined,
+  ContactsOutlined,
+} from "@ant-design/icons";
 import { dashboardRoutes } from "@constants/dashboardRoutes";
-import { Layout, Menu } from "antd";
+import { Dropdown, Layout, Menu, Typography } from "antd";
 import { useRouter } from "next/router";
 import { createElement, useState } from "react";
 import classes from "./DashboardLayout.module.scss";
@@ -50,12 +57,39 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       <Layout className="site-layout">
         <Header
           className="site-layout-background"
-          style={{ padding: 0, color: "white" }}
+          style={{
+            padding: "0 24px",
+            color: "white",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
           {createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: "trigger",
             onClick: toggle,
           })}
+          <Dropdown.Button
+            overlay={
+              <Menu>
+                <Menu.Item key="1" icon={<ContactsOutlined />}>
+                  My profile
+                </Menu.Item>
+                <Menu.Item key="2" icon={<FormOutlined />}>
+                  Change password
+                </Menu.Item>
+                <Menu.Item key="3" icon={<LogoutOutlined />}>
+                  Logout
+                </Menu.Item>
+              </Menu>
+            }
+            placement="bottom"
+            icon={<UserOutlined />}
+          >
+            <Typography.Paragraph className={classes.userText}>
+              Tom Hanks
+            </Typography.Paragraph>
+          </Dropdown.Button>
         </Header>
         <Content
           className="site-layout-background"

@@ -27,7 +27,7 @@ const LoginPage = () => {
 
   const onFinish = (values: any) => {
     form.resetFields();
-    router.push("/dashboard");
+    router.push("/dashboard/products");
   };
 
   return (
