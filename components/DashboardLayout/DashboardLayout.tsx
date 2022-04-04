@@ -78,7 +78,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <Menu.Item key="2" icon={<FormOutlined />}>
                   Change password
                 </Menu.Item>
-                <Menu.Item key="3" icon={<LogoutOutlined />}>
+                <Menu.Item
+                  key="3"
+                  icon={<LogoutOutlined />}
+                  onClick={() => router.push("/")}
+                >
                   Logout
                 </Menu.Item>
               </Menu>
