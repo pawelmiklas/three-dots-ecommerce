@@ -20,7 +20,7 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const router = useRouter();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const activeRoute = dashboardRoutes.find((item) =>
     router.pathname.includes(item.route)
   )?.name;
@@ -31,7 +31,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   return (
     <Layout className={classes.layoutWrapper}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider collapsible collapsed={collapsed}>
         <div
           className={classes.logo}
           onClick={() => router.push("/dashboard/products")}
@@ -40,7 +40,6 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </div>
         <Menu
           theme="dark"
-          mode="inline"
           selectedKeys={activeRoute ? [activeRoute] : undefined}
         >
           {dashboardRoutes.map(({ icon, name, route }) => (

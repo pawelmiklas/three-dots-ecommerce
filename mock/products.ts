@@ -32,7 +32,7 @@ const products = [
     properties: ["nice", "developer"],
   },
   {
-    key: "64",
+    key: "1",
     name: 'copy',
     price: 669.85,
     discount: 9,

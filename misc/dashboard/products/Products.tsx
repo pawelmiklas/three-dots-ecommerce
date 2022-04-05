@@ -1,5 +1,5 @@
 import DashboardLayout from "@components/DashboardLayout/DashboardLayout";
-import { ArrowDownOutlined } from "@ant-design/icons";
+import { ArrowDownOutlined, SearchOutlined } from "@ant-design/icons";
 import {
   Typography,
   Table,
@@ -10,13 +10,25 @@ import {
   Row,
   Col,
   Statistic,
+  message,
+  Input,
 } from "antd";
-import { products } from "mock/products";
-import React from "react";
+import React, { useState } from "react";
 import NumberFormat from "react-number-format";
 import classes from "./Products.module.scss";
+import { useStore } from "store";
+import useDebounce from "hooks/useDebounce";
 
 const ProductsPage = () => {
+  const [filter, setFilter] = useState("");
+  const products = useStore((state) => state.products);
+  const removeProduct = useStore((state) => state.removeProduct);
+
+  const filteredProducts = useDebounce(
+    products.filter((item) => item.name.includes(filter)),
+    750
+  );
+
   const columns = [
     {
       title: "Name",
@@ -83,9 +95,15 @@ const ProductsPage = () => {
     {
       title: "Action",
       key: "action",
-      render: () => (
+      render: (item: any) => (
         <Space size="middle">
-          <Popconfirm title="Sure to delete?" onConfirm={() => {}}>
+          <Popconfirm
+            title="Sure to delete?"
+            onConfirm={() => {
+              removeProduct(item.key);
+              message.success("Product has been deleted!");
+            }}
+          >
             <a>Delete</a>
           </Popconfirm>
           <a>Edit</a>
@@ -98,16 +116,22 @@ const ProductsPage = () => {
   return (
     <DashboardLayout>
       <Row>
-        <Col span={12}>
+        <Col span={16}>
           <Typography.Title level={3} style={{ marginBottom: 24 }}>
             Products
           </Typography.Title>
         </Col>
-        <Col span={12} className={classes.actionButton}>
+        <Col span={8} className={classes.actionButton}>
           <Button type="primary">Add product</Button>
+          <Input
+            size="middle"
+            placeholder="Search"
+            prefix={<SearchOutlined />}
+            onChange={(e) => setFilter(e.target.value)}
+          />
         </Col>
       </Row>
-      <Table columns={columns} dataSource={products} />
+      <Table columns={columns} dataSource={filteredProducts} />
     </DashboardLayout>
   );
 };
