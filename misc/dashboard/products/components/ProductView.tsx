@@ -57,7 +57,7 @@ const ProductView = ({
         </Descriptions.Item>
         <Descriptions.Item label="Collections" span={3}>
           {product.collections.map((item: Collection) => (
-            <Tag color="geekblue" key={item.key}>
+            <Tag color="geekblue" key={item.id}>
               {item.title.toUpperCase()}
             </Tag>
           ))}
