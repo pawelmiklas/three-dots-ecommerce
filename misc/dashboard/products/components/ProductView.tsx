@@ -4,6 +4,8 @@ import { Product } from "mock/products";
 import React from "react";
 import classes from "../Products.module.scss";
 import NumberFormat from "react-number-format";
+import { ProductProperty } from "mock/productProperty";
+import { Collection } from "mock/collections";
 
 interface ProductViewProps {
   isModalVisible: boolean;
@@ -22,8 +24,9 @@ const ProductView = ({
       width={800}
       footer={null}
       onCancel={onCancel}
+      title="Product Info"
     >
-      <Descriptions title="Product Info" bordered>
+      <Descriptions bordered>
         <Descriptions.Item label="Name" span={3}>
           {product.name}
         </Descriptions.Item>
@@ -46,16 +49,16 @@ const ProductView = ({
           />
         </Descriptions.Item>
         <Descriptions.Item label="Properties" span={3}>
-          {product.properties.map((tag: any) => (
-            <Tag color="green" key={tag}>
-              {tag.toUpperCase()}
+          {product.properties.map((item: ProductProperty) => (
+            <Tag color="green" key={item.value}>
+              {item.name.toUpperCase()}
             </Tag>
           ))}
         </Descriptions.Item>
         <Descriptions.Item label="Collections" span={3}>
-          {product.collections.map((tag: any) => (
-            <Tag color="geekblue" key={tag}>
-              {tag.toUpperCase()}
+          {product.collections.map((item: Collection) => (
+            <Tag color="geekblue" key={item.key}>
+              {item.title.toUpperCase()}
             </Tag>
           ))}
         </Descriptions.Item>

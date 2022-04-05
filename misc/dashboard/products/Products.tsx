@@ -20,13 +20,18 @@ import { useStore } from "store";
 import useDebounce from "hooks/useDebounce";
 import ProductView from "./components/ProductView";
 import { Product } from "mock/products";
+import ProductAddEdit from "./components/ProductAddEdit";
+import { ProductProperty } from "mock/productProperty";
+import { Collection } from "mock/collections";
 
 const ProductsPage = () => {
   const [modalProduct, setModalProduct] = useState<Product | undefined>(
     undefined
   );
-  const [isProductModalViewVisible, setIsProductModalViewVisible] =
-    useState(false);
+  const [isProductViewVisible, setIsProductViewVisible] = useState(false);
+  const [isProductFormVisible, setIsProductFormVisible] = useState<
+    "add" | "edit" | false
+  >(false);
   const [filter, setFilter] = useState("");
   const products = useStore((state) => state.products);
   const removeProduct = useStore((state) => state.removeProduct);
@@ -75,11 +80,11 @@ const ProductsPage = () => {
       title: "Properties",
       key: "properties",
       dataIndex: "properties",
-      render: (properties: string[]) => (
+      render: (properties: ProductProperty[]) => (
         <>
-          {properties.map((tag: any) => (
-            <Tag color="green" key={tag}>
-              {tag.toUpperCase()}
+          {properties.map((item: ProductProperty) => (
+            <Tag color="green" key={item.value}>
+              {item.name.toUpperCase()}
             </Tag>
           ))}
         </>
@@ -89,11 +94,11 @@ const ProductsPage = () => {
       title: "Collections",
       key: "collections",
       dataIndex: "collections",
-      render: (collections: string[]) => (
+      render: (collections: Collection[]) => (
         <>
-          {collections.map((tag: any) => (
-            <Tag color="geekblue" key={tag}>
-              {tag.toUpperCase()}
+          {collections.map((item: Collection) => (
+            <Tag color="geekblue" key={item.key}>
+              {item.title.toUpperCase()}
             </Tag>
           ))}
         </>
@@ -113,11 +118,11 @@ const ProductsPage = () => {
           >
             <a>Delete</a>
           </Popconfirm>
-          <a>Edit</a>
+          <a onClick={() => setIsProductFormVisible("edit")}>Edit</a>
           <a
             onClick={() => {
               setModalProduct(item);
-              setIsProductModalViewVisible(true);
+              setIsProductViewVisible(true);
             }}
           >
             View
@@ -129,11 +134,19 @@ const ProductsPage = () => {
 
   return (
     <>
+      {isProductFormVisible && (
+        <ProductAddEdit
+          isModalVisible={!!isProductFormVisible}
+          product={modalProduct}
+          onCancel={() => setIsProductFormVisible(false)}
+          type={isProductFormVisible}
+        />
+      )}
       {modalProduct && (
         <ProductView
-          isModalVisible={isProductModalViewVisible}
+          isModalVisible={isProductViewVisible}
           product={modalProduct}
-          onCancel={() => setIsProductModalViewVisible(false)}
+          onCancel={() => setIsProductViewVisible(false)}
         />
       )}
       <DashboardLayout>
@@ -144,7 +157,12 @@ const ProductsPage = () => {
             </Typography.Title>
           </Col>
           <Col span={8} className={classes.actionButton}>
-            <Button type="primary">Add product</Button>
+            <Button
+              type="primary"
+              onClick={() => setIsProductFormVisible("add")}
+            >
+              Add product
+            </Button>
             <Input
               size="middle"
               placeholder="Search"
