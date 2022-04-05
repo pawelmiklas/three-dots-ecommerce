@@ -13,7 +13,7 @@ import {
   message,
   Input,
 } from "antd";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import NumberFormat from "react-number-format";
 import classes from "./Products.module.scss";
 import { useStore } from "store";
@@ -41,96 +41,106 @@ const ProductsPage = () => {
     750
   );
 
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (text: string) => text,
-    },
-    {
-      title: "Price",
-      dataIndex: "price",
-      key: "price",
-      render: (price: string) => (
-        <NumberFormat
-          value={price}
-          displayType="text"
-          thousandSeparator
-          prefix="$"
-        />
-      ),
-    },
-    {
-      title: "Discount",
-      dataIndex: "discount",
-      key: "discount",
-      render: (discount: number) => (
-        <Statistic
-          value={discount > 0 ? discount : "-"}
-          precision={2}
-          valueStyle={{ color: discount > 0 ? "#3f8600" : "" }}
-          prefix={discount > 0 ? <ArrowDownOutlined /> : null}
-          suffix={discount > 0 ? "%" : undefined}
-          className={classes.statistics}
-        />
-      ),
-    },
-    {
-      title: "Properties",
-      key: "properties",
-      dataIndex: "properties",
-      render: (properties: ProductProperty[]) => (
-        <>
-          {properties.map((item: ProductProperty) => (
-            <Tag color="green" key={item.value}>
-              {item.name.toUpperCase()}
-            </Tag>
-          ))}
-        </>
-      ),
-    },
-    {
-      title: "Collections",
-      key: "collections",
-      dataIndex: "collections",
-      render: (collections: Collection[]) => (
-        <>
-          {collections.map((item: Collection) => (
-            <Tag color="geekblue" key={item.id}>
-              {item.title.toUpperCase()}
-            </Tag>
-          ))}
-        </>
-      ),
-    },
-    {
-      title: "Action",
-      key: "action",
-      render: (item: any) => (
-        <Space size="middle">
-          <Popconfirm
-            title="Sure to delete?"
-            onConfirm={() => {
-              removeProduct(item.key);
-              message.success("Product has been deleted!");
-            }}
-          >
-            <a>Delete</a>
-          </Popconfirm>
-          <a onClick={() => setIsProductFormVisible("edit")}>Edit</a>
-          <a
-            onClick={() => {
-              setModalProduct(item);
-              setIsProductViewVisible(true);
-            }}
-          >
-            View
-          </a>
-        </Space>
-      ),
-    },
-  ];
+  const columns = useMemo(
+    () => [
+      {
+        title: "Name",
+        dataIndex: "name",
+        key: "name",
+        render: (text: string) => text,
+      },
+      {
+        title: "Price",
+        dataIndex: "price",
+        key: "price",
+        render: (price: string) => (
+          <NumberFormat
+            value={price}
+            displayType="text"
+            thousandSeparator
+            prefix="$"
+          />
+        ),
+      },
+      {
+        title: "Discount",
+        dataIndex: "discount",
+        key: "discount",
+        render: (discount: number) => (
+          <Statistic
+            value={discount > 0 ? discount : "-"}
+            precision={2}
+            valueStyle={{ color: discount > 0 ? "#3f8600" : "" }}
+            prefix={discount > 0 ? <ArrowDownOutlined /> : null}
+            suffix={discount > 0 ? "%" : undefined}
+            className={classes.statistics}
+          />
+        ),
+      },
+      {
+        title: "Properties",
+        key: "properties",
+        dataIndex: "properties",
+        render: (properties: ProductProperty[]) => (
+          <>
+            {properties.map((item: ProductProperty) => (
+              <Tag color="green" key={item.value}>
+                {item.name.toUpperCase()}
+              </Tag>
+            ))}
+          </>
+        ),
+      },
+      {
+        title: "Collections",
+        key: "collections",
+        dataIndex: "collections",
+        render: (collections: Collection[]) => (
+          <>
+            {collections.map((item: Collection) => (
+              <Tag color="geekblue" key={item.id}>
+                {item.title.toUpperCase()}
+              </Tag>
+            ))}
+          </>
+        ),
+      },
+      {
+        title: "Action",
+        key: "action",
+        render: (item: any) => (
+          <Space size="middle">
+            <Popconfirm
+              title="Sure to delete?"
+              onConfirm={() => {
+                removeProduct(item.key);
+                message.success("Product has been deleted!");
+              }}
+            >
+              <a>Delete</a>
+            </Popconfirm>
+            <a
+              onClick={() => {
+                setModalProduct(item);
+                setIsProductFormVisible("edit");
+              }}
+            >
+              Edit
+            </a>
+            <a
+              onClick={() => {
+                setModalProduct(item);
+                setIsProductViewVisible(true);
+              }}
+            >
+              View
+            </a>
+          </Space>
+        ),
+      },
+    ],
+    []
+  );
 
   return (
     <>
@@ -138,7 +148,10 @@ const ProductsPage = () => {
         <ProductAddEdit
           isModalVisible={!!isProductFormVisible}
           product={modalProduct}
-          onCancel={() => setIsProductFormVisible(false)}
+          onCancel={() => {
+            setModalProduct(undefined);
+            setIsProductFormVisible(false);
+          }}
           type={isProductFormVisible}
         />
       )}
@@ -146,7 +159,10 @@ const ProductsPage = () => {
         <ProductView
           isModalVisible={isProductViewVisible}
           product={modalProduct}
-          onCancel={() => setIsProductViewVisible(false)}
+          onCancel={() => {
+            setModalProduct(undefined);
+            setIsProductViewVisible(false);
+          }}
         />
       )}
       <DashboardLayout>

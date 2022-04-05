@@ -37,6 +37,7 @@ const ProductAddEdit = ({
   const [form] = Form.useForm();
   const collections = useStore((state) => state.collections);
   const addProduct = useStore((state) => state.addProduct);
+  const editProduct = useStore((state) => state.editProduct);
   const productProperties = useStore((state) => state.productProperties);
 
   return (
@@ -51,7 +52,11 @@ const ProductAddEdit = ({
         {...formItemLayout}
         form={form}
         name="register"
-        initialValues={{}}
+        initialValues={{
+          ...product,
+          collections: product?.collections.map((item) => item.id),
+          properties: product?.properties.map((item) => item.value),
+        }}
         layout="vertical"
         onFinish={(values) => {
           if (type === "add") {
@@ -65,6 +70,19 @@ const ProductAddEdit = ({
               ),
             });
             message.success("Product has been added succesfully!");
+            onCancel();
+          } else if (type === "edit") {
+            editProduct({
+              key: product?.key,
+              ...values,
+              collections: values.collections.map((item: string) =>
+                collections.find((collection) => collection.id === item)
+              ),
+              properties: values.properties.map((item: string) =>
+                productProperties.find((property) => property.value === item)
+              ),
+            });
+            message.success("Product has been edited succesfully!");
             onCancel();
           }
         }}
