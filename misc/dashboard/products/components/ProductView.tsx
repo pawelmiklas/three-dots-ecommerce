@@ -4,7 +4,7 @@ import { Product } from "mock/products";
 import React from "react";
 import classes from "../Products.module.scss";
 import NumberFormat from "react-number-format";
-import { ProductProperty } from "mock/productProperty";
+import { ProductProperty } from "mock/productProperties";
 import { Collection } from "mock/collections";
 
 interface ProductViewProps {

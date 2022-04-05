@@ -21,7 +21,7 @@ import useDebounce from "hooks/useDebounce";
 import ProductView from "./components/ProductView";
 import { Product } from "mock/products";
 import ProductAddEdit from "./components/ProductAddEdit";
-import { ProductProperty } from "mock/productProperty";
+import { ProductProperty } from "mock/productProperties";
 import { Collection } from "mock/collections";
 
 const ProductsPage = () => {
@@ -97,7 +97,7 @@ const ProductsPage = () => {
       render: (collections: Collection[]) => (
         <>
           {collections.map((item: Collection) => (
-            <Tag color="geekblue" key={item.key}>
+            <Tag color="geekblue" key={item.id}>
               {item.title.toUpperCase()}
             </Tag>
           ))}

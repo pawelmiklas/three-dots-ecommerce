@@ -4,7 +4,7 @@ export interface ProductProperty {
   name: string;
 }
 
-const productProperty: ProductProperty[] = [
+const productProperties: ProductProperty[] = [
   {
     key: "53",
     value: 'gold',
@@ -62,4 +62,4 @@ const productProperty: ProductProperty[] = [
   },
 ];
 
-export { productProperty }
+export { productProperties }
