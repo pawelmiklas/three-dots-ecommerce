@@ -1,15 +1,8 @@
-import { products } from 'mock/products'
+import { Product, products } from 'mock/products'
 import create from 'zustand'
 
 interface State {
-  products: {
-    key: string;
-    name: string;
-    price: number;
-    discount: number;
-    collections: string[];
-    properties: string[];
-  }[],
+  products: Product[],
   removeProduct: (key: string) => void
 }
 

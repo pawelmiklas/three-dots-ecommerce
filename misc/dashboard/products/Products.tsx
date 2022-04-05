@@ -18,8 +18,15 @@ import NumberFormat from "react-number-format";
 import classes from "./Products.module.scss";
 import { useStore } from "store";
 import useDebounce from "hooks/useDebounce";
+import ProductView from "./components/ProductView";
+import { Product } from "mock/products";
 
 const ProductsPage = () => {
+  const [modalProduct, setModalProduct] = useState<Product | undefined>(
+    undefined
+  );
+  const [isProductModalViewVisible, setIsProductModalViewVisible] =
+    useState(false);
   const [filter, setFilter] = useState("");
   const products = useStore((state) => state.products);
   const removeProduct = useStore((state) => state.removeProduct);
@@ -34,7 +41,7 @@ const ProductsPage = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (text: string) => <a>{text}</a>,
+      render: (text: string) => text,
     },
     {
       title: "Price",
@@ -107,32 +114,48 @@ const ProductsPage = () => {
             <a>Delete</a>
           </Popconfirm>
           <a>Edit</a>
-          <a>View</a>
+          <a
+            onClick={() => {
+              setModalProduct(item);
+              setIsProductModalViewVisible(true);
+            }}
+          >
+            View
+          </a>
         </Space>
       ),
     },
   ];
 
   return (
-    <DashboardLayout>
-      <Row>
-        <Col span={16}>
-          <Typography.Title level={3} style={{ marginBottom: 24 }}>
-            Products
-          </Typography.Title>
-        </Col>
-        <Col span={8} className={classes.actionButton}>
-          <Button type="primary">Add product</Button>
-          <Input
-            size="middle"
-            placeholder="Search"
-            prefix={<SearchOutlined />}
-            onChange={(e) => setFilter(e.target.value)}
-          />
-        </Col>
-      </Row>
-      <Table columns={columns} dataSource={filteredProducts} />
-    </DashboardLayout>
+    <>
+      {modalProduct && (
+        <ProductView
+          isModalVisible={isProductModalViewVisible}
+          product={modalProduct}
+          onCancel={() => setIsProductModalViewVisible(false)}
+        />
+      )}
+      <DashboardLayout>
+        <Row>
+          <Col span={16}>
+            <Typography.Title level={3} style={{ marginBottom: 24 }}>
+              Products
+            </Typography.Title>
+          </Col>
+          <Col span={8} className={classes.actionButton}>
+            <Button type="primary">Add product</Button>
+            <Input
+              size="middle"
+              placeholder="Search"
+              prefix={<SearchOutlined />}
+              onChange={(e) => setFilter(e.target.value)}
+            />
+          </Col>
+        </Row>
+        <Table columns={columns} dataSource={filteredProducts} />
+      </DashboardLayout>
+    </>
   );
 };
 
