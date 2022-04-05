@@ -1,7 +1,5 @@
 import {
   LogoutOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   UserOutlined,
   FormOutlined,
   ContactsOutlined,
@@ -9,7 +7,7 @@ import {
 import { dashboardRoutes } from "@constants/dashboardRoutes";
 import { Dropdown, Layout, Menu, Typography } from "antd";
 import { useRouter } from "next/router";
-import { createElement, useState } from "react";
+import { useState } from "react";
 import classes from "./DashboardLayout.module.scss";
 
 const { Header, Sider, Content } = Layout;
@@ -31,7 +29,20 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   return (
     <Layout className={classes.layoutWrapper}>
-      <Sider collapsible collapsed={collapsed}>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={toggle}
+        style={{
+          overflow: "auto",
+          height: "100vh",
+          position: "fixed",
+          left: 0,
+          top: 0,
+          bottom: 0,
+          zIndex: 10,
+        }}
+      >
         <div
           className={classes.logo}
           onClick={() => router.push("/dashboard/products")}
@@ -60,14 +71,13 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             padding: "0 24px",
             color: "white",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             alignItems: "center",
+            position: "fixed",
+            zIndex: 1,
+            width: "100%",
           }}
         >
-          {createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: "trigger",
-            onClick: toggle,
-          })}
           <Dropdown.Button
             overlay={
               <Menu>
@@ -97,8 +107,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <Content
           className="site-layout-background"
           style={{
-            padding: 42,
+            padding: collapsed ? "88px 42px 0 120px" : "88px 42px 0 240px",
             minHeight: 280,
+            transition: "all 0.2s",
           }}
         >
           {children}
