@@ -1,7 +1,11 @@
-import { Row, Col} from 'antd';
 import Text from 'antd/lib/typography/Text';
+import classes from './TopBar.module.scss';
+import { Row, Col} from 'antd';
+import { useRouter } from 'next/router';
+
 
 const TopBar = () => {
+    const router = useRouter();
     const freeShipping = 120;
     const leftSide = [
         {
@@ -43,7 +47,7 @@ const TopBar = () => {
                     <Col>
                         {rightSide.map(({name, path})=>{
                             return(
-                                <span key={name}><Text code>{ name }</Text></span>
+                                <span className={classes.link} key={name} onClick={()=>router.push(path)}><Text code>{ name }</Text></span>
                             )
                         })}
                     </Col>
