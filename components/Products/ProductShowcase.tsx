@@ -1,4 +1,4 @@
-import classes from './NewProducts.module.scss';
+import classes from './ProductShowcase.module.scss';
 
 import { Row, Col, Button} from 'antd';
 import { Product } from 'mock/products';
