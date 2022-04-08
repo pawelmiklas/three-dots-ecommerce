@@ -49,7 +49,7 @@ const Footer = () => (
         <Title level={5}>Subscribe</Title>
         <Text>Subscribe to our newsletter and get discount 10% for first order.</Text>
         <Input.Group compact>
-          <Input style={{ width: 'calc(100% - 300px)' }} placeholder="Put your email..." />
+          <Input style={{ width: 'calc(100% - 200px)' }} placeholder="Put your email..." />
           <Button type="primary">Submit</Button>
         </Input.Group>
       </Col>
