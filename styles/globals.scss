@@ -1,17 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
+
+  --white: #fff;
+
   --black-1: #0c080a;
   --black-2: #181115;
   --black-3: #2e1f27;
 
   --grey-1: #f7f3f5;
   --grey-2: #cac3c7;
+  --grey-3: #E5E5E5;
+
 
   --brown-1: #854d27;
   --orange-1: #dd7230;
   --yellow-1: #f4c95d;
   --yellow-2: #e7e393;
+  --yellow-3: #f4ec35;
+
 }
 
 // https://coolors.co/181115-854d27-dd7230-f4c95d-e7e393
@@ -21,23 +28,23 @@ body {
   font-family: 'Inter', sans-serif !important;
 }
 
-.transition-opacity {
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
+// .transition-opacity {
+//   transition-property: opacity;
+//   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+//   transition-duration: 150ms;
+// }
 
-.transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
+// .transition-colors {
+//   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+//   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+//   transition-duration: 150ms;
+// }
 
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
+// .transition-all {
+//   transition-property: all;
+//   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+//   transition-duration: 150ms;
+// }
 
 h1,
 h2,

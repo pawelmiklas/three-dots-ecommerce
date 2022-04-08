@@ -1,0 +1,9 @@
+.ribbon{
+    background-color: black;
+}
+.button{
+    color: #000;
+    &:hover{
+        color: var(--black-2);
+    }
+}

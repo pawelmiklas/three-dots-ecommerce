@@ -5,8 +5,10 @@ import NextNProgress from "nextjs-progressbar";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <NextNProgress color="#dd7230" />
+    <div>
+      <NextNProgress color="#dd7230"/>
       <Component {...pageProps} />
+    </div>
     </>
   );
 }
