@@ -1,4 +1,4 @@
-import classes from './NewProducts.module.scss';
+import classes from './SaleProducts.module.scss';
 
 import { Row, Col, Button} from 'antd';
 import { Badge} from 'antd';
@@ -11,22 +11,22 @@ import Title from 'antd/lib/typography/Title';
 import Text from 'antd/lib/typography/Text';
 import ProductShowcase from './ProductShowcase';
 
-const NewProducts = () => {
+const SaleProducts = () => {
     const store = useStore();
     const currency = 'Eur'
     const quantityProducts:number = 4;
-    const ribbonText:string = 'New products'
-    const products:Product[] = store.products.slice(0,quantityProducts);
+    const ribbonText:string = 'Products on sale'
+    const products:Product[] = store.products.filter(item=> item.onsale === true);
 
   return (
-    <div>
+    <div className={classes.container}>
         <Badge.Ribbon text={ribbonText} placement='start' className={classes.ribbon}/>
             <Row style={{'paddingTop':'4rem'}} gutter={[50,50]}>
                     {
                         products.map((item)=>{
                             return(
                                 <Col span={6} key={item.name}>
-                                    <ProductShowcase item={item} currency={currency} onsale={false} />
+                                    <ProductShowcase item={item} currency={currency} onsale={true} />
                                 </Col>
                             )
                         })
@@ -36,4 +36,4 @@ const NewProducts = () => {
   );
 };
 
-export default NewProducts;
+export default SaleProducts;

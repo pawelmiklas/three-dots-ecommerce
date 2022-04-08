@@ -11,6 +11,7 @@ export interface Product {
   image:string;
   promoted:boolean;
   description:string;
+  onsale:boolean,
 }
 
 const products: Product[] = [
@@ -23,7 +24,8 @@ const products: Product[] = [
     collections: [collections[8], collections[5], collections[3]],
     image:'/products_images/image 2.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:false,
   },
   {
     key: "36",
@@ -34,7 +36,8 @@ const products: Product[] = [
     collections: [collections[7], collections[1]],
     image:'/products_images/image 3.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:false,
   },
   {
     key: "64",
@@ -45,7 +48,8 @@ const products: Product[] = [
     collections: [collections[10], collections[7], collections[0]],
     image:'/products_images/image 4.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:false,
   },
   {
     key: "9",
@@ -56,7 +60,8 @@ const products: Product[] = [
     collections: [collections[2], collections[10], collections[9]],
     image:'/products_images/image 5.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:false,
   },
   {
     key: "1",
@@ -67,7 +72,8 @@ const products: Product[] = [
     collections: [collections[2], collections[1]],
     image:'/products_images/image 6.png',
     promoted:true,
-    description:"Chuck 70s Court Być może lata 90. to dla Ciebie odległa historia, ale buty Ozelia są zakorzenione w tej bezkompromisowej, eksperymentalnej erze. Śmiały model inspirowany archiwalnymi butami adidas ma solidną konstrukcję, która sprawia, że nie sposób go nie zauważyć. Gładkie buty mają biegowy charakter, a kiedy Twoje dni nabierają tempa, amortyzacja Adiprene zapewnia stopom wygodę. Ten produkt zawiera materiały pochodzące z recyklingu w ramach naszych wysiłków zmierzających do rozwiązania problemu plastikowych odpadów. 20% elementów użytych do wykonania cholewki zawiera co najmniej 50% materiałów pochodzących z recyklingu."
+    description:"Chuck 70s Court Być może lata 90. to dla Ciebie odległa historia, ale buty Ozelia są zakorzenione w tej bezkompromisowej, eksperymentalnej erze. Śmiały model inspirowany archiwalnymi butami adidas ma solidną konstrukcję, która sprawia, że nie sposób go nie zauważyć. Gładkie buty mają biegowy charakter, a kiedy Twoje dni nabierają tempa, amortyzacja Adiprene zapewnia stopom wygodę. Ten produkt zawiera materiały pochodzące z recyklingu w ramach naszych wysiłków zmierzających do rozwiązania problemu plastikowych odpadów. 20% elementów użytych do wykonania cholewki zawiera co najmniej 50% materiałów pochodzących z recyklingu.",
+    onsale:false,
   },
   {
     key: "46",
@@ -78,7 +84,8 @@ const products: Product[] = [
     collections: [collections[1]],
     image:'/products_images/image 7.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:false,
   },
   {
     key: "26",
@@ -89,7 +96,8 @@ const products: Product[] = [
     collections: [collections[9], collections[5], collections[4]],
     image:'/products_images/image 8.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:false,
   },
   {
     key: "85",
@@ -100,7 +108,8 @@ const products: Product[] = [
     collections: [collections[8], collections[4], collections[3]],
     image:'/products_images/image 9.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:false,
   },
   {
     key: "82",
@@ -111,7 +120,8 @@ const products: Product[] = [
     collections: [collections[5], collections[6], collections[9]],
     image:'/products_images/image 10.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:false,
   },
   {
     key: "2",
@@ -122,7 +132,8 @@ const products: Product[] = [
     collections: [collections[0], collections[8], collections[1]],
     image:'/products_images/image 11.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:true,
   },
   {
     key: "74",
@@ -133,7 +144,8 @@ const products: Product[] = [
     collections: [collections[8], collections[7]],
     image:'/products_images/image 12.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:true,
   },
   {
     key: "92",
@@ -144,7 +156,8 @@ const products: Product[] = [
     collections: [collections[2], collections[10]],
     image:'/products_images/image 13.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:true,
   },
   {
     key: "11",
@@ -155,7 +168,8 @@ const products: Product[] = [
     collections: [collections[4], collections[0], collections[7]],
     image:'/products_images/image 14.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:true,
   },
   {
     key: "26",
@@ -166,7 +180,8 @@ const products: Product[] = [
     collections: [collections[10]],
     image:'/products_images/image 2.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:true,
   },
   {
     key: "41",
@@ -177,7 +192,8 @@ const products: Product[] = [
     collections: [collections[4], collections[0]],
     image:'/products_images/image 3.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:true,
   },
   {
     key: "25",
@@ -188,7 +204,8 @@ const products: Product[] = [
     collections: [collections[1], collections[4], collections[6]],
     image:'/products_images/image 4.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:true,
   },
   {
     key: "37",
@@ -199,7 +216,8 @@ const products: Product[] = [
     collections: [collections[0], collections[7], collections[4]],
     image:'/products_images/image 5.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:true,
   },
   {
     key: "100",
@@ -210,7 +228,8 @@ const products: Product[] = [
     collections: [collections[7], collections[1]],
     image:'/products_images/image 6.png',
     promoted:false,
-    description:'adadasdadsasd'
+    description:'adadasdadsasd',
+    onsale:false,
   },
 ];
 
