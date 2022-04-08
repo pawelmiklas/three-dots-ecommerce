@@ -11,7 +11,7 @@ import Text from 'antd/lib/typography/Text';
 const ProductShowcase = ({item,currency,onsale}:{item:Product,currency:string,onsale:boolean}) => {
     const {name, price, image, discount} = item
   return (
-    <>
+    <div className={classes.product}>
         <Row><Image src={image} height={227} width={330}/></Row>
         <Row><Title level={5}>{name}</Title></Row>
         <Row justify='space-between'>
@@ -30,7 +30,7 @@ const ProductShowcase = ({item,currency,onsale}:{item:Product,currency:string,on
           }
             <Col><Button size='middle' type='primary' className={classes.button} icon={<ShoppingOutlined/>}/></Col>
         </Row>
-    </>
+    </div>
   );
 };
 

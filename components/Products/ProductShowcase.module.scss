@@ -7,3 +7,9 @@
         color: var(--black-2);
     }
 }
+.product{
+    &:hover{
+        outline-offset: 4px;
+        outline: 1px dashed var(--grey-3);
+    }
+}
