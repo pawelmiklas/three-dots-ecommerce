@@ -1,7 +1,7 @@
-import React from "react";
-import { Col, Layout as AntdLayout, Row, Typography } from "antd";
-import Link from "next/link";
-import classes from "./Footer.module.scss";
+import React from 'react';
+import { Col, Layout as AntdLayout, Row, Typography } from 'antd';
+import Link from 'next/link';
+import classes from './Footer.module.scss';
 
 const { Footer: AntdFooter } = AntdLayout;
 const { Title } = Typography;

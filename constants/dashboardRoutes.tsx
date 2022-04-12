@@ -6,43 +6,43 @@ import {
   TagOutlined,
   DollarOutlined,
   CommentOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 
 const dashboardRoutes = [
   {
-    name: "Products",
+    name: 'Products',
     icon: <UnorderedListOutlined />,
-    route: "/dashboard/products",
+    route: '/dashboard/products',
   },
   {
-    name: "Properties",
+    name: 'Properties',
     icon: <FileTextOutlined />,
-    route: "/dashboard/properties",
+    route: '/dashboard/properties',
   },
   {
-    name: "Collections",
+    name: 'Collections',
     icon: <TagOutlined />,
-    route: "/dashboard/collections",
+    route: '/dashboard/collections',
   },
   {
-    name: "Categories",
+    name: 'Categories',
     icon: <ContainerOutlined />,
-    route: "/dashboard/categories",
+    route: '/dashboard/categories',
   },
   {
-    name: "Discounts",
+    name: 'Discounts',
     icon: <DollarOutlined />,
-    route: "/dashboard/discounts",
+    route: '/dashboard/discounts',
   },
   {
-    name: "Users",
+    name: 'Users',
     icon: <TeamOutlined />,
-    route: "/dashboard/users",
+    route: '/dashboard/users',
   },
   {
-    name: "Reviews",
+    name: 'Reviews',
     icon: <CommentOutlined />,
-    route: "/dashboard/reviews",
+    route: '/dashboard/reviews',
   },
 ];
 

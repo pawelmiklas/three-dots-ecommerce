@@ -1,14 +1,9 @@
-import {
-  LogoutOutlined,
-  UserOutlined,
-  FormOutlined,
-  ContactsOutlined,
-} from "@ant-design/icons";
-import { dashboardRoutes } from "@constants/dashboardRoutes";
-import { Dropdown, Layout, Menu, Typography } from "antd";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import classes from "./DashboardLayout.module.scss";
+import { LogoutOutlined, UserOutlined, FormOutlined, ContactsOutlined } from '@ant-design/icons';
+import { dashboardRoutes } from '@constants/dashboardRoutes';
+import { Dropdown, Layout, Menu, Typography } from 'antd';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import classes from './DashboardLayout.module.scss';
 
 const { Header, Sider, Content } = Layout;
 
@@ -19,9 +14,7 @@ interface DashboardLayoutProps {
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(true);
-  const activeRoute = dashboardRoutes.find((item) =>
-    router.pathname.includes(item.route)
-  )?.name;
+  const activeRoute = dashboardRoutes.find(item => router.pathname.includes(item.route))?.name;
 
   const toggle = () => {
     setCollapsed(!collapsed);
@@ -34,31 +27,21 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         collapsed={collapsed}
         onCollapse={toggle}
         style={{
-          overflow: "auto",
-          height: "100vh",
-          position: "fixed",
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
           left: 0,
           top: 0,
           bottom: 0,
           zIndex: 10,
         }}
       >
-        <div
-          className={classes.logo}
-          onClick={() => router.push("/dashboard/products")}
-        >
+        <div className={classes.logo} onClick={() => router.push('/dashboard/products')}>
           <img src="/logo-min.png" width={34} height={34} />
         </div>
-        <Menu
-          theme="dark"
-          selectedKeys={activeRoute ? [activeRoute] : undefined}
-        >
+        <Menu theme="dark" selectedKeys={activeRoute ? [activeRoute] : undefined}>
           {dashboardRoutes.map(({ icon, name, route }) => (
-            <Menu.Item
-              key={name}
-              icon={icon}
-              onClick={() => router.push(route)}
-            >
+            <Menu.Item key={name} icon={icon} onClick={() => router.push(route)}>
               {name}
             </Menu.Item>
           ))}
@@ -68,14 +51,14 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <Header
           className="site-layout-background"
           style={{
-            padding: "0 24px",
-            color: "white",
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            position: "fixed",
+            padding: '0 24px',
+            color: 'white',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            position: 'fixed',
             zIndex: 1,
-            width: "100%",
+            width: '100%',
           }}
         >
           <Dropdown.Button
@@ -87,11 +70,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <Menu.Item key="2" icon={<FormOutlined />}>
                   Change password
                 </Menu.Item>
-                <Menu.Item
-                  key="3"
-                  icon={<LogoutOutlined />}
-                  onClick={() => router.push("/")}
-                >
+                <Menu.Item key="3" icon={<LogoutOutlined />} onClick={() => router.push('/')}>
                   Logout
                 </Menu.Item>
               </Menu>
@@ -99,17 +78,15 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             placement="bottom"
             icon={<UserOutlined />}
           >
-            <Typography.Paragraph className={classes.userText}>
-              Tom Hanks
-            </Typography.Paragraph>
+            <Typography.Paragraph className={classes.userText}>Tom Hanks</Typography.Paragraph>
           </Dropdown.Button>
         </Header>
         <Content
           className="site-layout-background"
           style={{
-            padding: collapsed ? "88px 42px 0 120px" : "88px 42px 0 240px",
+            padding: collapsed ? '88px 42px 0 120px' : '88px 42px 0 240px',
             minHeight: 280,
-            transition: "all 0.2s",
+            transition: 'all 0.2s',
           }}
         >
           {children}
