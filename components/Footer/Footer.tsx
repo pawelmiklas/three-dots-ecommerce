@@ -1,7 +1,7 @@
-import React from "react";
-import { Button, Col, Divider, Input, Layout as AntdLayout, Row, Typography } from "antd";
-import Link from "next/link";
-import classes from "./Footer.module.scss";
+import React from 'react';
+import { Button, Col, Divider, Input, Layout as AntdLayout, Row, Typography } from 'antd';
+import Link from 'next/link';
+import classes from './Footer.module.scss';
 
 const { Footer: AntdFooter } = AntdLayout;
 const { Title, Text } = Typography;
@@ -11,7 +11,7 @@ const Footer = () => (
     <Divider orientation="left">EveryStepMatter.com</Divider>
     <Row>
       <Col span={8}>
-         <Divider type="vertical"/>
+        <Divider type="vertical" />
         <Title level={5}>About us</Title>
         <div className={classes.links}>
           <Link href="">

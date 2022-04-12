@@ -1,5 +1,5 @@
-import React from "react";
-import Users from "@misc/dashboard/users/Users";
+import React from 'react';
+import Users from '@misc/dashboard/users/Users';
 
 const UsersPage = () => {
   return <Users />;

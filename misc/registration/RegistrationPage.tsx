@@ -1,17 +1,6 @@
-import {
-  Card,
-  Col,
-  Row,
-  Typography,
-  Form,
-  Input,
-  Select,
-  Checkbox,
-  Button,
-  message,
-} from "antd";
-import { useRouter } from "next/router";
-import React from "react";
+import { Card, Col, Row, Typography, Form, Input, Select, Checkbox, Button, message } from 'antd';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -40,11 +29,9 @@ const RegistrationPage = () => {
 
   const onFinish = (values: any) => {
     form.resetFields();
-    message.success(
-      "Registration went succesfully, we send message to your email!"
-    );
+    message.success('Registration went succesfully, we send message to your email!');
 
-    router.push("/login");
+    router.push('/login');
   };
 
   const prefixSelector = (
@@ -68,7 +55,7 @@ const RegistrationPage = () => {
             form={form}
             name="register"
             initialValues={{
-              prefix: "48",
+              prefix: '48',
             }}
             layout="vertical"
             onFinish={onFinish}
@@ -79,12 +66,12 @@ const RegistrationPage = () => {
               label="E-mail"
               rules={[
                 {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
+                  type: 'email',
+                  message: 'The input is not valid E-mail!',
                 },
                 {
                   required: true,
-                  message: "Please input your E-mail!",
+                  message: 'Please input your E-mail!',
                 },
               ]}
             >
@@ -96,7 +83,7 @@ const RegistrationPage = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your password!",
+                  message: 'Please input your password!',
                 },
               ]}
               hasFeedback
@@ -106,23 +93,19 @@ const RegistrationPage = () => {
             <Form.Item
               name="confirm"
               label="Confirm password"
-              dependencies={["password"]}
+              dependencies={['password']}
               hasFeedback
               rules={[
                 {
                   required: true,
-                  message: "Please confirm your password!",
+                  message: 'Please confirm your password!',
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
+                    if (!value || getFieldValue('password') === value) {
                       return Promise.resolve();
                     }
-                    return Promise.reject(
-                      new Error(
-                        "The two passwords that you entered do not match!"
-                      )
-                    );
+                    return Promise.reject(new Error('The two passwords that you entered do not match!'));
                   },
                 }),
               ]}
@@ -136,7 +119,7 @@ const RegistrationPage = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your nickname!",
+                  message: 'Please input your nickname!',
                   whitespace: true,
                 },
               ]}
@@ -146,11 +129,9 @@ const RegistrationPage = () => {
             <Form.Item
               name="phone"
               label="Phone number"
-              rules={[
-                { required: true, message: "Please input your phone number!" },
-              ]}
+              rules={[{ required: true, message: 'Please input your phone number!' }]}
             >
-              <Input addonBefore={prefixSelector} style={{ width: "100%" }} />
+              <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
             </Form.Item>
             <Form.Item
               name="city"
@@ -158,7 +139,7 @@ const RegistrationPage = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your City!",
+                  message: 'Please input your City!',
                 },
               ]}
             >
@@ -170,7 +151,7 @@ const RegistrationPage = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your Zip code!",
+                  message: 'Please input your Zip code!',
                 },
               ]}
             >
@@ -182,7 +163,7 @@ const RegistrationPage = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your Street!",
+                  message: 'Please input your Street!',
                 },
               ]}
             >
@@ -194,7 +175,7 @@ const RegistrationPage = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your Building number!",
+                  message: 'Please input your Building number!',
                 },
               ]}
             >
@@ -206,9 +187,7 @@ const RegistrationPage = () => {
               rules={[
                 {
                   validator: (_, value) =>
-                    value
-                      ? Promise.resolve()
-                      : Promise.reject(new Error("Should accept agreement")),
+                    value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
                 },
               ]}
               {...tailFormItemLayout}

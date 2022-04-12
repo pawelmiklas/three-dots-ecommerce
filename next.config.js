@@ -5,7 +5,7 @@ const nextConfig = withAntdLess({
   modifyVars: {
     '@primary-color': '#f4ec35'
   }, // optional
-  lessVarsFilePath: './src/styles/variables.less', // optional 
+  lessVarsFilePath: './src/styles/variables.less', // optional
   lessVarsFilePathAppendToEndOfContent: false, // optional
 
   nextjs: {
@@ -13,4 +13,4 @@ const nextConfig = withAntdLess({
   },
 });
 
-module.exports = nextConfig
+module.exports = nextConfig;

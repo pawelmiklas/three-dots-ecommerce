@@ -1,12 +1,12 @@
-import { Button, InputNumber, Form, Input, Modal, Select, message } from "antd";
-import { Product } from "mock/products";
-import React from "react";
-import { useStore } from "store";
+import { Button, InputNumber, Form, Input, Modal, Select, message } from 'antd';
+import { Product } from 'mock/products';
+import React from 'react';
+import { useStore } from 'store';
 
 interface ProductAddEditProps {
   isModalVisible: boolean;
   onCancel: () => void;
-  type: "add" | "edit";
+  type: 'add' | 'edit';
   product?: Product;
 }
 
@@ -28,17 +28,12 @@ const tailFormItemLayout = {
   },
 };
 
-const ProductAddEdit = ({
-  isModalVisible,
-  product,
-  onCancel,
-  type,
-}: ProductAddEditProps) => {
+const ProductAddEdit = ({ isModalVisible, product, onCancel, type }: ProductAddEditProps) => {
   const [form] = Form.useForm();
-  const collections = useStore((state) => state.collections);
-  const addProduct = useStore((state) => state.addProduct);
-  const editProduct = useStore((state) => state.editProduct);
-  const productProperties = useStore((state) => state.productProperties);
+  const collections = useStore(state => state.collections);
+  const addProduct = useStore(state => state.addProduct);
+  const editProduct = useStore(state => state.editProduct);
+  const productProperties = useStore(state => state.productProperties);
 
   return (
     <Modal
@@ -46,7 +41,7 @@ const ProductAddEdit = ({
       width={800}
       footer={null}
       onCancel={onCancel}
-      title={type === "add" ? "Add product" : "Edit product"}
+      title={type === 'add' ? 'Add product' : 'Edit product'}
     >
       <Form
         {...formItemLayout}
@@ -54,35 +49,35 @@ const ProductAddEdit = ({
         name="register"
         initialValues={{
           ...product,
-          collections: product?.collections.map((item) => item.id),
-          properties: product?.properties.map((item) => item.value),
+          collections: product?.collections.map(item => item.id),
+          properties: product?.properties.map(item => item.value),
         }}
         layout="vertical"
-        onFinish={(values) => {
-          if (type === "add") {
+        onFinish={values => {
+          if (type === 'add') {
             addProduct({
               ...values,
               collections: values.collections.map((item: string) =>
-                collections.find((collection) => collection.id === item)
+                collections.find(collection => collection.id === item),
               ),
               properties: values.properties.map((item: string) =>
-                productProperties.find((property) => property.value === item)
+                productProperties.find(property => property.value === item),
               ),
             });
-            message.success("Product has been added succesfully!");
+            message.success('Product has been added succesfully!');
             onCancel();
-          } else if (type === "edit") {
+          } else if (type === 'edit') {
             editProduct({
               key: product?.key,
               ...values,
               collections: values.collections.map((item: string) =>
-                collections.find((collection) => collection.id === item)
+                collections.find(collection => collection.id === item),
               ),
               properties: values.properties.map((item: string) =>
-                productProperties.find((property) => property.value === item)
+                productProperties.find(property => property.value === item),
               ),
             });
-            message.success("Product has been edited succesfully!");
+            message.success('Product has been edited succesfully!');
             onCancel();
           }
         }}
@@ -94,7 +89,7 @@ const ProductAddEdit = ({
           rules={[
             {
               required: true,
-              message: "Please input product name!",
+              message: 'Please input product name!',
             },
           ]}
         >
@@ -106,17 +101,15 @@ const ProductAddEdit = ({
           rules={[
             {
               required: true,
-              message: "Please input product price!",
+              message: 'Please input product price!',
             },
           ]}
           hasFeedback
         >
           <InputNumber
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
             min={1}
-            formatter={(value) =>
-              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
+            formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           />
         </Form.Item>
         <Form.Item
@@ -125,16 +118,11 @@ const ProductAddEdit = ({
           rules={[
             {
               required: true,
-              message: "Please input product discount!",
+              message: 'Please input product discount!',
             },
           ]}
         >
-          <InputNumber
-            style={{ width: "100%" }}
-            min={0}
-            max={99}
-            formatter={(value) => `% ${value}`}
-          />
+          <InputNumber style={{ width: '100%' }} min={0} max={99} formatter={value => `% ${value}`} />
         </Form.Item>
         <Form.Item
           name="collections"
@@ -142,12 +130,12 @@ const ProductAddEdit = ({
           rules={[
             {
               required: true,
-              message: "Please input product collection!",
+              message: 'Please input product collection!',
             },
           ]}
         >
           <Select mode="multiple">
-            {collections.map((item) => (
+            {collections.map(item => (
               <Select.Option key={item.id} value={item.id}>
                 {item.title}
               </Select.Option>
@@ -160,12 +148,12 @@ const ProductAddEdit = ({
           rules={[
             {
               required: true,
-              message: "Please input product properties!",
+              message: 'Please input product properties!',
             },
           ]}
         >
           <Select mode="multiple">
-            {productProperties.map((item) => (
+            {productProperties.map(item => (
               <Select.Option key={item.value} value={item.value}>
                 {item.name}
               </Select.Option>
@@ -174,7 +162,7 @@ const ProductAddEdit = ({
         </Form.Item>
         <Form.Item {...tailFormItemLayout} style={{ marginBottom: 0 }}>
           <Button type="primary" htmlType="submit">
-            {type === "add" ? "Add" : "Save"}
+            {type === 'add' ? 'Add' : 'Save'}
           </Button>
         </Form.Item>
       </Form>

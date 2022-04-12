@@ -1,86 +1,63 @@
-import DashboardLayout from "@components/DashboardLayout/DashboardLayout";
-import { ArrowDownOutlined, SearchOutlined } from "@ant-design/icons";
-import {
-  Typography,
-  Table,
-  Tag,
-  Space,
-  Popconfirm,
-  Button,
-  Row,
-  Col,
-  Statistic,
-  message,
-  Input,
-} from "antd";
-import React, { useMemo, useState } from "react";
-import NumberFormat from "react-number-format";
-import classes from "./Products.module.scss";
-import { useStore } from "store";
-import useDebounce from "hooks/useDebounce";
-import ProductView from "./components/ProductView";
-import { Product } from "mock/products";
-import ProductAddEdit from "./components/ProductAddEdit";
-import { ProductProperty } from "mock/productProperties";
-import { Collection } from "mock/collections";
+import DashboardLayout from '@components/DashboardLayout/DashboardLayout';
+import { ArrowDownOutlined, SearchOutlined } from '@ant-design/icons';
+import { Typography, Table, Tag, Space, Popconfirm, Button, Row, Col, Statistic, message, Input } from 'antd';
+import React, { useMemo, useState } from 'react';
+import NumberFormat from 'react-number-format';
+import classes from './Products.module.scss';
+import { useStore } from 'store';
+import useDebounce from 'hooks/useDebounce';
+import ProductView from './components/ProductView';
+import { Product } from 'mock/products';
+import ProductAddEdit from './components/ProductAddEdit';
+import { ProductProperty } from 'mock/productProperties';
+import { Collection } from 'mock/collections';
 
 const ProductsPage = () => {
-  const [modalProduct, setModalProduct] = useState<Product | undefined>(
-    undefined
-  );
+  const [modalProduct, setModalProduct] = useState<Product | undefined>(undefined);
   const [isProductViewVisible, setIsProductViewVisible] = useState(false);
-  const [isProductFormVisible, setIsProductFormVisible] = useState<
-    "add" | "edit" | false
-  >(false);
-  const [filter, setFilter] = useState("");
-  const products = useStore((state) => state.products);
-  const removeProduct = useStore((state) => state.removeProduct);
+  const [isProductFormVisible, setIsProductFormVisible] = useState<'add' | 'edit' | false>(false);
+  const [filter, setFilter] = useState('');
+  const products = useStore(state => state.products);
+  const removeProduct = useStore(state => state.removeProduct);
 
   const filteredProducts = useDebounce(
-    products.filter((item) => item.name.includes(filter)),
-    750
+    products.filter(item => item.name.includes(filter)),
+    750,
   );
 
   const columns = useMemo(
     () => [
       {
-        title: "Name",
-        dataIndex: "name",
-        key: "name",
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
         render: (text: string) => text,
       },
       {
-        title: "Price",
-        dataIndex: "price",
-        key: "price",
-        render: (price: string) => (
-          <NumberFormat
-            value={price}
-            displayType="text"
-            thousandSeparator
-            prefix="$"
-          />
-        ),
+        title: 'Price',
+        dataIndex: 'price',
+        key: 'price',
+        render: (price: string) => <NumberFormat value={price} displayType="text" thousandSeparator prefix="$" />,
       },
       {
-        title: "Discount",
-        dataIndex: "discount",
-        key: "discount",
+        title: 'Discount',
+        dataIndex: 'discount',
+        key: 'discount',
         render: (discount: number) => (
           <Statistic
-            value={discount > 0 ? discount : "-"}
+            value={discount > 0 ? discount : '-'}
             precision={2}
-            valueStyle={{ color: discount > 0 ? "#3f8600" : "" }}
+            valueStyle={{ color: discount > 0 ? '#3f8600' : '' }}
             prefix={discount > 0 ? <ArrowDownOutlined /> : null}
-            suffix={discount > 0 ? "%" : undefined}
+            suffix={discount > 0 ? '%' : undefined}
             className={classes.statistics}
           />
         ),
       },
       {
-        title: "Properties",
-        key: "properties",
-        dataIndex: "properties",
+        title: 'Properties',
+        key: 'properties',
+        dataIndex: 'properties',
         render: (properties: ProductProperty[]) => (
           <>
             {properties.map((item: ProductProperty) => (
@@ -92,9 +69,9 @@ const ProductsPage = () => {
         ),
       },
       {
-        title: "Collections",
-        key: "collections",
-        dataIndex: "collections",
+        title: 'Collections',
+        key: 'collections',
+        dataIndex: 'collections',
         render: (collections: Collection[]) => (
           <>
             {collections.map((item: Collection) => (
@@ -106,15 +83,15 @@ const ProductsPage = () => {
         ),
       },
       {
-        title: "Action",
-        key: "action",
+        title: 'Action',
+        key: 'action',
         render: (item: any) => (
           <Space size="middle">
             <Popconfirm
               title="Sure to delete?"
               onConfirm={() => {
                 removeProduct(item.key);
-                message.success("Product has been deleted!");
+                message.success('Product has been deleted!');
               }}
             >
               <a>Delete</a>
@@ -122,7 +99,7 @@ const ProductsPage = () => {
             <a
               onClick={() => {
                 setModalProduct(item);
-                setIsProductFormVisible("edit");
+                setIsProductFormVisible('edit');
               }}
             >
               Edit
@@ -139,7 +116,7 @@ const ProductsPage = () => {
         ),
       },
     ],
-    []
+    [],
   );
 
   return (
@@ -173,17 +150,14 @@ const ProductsPage = () => {
             </Typography.Title>
           </Col>
           <Col span={8} className={classes.actionButton}>
-            <Button
-              type="primary"
-              onClick={() => setIsProductFormVisible("add")}
-            >
+            <Button type="primary" onClick={() => setIsProductFormVisible('add')}>
               Add product
             </Button>
             <Input
               size="middle"
               placeholder="Search"
               prefix={<SearchOutlined />}
-              onChange={(e) => setFilter(e.target.value)}
+              onChange={e => setFilter(e.target.value)}
             />
           </Col>
         </Row>
