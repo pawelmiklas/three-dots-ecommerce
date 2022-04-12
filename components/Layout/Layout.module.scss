@@ -1,18 +1,11 @@
 .header {
-  background-color: var(--black-2) !important;
+  background-color: var(--white) !important;
   display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-bottom: 1px solid var(--grey-3);
 
   .logo {
     cursor: pointer;
-  }
-
-  .list {
-    background-color: var(--black-2) !important;
-    width: 100%;
-    margin-left: 16px;
-  }
-
-  .titleContent {
-    color: white;
   }
 }

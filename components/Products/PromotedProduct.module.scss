@@ -1,0 +1,32 @@
+.container {
+  background-color: var(--grey-3);
+  padding-top: 3rem;
+  outline-offset: 2px;
+  outline: 1px dashed var(--grey-3);
+  padding: 1rem;
+}
+.ribbon {
+  background-color: black;
+}
+.image {
+  mix-blend-mode: darken;
+}
+.outline {
+  padding-top: 1rem;
+}
+.row {
+  padding-bottom: 1rem;
+}
+.button {
+  color: #000;
+  &:hover {
+    color: var(--black-2);
+  }
+  &:focus {
+    color: var(--black-2);
+  }
+}
+.rowextended {
+  @extend .row;
+  padding-top: 2rem;
+}

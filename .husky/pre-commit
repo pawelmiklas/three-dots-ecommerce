@@ -1,7 +1,15 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo '🏗️👷 Testing project before committing'
+echo '🏗️👷 Styling, testing project before committing'
+
+# Check Prettier standards
+npm run check-format ||
+(
+    echo '🤢🤮🤢🤮 Its FOKING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
+            Prettier Check Failed. Run npm run format, add changes and try commit again.';
+    false;
+)
 
 # Check ESLint Standards
 npm run check-lint ||
@@ -18,7 +26,6 @@ npm run check-types ||
             Are you seriously trying to write that? Make the changes required above.'
     false;
 )
-
 
 # If everything passes... Now we can commit
 echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'

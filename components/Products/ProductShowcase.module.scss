@@ -1,0 +1,15 @@
+.button {
+  color: #000;
+  &:hover {
+    color: var(--black-2);
+  }
+  &:focus {
+    color: var(--black-2);
+  }
+}
+.product {
+  &:hover {
+    outline-offset: 4px;
+    outline: 1px dashed var(--grey-3);
+  }
+}

@@ -1,9 +1,9 @@
 .wrapper {
-  text-align: center;
-  background-color: var(--black-2);
+  text-align: left;
+  background-color: var(--white);
 
   h3 {
-    color: var(--grey-1);
+    color: var(--black-1);
   }
 
   .company {
@@ -11,7 +11,7 @@
     justify-content: center;
     padding-top: 32px;
     font-weight: 400;
-    color: var(--grey-2);
+    color: var(--black-2);
   }
 
   .links {
@@ -19,7 +19,7 @@
     flex-direction: column;
 
     a {
-      color: var(--grey-2);
+      color: var(--black-2);
       font-weight: 400;
 
       &:hover {

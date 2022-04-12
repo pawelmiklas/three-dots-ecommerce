@@ -1,16 +1,18 @@
 import React from 'react';
-import { Col, Layout as AntdLayout, Row, Typography } from 'antd';
+import { Button, Col, Divider, Input, Layout as AntdLayout, Row, Typography } from 'antd';
 import Link from 'next/link';
 import classes from './Footer.module.scss';
 
 const { Footer: AntdFooter } = AntdLayout;
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const Footer = () => (
   <AntdFooter className={classes.wrapper}>
+    <Divider orientation="left">EveryStepMatter.com</Divider>
     <Row>
       <Col span={8}>
-        <Title level={3}>About us</Title>
+        <Divider type="vertical" />
+        <Title level={5}>About us</Title>
         <div className={classes.links}>
           <Link href="">
             <a className="transition-opacity">Who we are</a>
@@ -21,7 +23,7 @@ const Footer = () => (
         </div>
       </Col>
       <Col span={8}>
-        <Title level={3}>Here to help</Title>
+        <Title level={5}>Here to help</Title>
         <div className={classes.links}>
           <Link href="">
             <a className="transition-opacity">Contact us</a>
@@ -32,11 +34,6 @@ const Footer = () => (
           <Link href="">
             <a className="transition-opacity">Privacy and cookies policy</a>
           </Link>
-        </div>
-      </Col>
-      <Col span={8}>
-        <Title level={3}>Shopping with us</Title>
-        <div className={classes.links}>
           <Link href="">
             <a className="transition-opacity">Shipping and delivery info</a>
           </Link>
@@ -47,6 +44,14 @@ const Footer = () => (
             <a className="transition-opacity">Size guide</a>
           </Link>
         </div>
+      </Col>
+      <Col span={8}>
+        <Title level={5}>Subscribe</Title>
+        <Text>Subscribe to our newsletter and get discount 10% for first order.</Text>
+        <Input.Group compact>
+          <Input style={{ width: 'calc(100% - 200px)' }} placeholder="Put your email..." />
+          <Button type="primary">Submit</Button>
+        </Input.Group>
       </Col>
     </Row>
     <div className={classes.company}>

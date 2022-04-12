@@ -15,6 +15,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "antd": "^4.19.3",
     "eslint-config-prettier": "^8.5.0",
     "less": "^4.1.2",
