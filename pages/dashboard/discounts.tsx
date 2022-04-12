@@ -1,5 +1,5 @@
-import React from "react";
-import Discounts from "@misc/dashboard/discounts/Discounts";
+import React from 'react';
+import Discounts from '@misc/dashboard/discounts/Discounts';
 
 const DiscountsPage = () => {
   return <Discounts />;

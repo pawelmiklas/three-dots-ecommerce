@@ -1,6 +1,6 @@
-import React from "react";
-import LoginPage from "@misc/login/LoginPage";
-import Layout from "@components/Layout/Layout";
+import React from 'react';
+import LoginPage from '@misc/login/LoginPage';
+import Layout from '@components/Layout/Layout';
 
 type Props = {};
 

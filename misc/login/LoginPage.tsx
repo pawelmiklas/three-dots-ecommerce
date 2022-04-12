@@ -1,6 +1,6 @@
-import { Card, Col, Row, Typography, Form, Input, Button } from "antd";
-import { useRouter } from "next/router";
-import React from "react";
+import { Card, Col, Row, Typography, Form, Input, Button } from 'antd';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 const { Title } = Typography;
 
@@ -27,7 +27,7 @@ const LoginPage = () => {
 
   const onFinish = (values: any) => {
     form.resetFields();
-    router.push("/dashboard/products");
+    router.push('/dashboard/products');
   };
 
   return (
@@ -42,7 +42,7 @@ const LoginPage = () => {
             form={form}
             name="register"
             initialValues={{
-              prefix: "48",
+              prefix: '48',
             }}
             layout="vertical"
             onFinish={onFinish}
@@ -53,12 +53,12 @@ const LoginPage = () => {
               label="E-mail"
               rules={[
                 {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
+                  type: 'email',
+                  message: 'The input is not valid E-mail!',
                 },
                 {
                   required: true,
-                  message: "Please input your E-mail!",
+                  message: 'Please input your E-mail!',
                 },
               ]}
             >
@@ -70,7 +70,7 @@ const LoginPage = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your password!",
+                  message: 'Please input your password!',
                 },
               ]}
               hasFeedback
