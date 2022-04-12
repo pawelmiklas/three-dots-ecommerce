@@ -1,56 +1,52 @@
 .titleContent {
-    cursor: pointer;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--black-1);
+  z-index: 200;
+  padding-bottom: 1rem;
+
+  &:hover:before {
+    content: attr(title);
+    transform: translateX(4px);
+    transform: translateY(-3px);
+    z-index: -1;
+    transform-origin: right;
     font-style: normal;
-    font-weight: 400;
+    font-weight: bold;
     font-size: 20px;
     line-height: 28px;
-    color: var(--black-1);
-    z-index: 200;
-    padding-bottom: 1rem;
-
-    
-
-    &:hover:before{
-        content: attr(title);
-        transform: translateX(4px);
-        transform: translateY(-3px);
-        z-index: -1;
-        transform-origin: right;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 20px;
-        line-height: 28px;
-        color:var(--yellow-3);
-        position: absolute;
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: var(--yellow-3);
-    }
+    color: var(--yellow-3);
+    position: absolute;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--yellow-3);
   }
+}
 
 .selected {
-    cursor: pointer;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--black-1);
+  z-index: 200;
+
+  &:before {
+    content: attr(title);
+    transform: translateX(4px);
+    transform: translateY(-3px);
+    z-index: -1;
+    transform-origin: right;
     font-style: normal;
-    font-weight: 400;
+    font-weight: bold;
     font-size: 20px;
     line-height: 28px;
-    color: var(--black-1);
-    z-index: 200;
-
-    
-
-    &:before{
-        content: attr(title);
-        transform: translateX(4px);
-        transform: translateY(-3px);
-        z-index: -1;
-        transform-origin: right;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 20px;
-        line-height: 28px;
-        color:var(--yellow-3);
-        position: absolute;
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: var(--yellow-3);
-    }
+    color: var(--yellow-3);
+    position: absolute;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--yellow-3);
   }
+}

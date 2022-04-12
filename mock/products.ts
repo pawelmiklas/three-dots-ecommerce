@@ -11,12 +11,12 @@ export interface Product {
   image: string;
   promoted: boolean;
   description: string;
-  onsale: boolean,
+  onsale: boolean;
 }
 
 const products: Product[] = [
   {
-    key: "53",
+    key: '53',
     name: 'Euro Trekker Super',
     price: 170.98,
     discount: 14,
@@ -28,7 +28,7 @@ const products: Product[] = [
     onsale: false,
   },
   {
-    key: "36",
+    key: '36',
     name: 'Equalizer 4.0 Trail',
     price: 485.94,
     discount: 0,
@@ -40,7 +40,7 @@ const products: Product[] = [
     onsale: false,
   },
   {
-    key: "64",
+    key: '64',
     name: 'Revolt Lo Tx',
     price: 407.48,
     discount: 9,
@@ -52,7 +52,7 @@ const products: Product[] = [
     onsale: false,
   },
   {
-    key: "9",
+    key: '9',
     name: 'Evergreen',
     price: 470.52,
     discount: 23,
@@ -64,7 +64,7 @@ const products: Product[] = [
     onsale: false,
   },
   {
-    key: "1",
+    key: '1',
     name: 'Mathilda 1d',
     price: 669.85,
     discount: 9,
@@ -72,11 +72,12 @@ const products: Product[] = [
     collections: [collections[2], collections[1]],
     image: '/products_images/image 6.png',
     promoted: true,
-    description: "Chuck 70s Court Być może lata 90. to dla Ciebie odległa historia, ale buty Ozelia są zakorzenione w tej bezkompromisowej, eksperymentalnej erze. Śmiały model inspirowany archiwalnymi butami adidas ma solidną konstrukcję, która sprawia, że nie sposób go nie zauważyć. Gładkie buty mają biegowy charakter, a kiedy Twoje dni nabierają tempa, amortyzacja Adiprene zapewnia stopom wygodę. Ten produkt zawiera materiały pochodzące z recyklingu w ramach naszych wysiłków zmierzających do rozwiązania problemu plastikowych odpadów. 20% elementów użytych do wykonania cholewki zawiera co najmniej 50% materiałów pochodzących z recyklingu.",
+    description:
+      'Chuck 70s Court Być może lata 90. to dla Ciebie odległa historia, ale buty Ozelia są zakorzenione w tej bezkompromisowej, eksperymentalnej erze. Śmiały model inspirowany archiwalnymi butami adidas ma solidną konstrukcję, która sprawia, że nie sposób go nie zauważyć. Gładkie buty mają biegowy charakter, a kiedy Twoje dni nabierają tempa, amortyzacja Adiprene zapewnia stopom wygodę. Ten produkt zawiera materiały pochodzące z recyklingu w ramach naszych wysiłków zmierzających do rozwiązania problemu plastikowych odpadów. 20% elementów użytych do wykonania cholewki zawiera co najmniej 50% materiałów pochodzących z recyklingu.',
     onsale: false,
   },
   {
-    key: "46",
+    key: '46',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 288.83,
     discount: 0,
@@ -88,7 +89,7 @@ const products: Product[] = [
     onsale: false,
   },
   {
-    key: "26",
+    key: '26',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 329.36,
     discount: 22,
@@ -100,7 +101,7 @@ const products: Product[] = [
     onsale: false,
   },
   {
-    key: "85",
+    key: '85',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 685.86,
     discount: 15,
@@ -112,7 +113,7 @@ const products: Product[] = [
     onsale: false,
   },
   {
-    key: "82",
+    key: '82',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 589.84,
     discount: 0,
@@ -124,7 +125,7 @@ const products: Product[] = [
     onsale: false,
   },
   {
-    key: "2",
+    key: '2',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 555.45,
     discount: 13,
@@ -136,7 +137,7 @@ const products: Product[] = [
     onsale: true,
   },
   {
-    key: "74",
+    key: '74',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 477.82,
     discount: 21,
@@ -148,7 +149,7 @@ const products: Product[] = [
     onsale: true,
   },
   {
-    key: "92",
+    key: '92',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 182.85,
     discount: 0,
@@ -160,7 +161,7 @@ const products: Product[] = [
     onsale: true,
   },
   {
-    key: "11",
+    key: '11',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 571.38,
     discount: 0,
@@ -172,7 +173,7 @@ const products: Product[] = [
     onsale: true,
   },
   {
-    key: "26",
+    key: '26',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 76.7,
     discount: 0,
@@ -184,7 +185,7 @@ const products: Product[] = [
     onsale: true,
   },
   {
-    key: "41",
+    key: '41',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 657.62,
     discount: 12,
@@ -196,7 +197,7 @@ const products: Product[] = [
     onsale: true,
   },
   {
-    key: "25",
+    key: '25',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 57.43,
     discount: 20,
@@ -208,7 +209,7 @@ const products: Product[] = [
     onsale: true,
   },
   {
-    key: "37",
+    key: '37',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 521.58,
     discount: 13,
@@ -220,7 +221,7 @@ const products: Product[] = [
     onsale: true,
   },
   {
-    key: "100",
+    key: '100',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 660.19,
     discount: 18,

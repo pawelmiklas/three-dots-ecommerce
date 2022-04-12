@@ -14,9 +14,9 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
-    "react/react-in-jsx-scope": "off",
-    "require-jsdoc": 0,
-    "spaced-comment": "off"
+    'react/react-in-jsx-scope': 'off',
+    'require-jsdoc': 0,
+    'spaced-comment': 'off',
   },
   settings: {
     react: {
