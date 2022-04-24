@@ -1,0 +1,12 @@
+.main {
+  display: grid;
+  grid-template-columns: (1fr 1fr);
+  gap: 1rem;
+  padding-right: 1rem;
+}
+.image {
+  outline-offset: 4px;
+  &:hover {
+    outline: 1px dashed var(--grey-3);
+  }
+}

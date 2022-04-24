@@ -1,0 +1,23 @@
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+.button {
+  color: #000;
+  &:hover {
+    color: var(--black-2);
+  }
+  &:focus {
+    color: var(--black-2);
+  }
+}
+.description {
+  padding-top: 1rem;
+}
+.informations {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

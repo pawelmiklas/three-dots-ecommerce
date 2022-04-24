@@ -1,6 +1,11 @@
 import { Collection, collections } from './collections';
 import { ProductProperty, productProperties } from './productProperties';
 
+export interface IProductSizes {
+  size: number;
+  onstock: number;
+}
+
 export interface Product {
   key: string;
   name: string;
@@ -12,6 +17,8 @@ export interface Product {
   promoted: boolean;
   description: string;
   onsale: boolean;
+  sizes: IProductSizes[];
+  detailedImages: string[];
 }
 
 const products: Product[] = [
@@ -26,6 +33,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '36',
@@ -38,6 +135,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '64',
@@ -50,6 +237,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '9',
@@ -62,6 +339,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '1',
@@ -75,6 +442,96 @@ const products: Product[] = [
     description:
       'Chuck 70s Court Być może lata 90. to dla Ciebie odległa historia, ale buty Ozelia są zakorzenione w tej bezkompromisowej, eksperymentalnej erze. Śmiały model inspirowany archiwalnymi butami adidas ma solidną konstrukcję, która sprawia, że nie sposób go nie zauważyć. Gładkie buty mają biegowy charakter, a kiedy Twoje dni nabierają tempa, amortyzacja Adiprene zapewnia stopom wygodę. Ten produkt zawiera materiały pochodzące z recyklingu w ramach naszych wysiłków zmierzających do rozwiązania problemu plastikowych odpadów. 20% elementów użytych do wykonania cholewki zawiera co najmniej 50% materiałów pochodzących z recyklingu.',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '46',
@@ -87,6 +544,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '26',
@@ -99,6 +646,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '85',
@@ -111,6 +748,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '82',
@@ -123,6 +850,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '2',
@@ -135,6 +952,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '74',
@@ -147,6 +1054,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '92',
@@ -159,6 +1156,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '11',
@@ -171,6 +1258,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '26',
@@ -183,6 +1360,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '41',
@@ -195,6 +1462,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '25',
@@ -207,6 +1564,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '37',
@@ -219,6 +1666,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
   {
     key: '100',
@@ -231,6 +1768,96 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sizes: [
+      {
+        size: 38.5,
+        onstock: 12,
+      },
+      {
+        size: 39,
+        onstock: 10,
+      },
+      {
+        size: 40,
+        onstock: 13,
+      },
+      {
+        size: 40.5,
+        onstock: 0,
+      },
+      {
+        size: 41,
+        onstock: 10,
+      },
+      {
+        size: 42,
+        onstock: 10,
+      },
+      {
+        size: 42.5,
+        onstock: 0,
+      },
+      {
+        size: 43,
+        onstock: 10,
+      },
+      {
+        size: 44,
+        onstock: 16,
+      },
+      {
+        size: 44.5,
+        onstock: 20,
+      },
+      {
+        size: 45,
+        onstock: 10,
+      },
+      {
+        size: 46,
+        onstock: 10,
+      },
+      {
+        size: 46.5,
+        onstock: 30,
+      },
+      {
+        size: 47,
+        onstock: 0,
+      },
+      {
+        size: 47.5,
+        onstock: 10,
+      },
+      {
+        size: 48,
+        onstock: 0,
+      },
+      {
+        size: 48.5,
+        onstock: 10,
+      },
+      {
+        size: 49,
+        onstock: 0,
+      },
+      {
+        size: 49.5,
+        onstock: 10,
+      },
+      {
+        size: 50,
+        onstock: 0,
+      },
+    ],
+    detailedImages: [
+      '/products_images/details/171684c_2.jpg',
+      '/products_images/details/171684c_3.jpg',
+      '/products_images/details/171684c_4.jpg',
+      '/products_images/details/171684c_5.jpg',
+      '/products_images/details/171684c_6.jpg',
+      '/products_images/details/171684c.jpg',
+    ],
   },
 ];
 
