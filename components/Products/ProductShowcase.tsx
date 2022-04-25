@@ -7,11 +7,13 @@ import { ShoppingOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import Title from 'antd/lib/typography/Title';
 import Text from 'antd/lib/typography/Text';
+import { useRouter } from 'next/router';
 
 const ProductShowcase = ({ item, currency, onsale }: { item: Product; currency: string; onsale: boolean }) => {
-  const { name, price, image, discount } = item;
+  const { name, price, image, discount, key } = item;
+  const router = useRouter();
   return (
-    <div className={classes.product}>
+    <div className={classes.product} onClick={() => router.push(`/products/${key}`)}>
       <Row>
         <Image src={image} height={227} width={330} />
       </Row>
