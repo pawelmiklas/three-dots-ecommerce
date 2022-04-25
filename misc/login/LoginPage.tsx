@@ -31,7 +31,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Row justify="center">
+    <Row justify="center" style={{ marginTop: 32 }}>
       <Col xs={24} md={18} lg={14} xl={10}>
         <Card>
           <Title level={2} style={{ marginBottom: 24 }}>

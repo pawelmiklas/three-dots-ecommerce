@@ -1,10 +1,11 @@
 import React from 'react';
 import RegistrationPage from '@misc/registration/RegistrationPage';
+import Layout from '@components/Layout/Layout';
 
-type Props = {};
+const Registration = () => (
+  <Layout>
+    <RegistrationPage />
+  </Layout>
+);
 
-const registration = (props: Props) => {
-  return <RegistrationPage />;
-};
-
-export default registration;
+export default Registration;

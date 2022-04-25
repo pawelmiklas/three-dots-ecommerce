@@ -9,6 +9,7 @@ import Title from 'antd/lib/typography/Title';
 import Text from 'antd/lib/typography/Text';
 import AvailableSizes from '@components/Products/DetailView/AvailableSizes';
 import ProductGallery from '@components/Products/DetailView/ProductGallery';
+import Layout from '@components/Layout/Layout';
 
 const SelectedProduct = () => {
   const store = useStore();
@@ -22,7 +23,7 @@ const SelectedProduct = () => {
     if (product) setSelectedProduct(product);
   }, []);
   return (
-    <>
+    <Layout>
       {selectedProduct && (
         <Row>
           <Col span={18}>
@@ -78,7 +79,7 @@ const SelectedProduct = () => {
           </Col>
         </Row>
       )}
-    </>
+    </Layout>
   );
 };
 

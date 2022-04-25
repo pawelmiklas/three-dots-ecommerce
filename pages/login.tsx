@@ -1,10 +1,11 @@
 import React from 'react';
 import LoginPage from '@misc/login/LoginPage';
+import Layout from '@components/Layout/Layout';
 
-type Props = {};
+const Login = () => (
+  <Layout>
+    <LoginPage />
+  </Layout>
+);
 
-const login = (props: Props) => {
-  return <LoginPage />;
-};
-
-export default login;
+export default Login;
