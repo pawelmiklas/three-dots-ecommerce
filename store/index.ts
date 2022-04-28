@@ -10,6 +10,9 @@ interface State {
   removeProduct: (key: string) => void;
   addProduct: (product: Product) => void;
   editProduct: (product: Product) => void;
+  removeProductProperty: (key: string) => void;
+  addProductProperty: (product: ProductProperty) => void;
+  editProductProperty: (product: ProductProperty) => void;
 }
 
 const useStore = create<State>(set => ({
@@ -29,6 +32,24 @@ const useStore = create<State>(set => ({
       products: state.products.map(item => {
         if (item.key === product.key) {
           return product;
+        }
+
+        return item;
+      }),
+    })),
+  removeProductProperty: key =>
+    set(state => ({
+      productProperties: state.productProperties.filter(item => item.key !== key),
+    })),
+  addProductProperty: productProperty =>
+    set(state => ({
+      productProperties: [...state.productProperties, productProperty],
+    })),
+  editProductProperty: productProperty =>
+    set(state => ({
+      productProperties: state.productProperties.map(item => {
+        if (item.key === productProperty.key) {
+          return productProperty;
         }
 
         return item;

@@ -9,24 +9,8 @@ interface ProductAddEditProps {
   type: 'add' | 'edit';
   product?: Product;
 }
-
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-  },
-};
-
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-  },
-};
+const formItemLayout = { labelCol: { xs: { span: 24 } }, wrapperCol: { xs: { span: 24 } } };
+const tailFormItemLayout = { wrapperCol: { xs: { span: 24, offset: 0 } } };
 
 const ProductAddEdit = ({ isModalVisible, product, onCancel, type }: ProductAddEditProps) => {
   const [form] = Form.useForm();
@@ -46,7 +30,7 @@ const ProductAddEdit = ({ isModalVisible, product, onCancel, type }: ProductAddE
       <Form
         {...formItemLayout}
         form={form}
-        name="register"
+        name="product"
         initialValues={{
           ...product,
           collections: product?.collections.map(item => item.id),
