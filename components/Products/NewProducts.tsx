@@ -17,7 +17,7 @@ const NewProducts = () => {
       <Row style={{ paddingTop: '4rem' }} gutter={[50, 50]}>
         {products.map(item => {
           return (
-            <Col span={6} key={item.name}>
+            <Col span={6} key={item.key}>
               <ProductShowcase item={item} currency={currency} onsale={false} />
             </Col>
           );

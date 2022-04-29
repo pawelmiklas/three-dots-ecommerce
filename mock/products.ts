@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import { Brand } from './brands';
 import { Collection, collections } from './collections';
 import { ProductProperty, productProperties } from './productProperties';
 
@@ -5,6 +7,33 @@ export interface IProductSizes {
   size: number;
   onstock: number;
 }
+
+export enum shoesSex {
+  men = 'men',
+  women = 'women',
+  kids = 'kids',
+}
+
+export const existingSizes = [
+  38.5, 39, 40, 40.5, 41, 42, 42.5, 43, 44, 44.5, 45, 46, 46.5, 47, 47.5, 48, 48.5, 49, 49.5, 50,
+];
+
+export enum shoesColors {
+  purple = '#a0008f',
+  black = '#000000',
+  red = '#d80000',
+  orange = '#ff6000',
+  blue = '#006cff',
+  white = '#ffffff',
+  brown = '#5d3000',
+  green = '#27ba00',
+  yellow = '#ffc000',
+  multicolor = '#423f35',
+  gray = '#a8a8a8',
+  pink = '#ff006c',
+}
+
+// type shoesColors =
 
 export interface Product {
   key: string;
@@ -19,6 +48,9 @@ export interface Product {
   onsale: boolean;
   sizes: IProductSizes[];
   detailedImages: string[];
+  sex: shoesSex;
+  colors: shoesColors[];
+  brand: Brand['id'];
 }
 
 const products: Product[] = [
@@ -33,6 +65,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sex: shoesSex.men,
+    colors: [shoesColors.black, shoesColors.brown],
+    brand: '1',
     sizes: [
       {
         size: 38.5,
@@ -135,6 +170,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sex: shoesSex.women,
+    colors: [shoesColors.white, shoesColors.red],
+    brand: '2',
     sizes: [
       {
         size: 38.5,
@@ -237,6 +275,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sex: shoesSex.women,
+    colors: [shoesColors.white, shoesColors.yellow, shoesColors.black],
+    brand: '3',
     sizes: [
       {
         size: 38.5,
@@ -339,6 +380,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sex: shoesSex.men,
+    colors: [shoesColors.pink],
+    brand: '4',
     sizes: [
       {
         size: 38.5,
@@ -442,6 +486,9 @@ const products: Product[] = [
     description:
       'Chuck 70s Court Być może lata 90. to dla Ciebie odległa historia, ale buty Ozelia są zakorzenione w tej bezkompromisowej, eksperymentalnej erze. Śmiały model inspirowany archiwalnymi butami adidas ma solidną konstrukcję, która sprawia, że nie sposób go nie zauważyć. Gładkie buty mają biegowy charakter, a kiedy Twoje dni nabierają tempa, amortyzacja Adiprene zapewnia stopom wygodę. Ten produkt zawiera materiały pochodzące z recyklingu w ramach naszych wysiłków zmierzających do rozwiązania problemu plastikowych odpadów. 20% elementów użytych do wykonania cholewki zawiera co najmniej 50% materiałów pochodzących z recyklingu.',
     onsale: false,
+    sex: shoesSex.kids,
+    colors: [shoesColors.blue, shoesColors.gray],
+    brand: '5',
     sizes: [
       {
         size: 38.5,
@@ -534,7 +581,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '46',
+    key: '49',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 288.83,
     discount: 0,
@@ -544,6 +591,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sex: shoesSex.kids,
+    colors: [shoesColors.blue, shoesColors.gray],
+    brand: '6',
     sizes: [
       {
         size: 38.5,
@@ -646,6 +696,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sex: shoesSex.kids,
+    colors: [shoesColors.blue, shoesColors.gray],
+    brand: '1',
     sizes: [
       {
         size: 38.5,
@@ -748,6 +801,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sex: shoesSex.men,
+    colors: [shoesColors.blue, shoesColors.gray],
+    brand: '2',
     sizes: [
       {
         size: 38.5,
@@ -850,6 +906,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sex: shoesSex.men,
+    colors: [shoesColors.orange, shoesColors.purple],
+    brand: '3',
     sizes: [
       {
         size: 38.5,
@@ -952,6 +1011,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sex: shoesSex.women,
+    colors: [shoesColors.orange, shoesColors.purple],
+    brand: '4',
     sizes: [
       {
         size: 38.5,
@@ -1054,6 +1116,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sex: shoesSex.women,
+    colors: [shoesColors.multicolor],
+    brand: '5',
     sizes: [
       {
         size: 38.5,
@@ -1156,6 +1221,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sex: shoesSex.kids,
+    colors: [shoesColors.green],
+    brand: '6',
     sizes: [
       {
         size: 38.5,
@@ -1258,6 +1326,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sex: shoesSex.kids,
+    colors: [shoesColors.green],
+    brand: '1',
     sizes: [
       {
         size: 38.5,
@@ -1350,7 +1421,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '26',
+    key: '27',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 76.7,
     discount: 0,
@@ -1360,6 +1431,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sex: shoesSex.women,
+    colors: [shoesColors.blue],
+    brand: '2',
     sizes: [
       {
         size: 38.5,
@@ -1462,6 +1536,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sex: shoesSex.men,
+    colors: [shoesColors.blue],
+    brand: '3',
     sizes: [
       {
         size: 38.5,
@@ -1564,6 +1641,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sex: shoesSex.men,
+    colors: [shoesColors.gray],
+    brand: '4',
     sizes: [
       {
         size: 38.5,
@@ -1666,6 +1746,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: true,
+    sex: shoesSex.women,
+    colors: [shoesColors.yellow],
+    brand: '5',
     sizes: [
       {
         size: 38.5,
@@ -1768,6 +1851,9 @@ const products: Product[] = [
     promoted: false,
     description: 'adadasdadsasd',
     onsale: false,
+    sex: shoesSex.kids,
+    colors: [shoesColors.yellow],
+    brand: '6',
     sizes: [
       {
         size: 38.5,

@@ -10,21 +10,30 @@ import Text from 'antd/lib/typography/Text';
 import AvailableSizes from '@components/Products/DetailView/AvailableSizes';
 import ProductGallery from '@components/Products/DetailView/ProductGallery';
 import Layout from '@components/Layout/Layout';
+import { Brand } from 'mock/brands';
+import ProductImage from './ProductImage';
 
 const SelectedProduct = () => {
   const store = useStore();
   const router = useRouter();
-  const productId = router.query.toString();
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const currency = 'EUR';
+  const { id } = router.query;
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
 
   useEffect(() => {
-    const product = store.products.find(item => (item.key = productId));
-    if (product) setSelectedProduct(product);
-  }, []);
+    const product = store.products.find(item => item.key === id);
+    if (product) {
+      setSelectedProduct(product);
+      const brand = store.brands.find(item => item.id === product.brand);
+      if (brand) setSelectedBrand(brand);
+    }
+    console.log('aaa');
+  }, [id]);
+
   return (
     <Layout>
-      {selectedProduct && (
+      {selectedProduct && selectedBrand && (
         <Row>
           <Col span={18}>
             <ProductGallery items={selectedProduct.detailedImages} />
@@ -34,7 +43,14 @@ const SelectedProduct = () => {
             <Title level={5}>
               {selectedProduct.price} {currency}
             </Title>
+            <ProductImage url={selectedBrand.logo} />
             <AvailableSizes sizes={selectedProduct.sizes} />
+            <div className={classes.color_container}>
+              <Title level={5}>Available colors:</Title>
+              {selectedProduct.colors.map((item, index) => {
+                return <button key={index} style={{ backgroundColor: `${item}` }} className={classes.color} />;
+              })}
+            </div>
             <div className={classes.buttons}>
               <Button size="large" type="primary" icon={<ShoppingOutlined />} className={classes.button}>
                 Add to cart

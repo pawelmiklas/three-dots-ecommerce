@@ -1,4 +1,5 @@
 import { Card, Col, Row, Typography, Form, Input, Select, Checkbox, Button, message } from 'antd';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -193,7 +194,7 @@ const RegistrationPage = () => {
               {...tailFormItemLayout}
             >
               <Checkbox>
-                I have read the <a href="">agreement</a>
+                I have read the <Link href="">agreement</Link>
               </Checkbox>
             </Form.Item>
             <Form.Item {...tailFormItemLayout} style={{ marginBottom: 0 }}>

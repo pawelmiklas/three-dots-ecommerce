@@ -3,6 +3,9 @@
   grid-template-columns: (1fr 1fr);
   gap: 1rem;
   padding-right: 1rem;
+  @media (max-width: 828px) {
+    grid-template-columns: (1fr);
+  }
 }
 .image {
   outline-offset: 4px;

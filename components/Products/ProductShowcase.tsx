@@ -9,13 +9,26 @@ import Title from 'antd/lib/typography/Title';
 import Text from 'antd/lib/typography/Text';
 import { useRouter } from 'next/router';
 
-const ProductShowcase = ({ item, currency, onsale }: { item: Product; currency: string; onsale: boolean }) => {
+const ProductShowcase = ({
+  item,
+  currency,
+  onsale,
+  imagewidth = 330,
+  imageheight = 227,
+}: {
+  item: Product;
+  currency: string;
+  onsale: boolean;
+  imagewidth?: number;
+  imageheight?: number;
+}) => {
   const { name, price, image, discount, key } = item;
   const router = useRouter();
+  console.log('item', item);
   return (
     <div className={classes.product} onClick={() => router.push(`/products/${key}`)}>
       <Row>
-        <Image src={image} height={227} width={330} />
+        <Image src={image} height={imageheight} width={imagewidth} />
       </Row>
       <Row>
         <Title level={5}>{name}</Title>

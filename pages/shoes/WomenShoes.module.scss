@@ -1,0 +1,14 @@
+.container__main {
+  display: flex;
+  gap: 2rem;
+}
+.container__products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-height: 38rem;
+}
+.container__filters {
+  width: 30vw;
+  display: flex;
+}
