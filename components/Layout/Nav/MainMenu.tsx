@@ -12,15 +12,15 @@ const MainMenu = () => {
     },
     {
       name: "Women's shoes",
-      path: '/shoes/womenshoes',
+      path: '/shoes/women',
     },
     {
       name: "Men's shoes",
-      path: '/shoes//menshoes',
+      path: '/shoes/men',
     },
     {
       name: "Kid's shoes",
-      path: '/shoes//kidsshoes',
+      path: '/shoes/kids',
     },
     {
       name: 'Brands',

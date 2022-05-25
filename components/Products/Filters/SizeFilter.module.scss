@@ -1,0 +1,23 @@
+.main {
+  width: 15vw;
+  :nth-child(1) {
+    margin-left: 8px;
+  }
+}
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sizes {
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--grey-2);
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.2rem;
+  align-items: center;
+  background-color: var(--grey-3);
+  margin: 0.15rem;
+}

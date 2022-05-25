@@ -71,7 +71,7 @@ const products: Product[] = [
     sizes: [
       {
         size: 38.5,
-        onstock: 12,
+        onstock: 1,
       },
       {
         size: 39,
@@ -176,7 +176,7 @@ const products: Product[] = [
     sizes: [
       {
         size: 38.5,
-        onstock: 12,
+        onstock: 0,
       },
       {
         size: 39,
@@ -281,7 +281,7 @@ const products: Product[] = [
     sizes: [
       {
         size: 38.5,
-        onstock: 12,
+        onstock: 3,
       },
       {
         size: 39,

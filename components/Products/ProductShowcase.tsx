@@ -24,7 +24,6 @@ const ProductShowcase = ({
 }) => {
   const { name, price, image, discount, key } = item;
   const router = useRouter();
-  console.log('item', item);
   return (
     <div className={classes.product} onClick={() => router.push(`/products/${key}`)}>
       <Row>
