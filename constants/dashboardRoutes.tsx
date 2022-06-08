@@ -2,7 +2,6 @@ import {
   UnorderedListOutlined,
   TeamOutlined,
   ContainerOutlined,
-  FileTextOutlined,
   TagOutlined,
   DollarOutlined,
   CommentOutlined,
@@ -15,19 +14,14 @@ const dashboardRoutes = [
     route: '/dashboard/products',
   },
   {
-    name: 'Properties',
-    icon: <FileTextOutlined />,
-    route: '/dashboard/properties',
+    name: 'Categories',
+    icon: <ContainerOutlined />,
+    route: '/dashboard/category',
   },
   {
     name: 'Collections',
     icon: <TagOutlined />,
     route: '/dashboard/collections',
-  },
-  {
-    name: 'Categories',
-    icon: <ContainerOutlined />,
-    route: '/dashboard/categories',
   },
   {
     name: 'Discounts',

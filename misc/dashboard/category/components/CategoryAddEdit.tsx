@@ -1,22 +1,40 @@
 import { Button, Form, Input, message, Modal } from 'antd';
-import { ProductProperty } from 'mock/productProperties';
+import axios from 'axios';
 import React from 'react';
-import { useStore } from 'store';
 
-interface ProductPropertyAddEditProps {
+interface ProductCategoryAddEditProps {
   isModalVisible: boolean;
   onCancel: () => void;
   type: 'add' | 'edit';
-  productProperty?: ProductProperty;
+  category?: { id?: number; name: string };
 }
 
 const formItemLayout = { labelCol: { xs: { span: 24 } }, wrapperCol: { xs: { span: 24 } } };
 const tailFormItemLayout = { wrapperCol: { xs: { span: 24, offset: 0 } } };
 
-const PropertyAddEdit = ({ isModalVisible, productProperty, onCancel, type }: ProductPropertyAddEditProps) => {
+const CategoryAddEdit = ({ isModalVisible, category, onCancel, type }: ProductCategoryAddEditProps) => {
   const [form] = Form.useForm();
-  const addProductProperty = useStore(state => state.addProductProperty);
-  const editProductProperty = useStore(state => state.editProductProperty);
+
+  const addCategory = async (values: any) => {
+    try {
+      await axios.post(`http://localhost:8080/api/categories/create`, { name: values.name });
+      message.success('Category has been added successfully!');
+      onCancel();
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
+  };
+  const editCategory = async (values: any) => {
+    try {
+      await axios.put(`http://localhost:8080/api/categories/${category?.id}`, null, {
+        params: { id: category?.id, name: values.name },
+      });
+      message.success('Category has been edited successfully!');
+      onCancel();
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
+  };
 
   return (
     <Modal
@@ -29,26 +47,21 @@ const PropertyAddEdit = ({ isModalVisible, productProperty, onCancel, type }: Pr
       <Form
         {...formItemLayout}
         form={form}
-        name="productProperty"
-        initialValues={{ ...productProperty }}
+        name="category"
+        initialValues={{ ...category }}
         layout="vertical"
         onFinish={values => {
           if (type === 'add') {
-            addProductProperty({ ...values });
-            message.success('Property has been added succesfully!');
+            addCategory({ ...values });
             onCancel();
           } else if (type === 'edit') {
-            editProductProperty({ key: productProperty?.key, ...values });
-            message.success('Property has been edited succesfully!');
+            editCategory({ ...values });
             onCancel();
           }
         }}
         validateTrigger="onBlur"
       >
         <Form.Item name="name" label="Name" rules={[{ required: true, message: 'Please input product name!' }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item name="value" label="Value" rules={[{ required: true, message: 'Please input product price!' }]}>
           <Input />
         </Form.Item>
         <Form.Item {...tailFormItemLayout} style={{ marginBottom: 0 }}>
@@ -61,4 +74,4 @@ const PropertyAddEdit = ({ isModalVisible, productProperty, onCancel, type }: Pr
   );
 };
 
-export default PropertyAddEdit;
+export default CategoryAddEdit;
