@@ -19,9 +19,9 @@ const dashboardRoutes = [
     route: '/dashboard/category',
   },
   {
-    name: 'Collections',
+    name: 'Sizes',
     icon: <TagOutlined />,
-    route: '/dashboard/collections',
+    route: '/dashboard/sizes',
   },
   {
     name: 'Discounts',

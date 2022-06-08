@@ -24,6 +24,7 @@ const CategoryAddEdit = ({ isModalVisible, category, onCancel, type }: ProductCa
       message.error('Something went wrong!');
     }
   };
+
   const editCategory = async (values: any) => {
     try {
       await axios.put(`http://localhost:8080/api/categories/${category?.id}`, null, {
