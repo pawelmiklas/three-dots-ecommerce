@@ -2,7 +2,7 @@ import { IProductSizes } from 'mock/products';
 import { Button, Typography } from 'antd';
 import classes from './AvailableSizes.module.scss';
 
-const AvailableSizes = ({ sizes }: { sizes: IProductSizes[] }) => {
+const AvailableSizes = ({ sizes, selectSize }: { sizes: IProductSizes[]; selectSize: (arg: number) => void }) => {
   const { Text } = Typography;
   return (
     <div className={classes.main}>
@@ -19,6 +19,7 @@ const AvailableSizes = ({ sizes }: { sizes: IProductSizes[] }) => {
               type="ghost"
               size="large"
               className={classes.button_sizes}
+              onClick={() => selectSize(item.size)}
             >
               {item.size}
             </Button>

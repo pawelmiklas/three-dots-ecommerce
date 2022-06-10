@@ -14,11 +14,6 @@ import { FilteringCriteria } from '@components/Products/Filters/helper';
 import { useRouter } from 'next/router';
 
 export const checkFilters = (arg: FilteringCriteria) => {
-  const priceL = arg.price?.length;
-  const colorL = arg.color?.length;
-  const brandL = arg.brand?.length;
-  const sizeL = arg.size?.length;
-
   if (!arg.price?.length && !arg.color?.length && !arg.brand?.length && !arg.size?.length) {
     console.log('false');
     return false;
@@ -33,6 +28,7 @@ const ListShoes = () => {
   const { id } = router.query;
   const [products, setProducts] = useState<Product[]>();
   useEffect(() => {
+    store.resetFilters();
     setProducts(store.products.filter(item => item.sex === id));
     if (products) store.filterProduct(products);
   }, [id]);

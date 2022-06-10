@@ -1,0 +1,78 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(7, 10vw 20vw 10vw 10vw 10vw 15vw 10vw);
+  justify-items: start;
+  align-items: center;
+}
+.quantity {
+  display: flex;
+  gap: 0.3rem;
+}
+.color {
+  cursor: pointer;
+  width: 5vw;
+  padding: 1.2rem;
+  border-radius: 0.5rem;
+  border: var(--grey-3) 1px solid;
+  margin: 0.3rem;
+  &:hover {
+    border: var(--black-1) 1px solid;
+  }
+}
+.size {
+  cursor: pointer;
+  width: 5vw;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: var(--grey-3) 1px solid;
+  margin: 0.4rem;
+  text-align: center;
+  &:hover {
+    border: var(--black-1) 1px solid;
+  }
+}
+.shipping {
+  padding-top: 1rem;
+}
+
+.modalSize {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 0.5rem;
+}
+.modalSize_element {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--grey-3);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  &:hover {
+    background-color: var(--yellow-3);
+  }
+}
+
+.modalColor {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 0.5rem;
+}
+.modalColor_element {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--grey-3);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  &:hover {
+    border: 1px solid black;
+  }
+}

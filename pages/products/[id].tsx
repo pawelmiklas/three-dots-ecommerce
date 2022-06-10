@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Product } from 'mock/products';
+import { Product, shoesColors } from 'mock/products';
 import { useStore } from 'store';
-import { Row, Col, Button, Rate, Card, Form, Input } from 'antd';
+import { Row, Col, Button, Rate, Card, Form, Input, message } from 'antd';
 import { HeartOutlined, ShoppingOutlined } from '@ant-design/icons';
 import classes from './SelectedProduct.module.scss';
 import Title from 'antd/lib/typography/Title';
@@ -20,6 +20,12 @@ const SelectedProduct = () => {
   const { id } = router.query;
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
+  const [selectedSize, setSelectedSize] = useState<number>();
+  const [selectedColor, setSelectedColor] = useState<shoesColors>();
+
+  const somethingMissing = (att: string) => {
+    message.error(`Please choose ${att} to add product to cart`);
+  };
 
   useEffect(() => {
     const product = store.products.find(item => item.key === id);
@@ -28,7 +34,6 @@ const SelectedProduct = () => {
       const brand = store.brands.find(item => item.id === product.brand);
       if (brand) setSelectedBrand(brand);
     }
-    console.log('aaa');
   }, [id]);
 
   return (
@@ -44,15 +49,46 @@ const SelectedProduct = () => {
               {selectedProduct.price} {currency}
             </Title>
             <ProductImage url={selectedBrand.logo} />
-            <AvailableSizes sizes={selectedProduct.sizes} />
+            <AvailableSizes sizes={selectedProduct.sizes} selectSize={setSelectedSize} />
             <div className={classes.color_container}>
               <Title level={5}>Available colors:</Title>
               {selectedProduct.colors.map((item, index) => {
-                return <button key={index} style={{ backgroundColor: `${item}` }} className={classes.color} />;
+                return (
+                  <button
+                    key={index}
+                    style={{ backgroundColor: `${item}` }}
+                    className={classes.color}
+                    onClick={() => setSelectedColor(item)}
+                  />
+                );
               })}
             </div>
             <div className={classes.buttons}>
-              <Button size="large" type="primary" icon={<ShoppingOutlined />} className={classes.button}>
+              <Button
+                size="large"
+                type="primary"
+                icon={<ShoppingOutlined />}
+                className={classes.button}
+                onClick={() => {
+                  if (selectedSize && selectedColor) {
+                    store.addToCart({
+                      ...selectedProduct,
+                      variants: [
+                        {
+                          size: selectedSize,
+                          color: selectedColor,
+                        },
+                      ],
+                      quantity: 1,
+                      id: Date.now().toString(),
+                    });
+                    setSelectedColor(undefined);
+                    setSelectedSize(undefined);
+                  } else {
+                    somethingMissing(selectedSize ? 'color' : 'size');
+                  }
+                }}
+              >
                 Add to cart
               </Button>
               <Button size="large" icon={<HeartOutlined />}>

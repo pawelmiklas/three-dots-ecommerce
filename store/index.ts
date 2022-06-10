@@ -5,6 +5,17 @@ import { ProductProperty, productProperties } from 'mock/productProperties';
 import { Product, products, shoesColors } from 'mock/products';
 import create from 'zustand';
 
+export interface ICart extends Product {
+  quantity: number | undefined;
+  variants: [
+    {
+      color: shoesColors | undefined;
+      size: number | undefined;
+    },
+  ];
+  id: string;
+}
+
 export interface State {
   products: Product[];
   filteredProducts: Product[];
@@ -12,6 +23,7 @@ export interface State {
   productProperties: ProductProperty[];
   brands: Brand[];
   filters: FilteringCriteria;
+  cart: ICart[];
   removeProduct: (key: string) => void;
   addProduct: (product: Product) => void;
   editProduct: (product: Product) => void;
@@ -22,6 +34,10 @@ export interface State {
   setupSizeFilter: (arg: number[]) => void;
   setupBrandFilter: (arg: string[]) => void;
   resetFilters: () => void;
+  addToCart: (product: ICart) => void;
+  removeFromCart: (id: string) => void;
+  incrQuantity: (id: string) => void;
+  decrQuantity: (id: string) => void;
 }
 
 const useStore = create<State>(set => ({
@@ -31,6 +47,27 @@ const useStore = create<State>(set => ({
   brands: brands,
   filteredProducts: [],
   filters: { price: [], brand: [], size: [], color: [] },
+  cart: [],
+  addToCart: (product: ICart) => set(state => ({ cart: [...state.cart, product] })),
+  removeFromCart: (id: string) => set(state => ({ cart: state.cart.filter(item => item.id !== id) })),
+  incrQuantity: (id: string) =>
+    set(state => {
+      const item = state.cart.find(item => item.id === id);
+      if (item?.quantity) {
+        item.quantity++;
+        item.variants.push({ color: item.variants[0].color, size: item.variants[0].size });
+        ({ cart: [...state.cart, item] });
+      }
+    }),
+  decrQuantity: (id: string) =>
+    set(state => {
+      const item = state.cart.find(item => item.id === id);
+      if (item?.quantity && item.quantity >= 2) {
+        item.quantity--;
+        item.variants.pop();
+        ({ cart: [...state.cart, item] });
+      }
+    }),
   filterProduct: arg =>
     set(state => ({
       filteredProducts: (state.filteredProducts = arg),
