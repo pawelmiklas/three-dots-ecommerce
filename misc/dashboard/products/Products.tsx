@@ -21,7 +21,7 @@ const ProductsPage = () => {
   const removeProduct = useStore(state => state.removeProduct);
 
   const filteredProducts = useDebounce(
-    products.filter(item => item.name.includes(filter)),
+    products.filter(item => item.name.toLowerCase().includes(filter.toLowerCase())),
     750,
   );
 

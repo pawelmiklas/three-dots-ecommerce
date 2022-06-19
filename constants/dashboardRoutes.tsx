@@ -29,14 +29,14 @@ const dashboardRoutes = [
     route: '/dashboard/discounts',
   },
   {
-    name: 'Users',
-    icon: <TeamOutlined />,
-    route: '/dashboard/users',
-  },
-  {
     name: 'Reviews',
     icon: <CommentOutlined />,
     route: '/dashboard/reviews',
+  },
+  {
+    name: 'Users',
+    icon: <TeamOutlined />,
+    route: '/dashboard/users',
   },
 ];
 
