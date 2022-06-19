@@ -1,5 +1,9 @@
+import { Cookies } from '@constants/cookies';
+import { UserRoles } from '@constants/userRoles';
 import { Card, Col, Row, Typography, Form, Input, Button, message } from 'antd';
 import axios from 'axios';
+import { setCookies } from 'cookies-next';
+import jwtDecode from 'jwt-decode';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -17,14 +21,18 @@ const LoginPage = () => {
   const router = useRouter();
   const [form] = Form.useForm();
 
-  const onFinish = async (values: any) => {
+  const onFinish = async ({ nickname, password }: any) => {
     try {
-      await axios.post('api/public/auth/login', {
-        username: values.nickname,
-        password: values.password,
+      const response = await axios.post('api/public/auth/login', { username: nickname, password });
+      const decodedToken: any = jwtDecode(response.data.token);
+
+      setCookies(Cookies.THREE_DOTS_AUTH_TOKEN, response.data.token, {
+        path: '/',
+        sameSite: 'strict',
+        maxAge: 60 * 6 * 24,
       });
       form.resetFields();
-      router.push('/dashboard/products');
+      router.push(decodedToken?.role === UserRoles.ROLE_ADMIN ? '/dashboard/products' : '/');
     } catch (error) {
       message.error('Something went wrong!');
     }

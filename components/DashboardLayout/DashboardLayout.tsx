@@ -1,6 +1,8 @@
 import { LogoutOutlined, UserOutlined, FormOutlined, ContactsOutlined } from '@ant-design/icons';
+import { Cookies } from '@constants/cookies';
 import { dashboardRoutes } from '@constants/dashboardRoutes';
 import { Dropdown, Layout, Menu, Typography } from 'antd';
+import { removeCookies } from 'cookies-next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import classes from './DashboardLayout.module.scss';
@@ -70,7 +72,18 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <Menu.Item key="2" icon={<FormOutlined />}>
                   Change password
                 </Menu.Item>
-                <Menu.Item key="3" icon={<LogoutOutlined />} onClick={() => router.push('/')}>
+                <Menu.Item
+                  key="3"
+                  icon={<LogoutOutlined />}
+                  onClick={() => {
+                    removeCookies(Cookies.THREE_DOTS_AUTH_TOKEN, {
+                      path: '/',
+                      sameSite: 'strict',
+                      maxAge: 60 * 6 * 24,
+                    });
+                    router.push('/');
+                  }}
+                >
                   Logout
                 </Menu.Item>
               </Menu>
