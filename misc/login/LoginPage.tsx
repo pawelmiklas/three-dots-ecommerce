@@ -1,4 +1,5 @@
-import { Card, Col, Row, Typography, Form, Input, Button } from 'antd';
+import { Card, Col, Row, Typography, Form, Input, Button, message } from 'antd';
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -6,29 +7,27 @@ import React from 'react';
 const { Title } = Typography;
 
 const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-  },
+  labelCol: { xs: { span: 24 } },
+  wrapperCol: { xs: { span: 24 } },
 };
 
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-  },
-};
+const tailFormItemLayout = { wrapperCol: { xs: { span: 24 } } };
 
 const LoginPage = () => {
   const router = useRouter();
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    form.resetFields();
-    router.push('/dashboard/products');
+  const onFinish = async (values: any) => {
+    try {
+      await axios.post('api/public/auth/login', {
+        username: values.nickname,
+        password: values.password,
+      });
+      form.resetFields();
+      router.push('/dashboard/products');
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
   };
 
   return (
@@ -42,24 +41,17 @@ const LoginPage = () => {
             {...formItemLayout}
             form={form}
             name="register"
-            initialValues={{
-              prefix: '48',
-            }}
             layout="vertical"
             onFinish={onFinish}
             validateTrigger="onBlur"
           >
             <Form.Item
-              name="email"
-              label="E-mail"
+              name="nickname"
+              label="Nickname"
               rules={[
                 {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-                {
                   required: true,
-                  message: 'Please input your E-mail!',
+                  message: 'Please input your nickname!',
                 },
               ]}
             >

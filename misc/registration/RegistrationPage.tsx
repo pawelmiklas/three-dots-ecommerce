@@ -46,8 +46,8 @@ const RegistrationPage = () => {
       message.success('Registration went successfully!');
       form.resetFields();
       router.push('/login');
-    } catch {
-      message.error('Something went wrong!');
+    } catch (error: any) {
+      message.error(error?.response?.data?.[0]?.message || 'Something went wrong!');
     }
   };
 
