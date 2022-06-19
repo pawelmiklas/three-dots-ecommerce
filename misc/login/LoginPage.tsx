@@ -1,12 +1,11 @@
 import { Cookies } from '@constants/cookies';
 import { UserRoles } from '@constants/userRoles';
-import { Card, Col, Row, Typography, Form, Input, Button, message } from 'antd';
-import axios from 'axios';
+import { httpClient } from '@utils/httpClient';
+import { Button, Card, Col, Form, Input, message, Row, Typography } from 'antd';
 import { setCookies } from 'cookies-next';
 import jwtDecode from 'jwt-decode';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 const { Title } = Typography;
 
@@ -23,7 +22,7 @@ const LoginPage = () => {
 
   const onFinish = async ({ nickname, password }: any) => {
     try {
-      const response = await axios.post('api/public/auth/login', { username: nickname, password });
+      const response = await httpClient.post('api/public/auth/login', { username: nickname, password });
       const decodedToken: any = jwtDecode(response.data.token);
 
       setCookies(Cookies.THREE_DOTS_AUTH_TOKEN, response.data.token, {

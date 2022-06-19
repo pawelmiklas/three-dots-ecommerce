@@ -1,12 +1,12 @@
 import { SearchOutlined } from '@ant-design/icons';
 import DashboardLayout from '@components/DashboardLayout/DashboardLayout';
+import { httpClient } from '@utils/httpClient';
 import { Button, Col, Input, message, Popconfirm, Row, Space, Table, Typography } from 'antd';
+import { useSizes } from 'hooks/api/useSizes';
 import useDebounce from 'hooks/useDebounce';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import CategoryAddEdit from './components/SizesAddEdit';
 import classes from './Sizes.module.scss';
-import axios from 'axios';
-import { useSizes } from 'hooks/api/useSizes';
 
 const Sizes = () => {
   const [filter, setFilter] = useState('');
@@ -21,7 +21,7 @@ const Sizes = () => {
 
   const removeCategory = async (id: number) => {
     try {
-      await axios.delete(`api/sizes/${id}/remove`);
+      await httpClient.delete(`api/admin/sizes/${id}/remove`);
       await mutate();
       message.success('Size has been deleted!');
     } catch (error) {
@@ -84,7 +84,7 @@ const Sizes = () => {
           </Col>
           <Col span={8} className={classes.actionButton}>
             <Button type="primary" onClick={() => setIsCategoryFormVisible('add')}>
-              Add Sizes
+              Add Size
             </Button>
             <Input
               size="middle"

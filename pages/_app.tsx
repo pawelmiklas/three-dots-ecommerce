@@ -2,10 +2,8 @@ import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import NextNProgress from 'nextjs-progressbar';
 import { SWRConfig } from 'swr';
-import axios from 'axios';
 import qs from 'qs';
-
-axios.defaults.baseURL = 'http://localhost:8080/';
+import { httpClient } from '@utils/httpClient';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <SWRConfig
         value={{
           fetcher: (url: string, params) =>
-            axios.get(url, { params, paramsSerializer: qs.stringify }).then(({ data }) => data),
+            httpClient.get(url, { params, paramsSerializer: qs.stringify }).then(({ data }) => data),
         }}
       >
         <NextNProgress color="#dd7230" />

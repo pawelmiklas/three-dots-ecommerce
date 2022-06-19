@@ -1,6 +1,5 @@
+import { httpClient } from '@utils/httpClient';
 import { Button, Form, Input, message, Modal } from 'antd';
-import axios from 'axios';
-import React from 'react';
 
 interface SizesAddProps {
   isModalVisible: boolean;
@@ -16,7 +15,7 @@ const SizesAddEdit = ({ isModalVisible, size, onCancel }: SizesAddProps) => {
 
   const addCategory = async (values: any) => {
     try {
-      await axios.post('api/sizes/create', { sizeLabel: values.sizeLabel });
+      await httpClient.post('api/admin/sizes/create', { sizeLabel: values.sizeLabel });
       message.success('Size has been added successfully!');
       onCancel();
     } catch (error) {

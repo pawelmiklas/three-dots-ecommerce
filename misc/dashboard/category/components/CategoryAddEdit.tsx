@@ -1,6 +1,5 @@
+import { httpClient } from '@utils/httpClient';
 import { Button, Form, Input, message, Modal } from 'antd';
-import axios from 'axios';
-import React from 'react';
 
 interface ProductCategoryAddEditProps {
   isModalVisible: boolean;
@@ -17,7 +16,7 @@ const CategoryAddEdit = ({ isModalVisible, category, onCancel, type }: ProductCa
 
   const addCategory = async (values: any) => {
     try {
-      await axios.post('api/categories/create', { name: values.name });
+      await httpClient.post('api/admin/categories/create', { name: values.name });
       message.success('Category has been added successfully!');
       onCancel();
     } catch (error) {
@@ -27,7 +26,7 @@ const CategoryAddEdit = ({ isModalVisible, category, onCancel, type }: ProductCa
 
   const editCategory = async (values: any) => {
     try {
-      await axios.put(`api/categories/${category?.id}`, null, {
+      await httpClient.put(`api/admin/categories/${category?.id}`, null, {
         params: { id: category?.id, name: values.name },
       });
       message.success('Category has been edited successfully!');
@@ -43,7 +42,7 @@ const CategoryAddEdit = ({ isModalVisible, category, onCancel, type }: ProductCa
       width={800}
       footer={null}
       onCancel={onCancel}
-      title={type === 'add' ? 'Add product property' : 'Edit product property'}
+      title={type === 'add' ? 'Add product category' : 'Edit product category'}
     >
       <Form
         {...formItemLayout}

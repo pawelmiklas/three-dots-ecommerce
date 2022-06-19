@@ -76,6 +76,15 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                   key="3"
                   icon={<LogoutOutlined />}
                   onClick={() => {
+                    router.push('/');
+                  }}
+                >
+                  App
+                </Menu.Item>
+                <Menu.Item
+                  key="3"
+                  icon={<LogoutOutlined />}
+                  onClick={() => {
                     removeCookies(Cookies.THREE_DOTS_AUTH_TOKEN, {
                       path: '/',
                       sameSite: 'strict',

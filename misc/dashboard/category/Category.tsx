@@ -6,7 +6,7 @@ import React, { useMemo, useState } from 'react';
 import CategoryAddEdit from './components/CategoryAddEdit';
 import classes from './Category.module.scss';
 import { useCategories } from 'hooks/api/useCategories';
-import axios from 'axios';
+import { httpClient } from '@utils/httpClient';
 
 const Category = () => {
   const [filter, setFilter] = useState('');
@@ -21,7 +21,7 @@ const Category = () => {
 
   const removeCategory = async (id: number) => {
     try {
-      await axios.delete(`api/categories/${id}`);
+      await httpClient.delete(`api/admin/categories/${id}`);
       await mutate();
       message.success('Category has been deleted!');
     } catch (error) {

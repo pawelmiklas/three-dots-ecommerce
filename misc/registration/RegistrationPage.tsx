@@ -1,7 +1,6 @@
-import { Card, Col, Row, Typography, Form, Input, Select, Checkbox, Button, message, InputNumber } from 'antd';
-import axios from 'axios';
+import { httpClient } from '@utils/httpClient';
+import { Button, Card, Checkbox, Col, Form, Input, InputNumber, message, Row, Select, Typography } from 'antd';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -30,7 +29,7 @@ const RegistrationPage = () => {
 
   const onFinish = async (values: any) => {
     try {
-      await axios.post('api/public/auth/register', {
+      await httpClient.post('api/public/auth/register', {
         email: values.email,
         username: values.nickname,
         password: values.password,
