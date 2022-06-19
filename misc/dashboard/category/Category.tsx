@@ -21,7 +21,7 @@ const Category = () => {
 
   const removeCategory = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:8080/api/categories/${id}`);
+      await axios.delete(`api/categories/${id}`);
       await mutate();
       message.success('Category has been deleted!');
     } catch (error) {

@@ -1,4 +1,5 @@
 import { Card, Col, Row, Typography, Form, Input, Button } from 'antd';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -78,9 +79,10 @@ const LoginPage = () => {
               <Input.Password />
             </Form.Item>
             <Form.Item {...tailFormItemLayout} style={{ marginBottom: 0 }}>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" style={{ marginRight: 8 }}>
                 Login
               </Button>
+              Or <Link href="/registration">register now!</Link>
             </Form.Item>
           </Form>
         </Card>

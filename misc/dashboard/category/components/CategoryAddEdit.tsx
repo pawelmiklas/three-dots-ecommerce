@@ -17,7 +17,7 @@ const CategoryAddEdit = ({ isModalVisible, category, onCancel, type }: ProductCa
 
   const addCategory = async (values: any) => {
     try {
-      await axios.post(`http://localhost:8080/api/categories/create`, { name: values.name });
+      await axios.post('api/categories/create', { name: values.name });
       message.success('Category has been added successfully!');
       onCancel();
     } catch (error) {
@@ -27,7 +27,7 @@ const CategoryAddEdit = ({ isModalVisible, category, onCancel, type }: ProductCa
 
   const editCategory = async (values: any) => {
     try {
-      await axios.put(`http://localhost:8080/api/categories/${category?.id}`, null, {
+      await axios.put(`api/categories/${category?.id}`, null, {
         params: { id: category?.id, name: values.name },
       });
       message.success('Category has been edited successfully!');

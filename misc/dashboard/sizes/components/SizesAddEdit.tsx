@@ -16,7 +16,7 @@ const SizesAddEdit = ({ isModalVisible, size, onCancel }: SizesAddProps) => {
 
   const addCategory = async (values: any) => {
     try {
-      await axios.post(`http://localhost:8080/api/sizes/create`, { sizeLabel: values.sizeLabel });
+      await axios.post('api/sizes/create', { sizeLabel: values.sizeLabel });
       message.success('Size has been added successfully!');
       onCancel();
     } catch (error) {

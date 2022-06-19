@@ -5,6 +5,8 @@ import { SWRConfig } from 'swr';
 import axios from 'axios';
 import qs from 'qs';
 
+axios.defaults.baseURL = 'http://localhost:8080/';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
