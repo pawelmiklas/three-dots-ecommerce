@@ -1,27 +1,25 @@
 import DashboardLayout from '@components/DashboardLayout/DashboardLayout';
 import { ArrowDownOutlined, SearchOutlined } from '@ant-design/icons';
-import { Typography, Table, Tag, Space, Popconfirm, Button, Row, Col, Statistic, message, Input } from 'antd';
+import { Typography, Table, Space, Popconfirm, Button, Row, Col, Statistic, message, Input } from 'antd';
 import React, { useMemo, useState } from 'react';
 import NumberFormat from 'react-number-format';
 import classes from './Products.module.scss';
-import { useStore } from 'store';
 import useDebounce from 'hooks/useDebounce';
-import ProductView from './components/ProductView';
 import { Product } from 'mock/products';
 import ProductAddEdit from './components/ProductAddEdit';
-import { ProductProperty } from 'mock/productProperties';
-import { Collection } from 'mock/collections';
+import { useProducts } from 'hooks/api/useProducts';
+import { httpClient } from '@utils/httpClient';
+import { useRouter } from 'next/router';
 
 const ProductsPage = () => {
+  const router = useRouter();
   const [modalProduct, setModalProduct] = useState<Product | undefined>(undefined);
-  const [isProductViewVisible, setIsProductViewVisible] = useState(false);
   const [isProductFormVisible, setIsProductFormVisible] = useState<'add' | 'edit' | false>(false);
   const [filter, setFilter] = useState('');
-  const products = useStore(state => state.products);
-  const removeProduct = useStore(state => state.removeProduct);
+  const { data, mutate } = useProducts();
 
   const filteredProducts = useDebounce(
-    products.filter(item => item.name.toLowerCase().includes(filter.toLowerCase())),
+    (data || []).filter(item => item.name.toLowerCase().includes(filter.toLowerCase())),
     750,
   );
 
@@ -55,43 +53,20 @@ const ProductsPage = () => {
         ),
       },
       {
-        title: 'Properties',
-        key: 'properties',
-        dataIndex: 'properties',
-        render: (properties: ProductProperty[]) => (
-          <>
-            {properties.map((item: ProductProperty) => (
-              <Tag color="green" key={item.value}>
-                {item.name.toUpperCase()}
-              </Tag>
-            ))}
-          </>
-        ),
-      },
-      {
-        title: 'Collections',
-        key: 'collections',
-        dataIndex: 'collections',
-        render: (collections: Collection[]) => (
-          <>
-            {collections.map((item: Collection) => (
-              <Tag color="geekblue" key={item.id}>
-                {item.title.toUpperCase()}
-              </Tag>
-            ))}
-          </>
-        ),
-      },
-      {
         title: 'Action',
         key: 'action',
         render: (item: any) => (
           <Space size="middle">
             <Popconfirm
               title="Sure to delete?"
-              onConfirm={() => {
-                removeProduct(item.key);
-                message.success('Product has been deleted!');
+              onConfirm={async () => {
+                try {
+                  await httpClient.delete(`api/admin/products/${item.productId}/remove`);
+                  await mutate();
+                  message.success('Product has been deleted!');
+                } catch (error) {
+                  message.error('Something went wrong!');
+                }
               }}
             >
               <a>Delete</a>
@@ -106,8 +81,7 @@ const ProductsPage = () => {
             </a>
             <a
               onClick={() => {
-                setModalProduct(item);
-                setIsProductViewVisible(true);
+                router.push(`/dashboard/products/${item.productId}/view`);
               }}
             >
               View
@@ -130,16 +104,6 @@ const ProductsPage = () => {
             setIsProductFormVisible(false);
           }}
           type={isProductFormVisible}
-        />
-      )}
-      {modalProduct && (
-        <ProductView
-          isModalVisible={isProductViewVisible}
-          product={modalProduct}
-          onCancel={() => {
-            setModalProduct(undefined);
-            setIsProductViewVisible(false);
-          }}
         />
       )}
       <DashboardLayout>

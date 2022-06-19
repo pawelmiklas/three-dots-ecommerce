@@ -18,16 +18,6 @@ const Sizes = () => {
     750,
   );
 
-  const removeCategory = async (id: number) => {
-    try {
-      await httpClient.delete(`api/admin/sizes/${id}/remove`);
-      await mutate();
-      message.success('Size has been deleted!');
-    } catch (error) {
-      message.error('Something went wrong!');
-    }
-  };
-
   const columns = useMemo(
     () => [
       {
@@ -49,8 +39,14 @@ const Sizes = () => {
           <Space size="middle">
             <Popconfirm
               title="Sure to delete?"
-              onConfirm={() => {
-                removeCategory(item.id);
+              onConfirm={async () => {
+                try {
+                  await httpClient.delete(`api/admin/sizes/${item.id}/remove`);
+                  await mutate();
+                  message.success('Size has been deleted!');
+                } catch (error) {
+                  message.error('Something went wrong!');
+                }
               }}
             >
               <a>Delete</a>

@@ -4,7 +4,6 @@ import { Button, Col, Input, message, Popconfirm, Row, Space, Table, Typography 
 import useDebounce from 'hooks/useDebounce';
 import React, { useMemo, useState } from 'react';
 import CategoryAddEdit from './components/CategoryAddEdit';
-import classes from './Category.module.scss';
 import { useCategories } from 'hooks/api/useCategories';
 import { httpClient } from '@utils/httpClient';
 
@@ -18,16 +17,6 @@ const Category = () => {
     (data || []).filter(item => item.name.toLowerCase().includes(filter.toLowerCase())),
     750,
   );
-
-  const removeCategory = async (id: number) => {
-    try {
-      await httpClient.delete(`api/admin/categories/${id}`);
-      await mutate();
-      message.success('Category has been deleted!');
-    } catch (error) {
-      message.error('Something went wrong!');
-    }
-  };
 
   const columns = useMemo(
     () => [
@@ -50,8 +39,14 @@ const Category = () => {
           <Space size="middle">
             <Popconfirm
               title="Sure to delete?"
-              onConfirm={() => {
-                removeCategory(item.id);
+              onConfirm={async () => {
+                try {
+                  await httpClient.delete(`api/admin/categories/${item.id}`);
+                  await mutate();
+                  message.success('Category has been deleted!');
+                } catch (error) {
+                  message.error('Something went wrong!');
+                }
               }}
             >
               <a>Delete</a>
