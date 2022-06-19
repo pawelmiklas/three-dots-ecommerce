@@ -1,11 +1,4 @@
-import {
-  UnorderedListOutlined,
-  TeamOutlined,
-  ContainerOutlined,
-  TagOutlined,
-  DollarOutlined,
-  CommentOutlined,
-} from '@ant-design/icons';
+import { UnorderedListOutlined, TeamOutlined, ContainerOutlined, TagOutlined } from '@ant-design/icons';
 
 const dashboardRoutes = [
   {
@@ -22,16 +15,6 @@ const dashboardRoutes = [
     name: 'Sizes',
     icon: <TagOutlined />,
     route: '/dashboard/sizes',
-  },
-  {
-    name: 'Discounts',
-    icon: <DollarOutlined />,
-    route: '/dashboard/discounts',
-  },
-  {
-    name: 'Reviews',
-    icon: <CommentOutlined />,
-    route: '/dashboard/reviews',
   },
   {
     name: 'Users',

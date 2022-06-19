@@ -1,4 +1,4 @@
-import { LogoutOutlined, UserOutlined, FormOutlined, ContactsOutlined } from '@ant-design/icons';
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Cookies } from '@constants/cookies';
 import { dashboardRoutes } from '@constants/dashboardRoutes';
 import { Dropdown, Layout, Menu, Typography } from 'antd';
@@ -66,12 +66,6 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <Dropdown.Button
             overlay={
               <Menu>
-                <Menu.Item key="1" icon={<ContactsOutlined />}>
-                  My profile
-                </Menu.Item>
-                <Menu.Item key="2" icon={<FormOutlined />}>
-                  Change password
-                </Menu.Item>
                 <Menu.Item
                   key="3"
                   icon={<LogoutOutlined />}
@@ -100,7 +94,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             placement="bottom"
             icon={<UserOutlined />}
           >
-            <Typography.Paragraph className={classes.userText}>Tom Hanks</Typography.Paragraph>
+            <Typography.Paragraph className={classes.userText}>Admin</Typography.Paragraph>
           </Dropdown.Button>
         </Header>
         <Content
