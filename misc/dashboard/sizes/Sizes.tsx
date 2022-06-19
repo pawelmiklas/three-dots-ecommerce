@@ -6,7 +6,6 @@ import { useSizes } from 'hooks/api/useSizes';
 import useDebounce from 'hooks/useDebounce';
 import { useMemo, useState } from 'react';
 import CategoryAddEdit from './components/SizesAddEdit';
-import classes from './Sizes.module.scss';
 
 const Sizes = () => {
   const [filter, setFilter] = useState('');
@@ -82,7 +81,7 @@ const Sizes = () => {
               Sizes
             </Typography.Title>
           </Col>
-          <Col span={8} className={classes.actionButton}>
+          <Col span={8} className="actionButton">
             <Button type="primary" onClick={() => setIsCategoryFormVisible('add')}>
               Add Size
             </Button>

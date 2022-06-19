@@ -149,7 +149,7 @@ const ProductsPage = () => {
               Products
             </Typography.Title>
           </Col>
-          <Col span={8} className={classes.actionButton}>
+          <Col span={8} className="actionButton">
             <Button type="primary" onClick={() => setIsProductFormVisible('add')}>
               Add product
             </Button>

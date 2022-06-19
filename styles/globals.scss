@@ -56,3 +56,10 @@ h5 {
 .ant-btn-primary {
   color: #000 !important;
 }
+
+.actionButton {
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}

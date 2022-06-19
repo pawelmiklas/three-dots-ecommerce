@@ -91,7 +91,7 @@ const Category = () => {
               Categories
             </Typography.Title>
           </Col>
-          <Col span={8} className={classes.actionButton}>
+          <Col span={8} className="actionButton">
             <Button type="primary" onClick={() => setIsCategoryFormVisible('add')}>
               Add category
             </Button>

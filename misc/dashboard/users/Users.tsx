@@ -2,7 +2,6 @@ import DashboardLayout from '@components/DashboardLayout/DashboardLayout';
 import { SearchOutlined } from '@ant-design/icons';
 import { Typography, Table, Space, Row, Col, Input } from 'antd';
 import React, { useMemo, useState } from 'react';
-import classes from './Users.module.scss';
 import useDebounce from 'hooks/useDebounce';
 import UserView from './components/UserView';
 import { useUsers } from 'hooks/api/useUsers';
@@ -87,7 +86,7 @@ const UsersPage = () => {
               Users
             </Typography.Title>
           </Col>
-          <Col span={8} className={classes.actionButton}>
+          <Col span={8} className="actionButton">
             <Input
               size="middle"
               placeholder="Search"
