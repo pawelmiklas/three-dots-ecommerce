@@ -3,6 +3,7 @@ import { Button, Card, Col, Typography } from 'antd';
 import { useProduct } from 'hooks/api/useProduct';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import ProductDetails from './components/ProductDetails';
 
 const tabListNoTitle = [
   {
@@ -24,7 +25,7 @@ const tabListNoTitle = [
 ];
 
 const contentListNoTitle: Record<string, React.ReactNode> = {
-  details: <p>details content</p>,
+  details: <ProductDetails />,
   variants: <p>variants content</p>,
   reviews: <p>reviews content</p>,
   stock: <p>stock content</p>,
