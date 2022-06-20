@@ -5,16 +5,14 @@ import React, { useMemo, useState } from 'react';
 import NumberFormat from 'react-number-format';
 import classes from './Products.module.scss';
 import useDebounce from 'hooks/useDebounce';
-import { Product } from 'mock/products';
-import ProductAddEdit from './components/ProductAddEdit';
+import ProductAdd from './components/ProductAdd';
 import { useProducts } from 'hooks/api/useProducts';
 import { httpClient } from '@utils/httpClient';
 import { useRouter } from 'next/router';
 
 const ProductsPage = () => {
   const router = useRouter();
-  const [modalProduct, setModalProduct] = useState<Product | undefined>(undefined);
-  const [isProductFormVisible, setIsProductFormVisible] = useState<'add' | 'edit' | false>(false);
+  const [isProductFormVisible, setIsProductFormVisible] = useState(false);
   const [filter, setFilter] = useState('');
   const { data, mutate } = useProducts();
 
@@ -73,14 +71,6 @@ const ProductsPage = () => {
             </Popconfirm>
             <a
               onClick={() => {
-                setModalProduct(item);
-                setIsProductFormVisible('edit');
-              }}
-            >
-              Edit
-            </a>
-            <a
-              onClick={() => {
                 router.push(`/dashboard/products/${item.productId}/view`);
               }}
             >
@@ -96,14 +86,12 @@ const ProductsPage = () => {
   return (
     <>
       {isProductFormVisible && (
-        <ProductAddEdit
-          isModalVisible={!!isProductFormVisible}
-          product={modalProduct}
+        <ProductAdd
+          isModalVisible={isProductFormVisible}
           onCancel={() => {
-            setModalProduct(undefined);
             setIsProductFormVisible(false);
+            mutate();
           }}
-          type={isProductFormVisible}
         />
       )}
       <DashboardLayout>
@@ -114,7 +102,7 @@ const ProductsPage = () => {
             </Typography.Title>
           </Col>
           <Col span={8} className="actionButton">
-            <Button type="primary" onClick={() => setIsProductFormVisible('add')}>
+            <Button type="primary" onClick={() => setIsProductFormVisible(true)}>
               Add product
             </Button>
             <Input
