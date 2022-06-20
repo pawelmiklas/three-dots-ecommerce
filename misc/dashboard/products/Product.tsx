@@ -4,6 +4,7 @@ import { useProduct } from 'hooks/api/useProduct';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ProductDetails from './components/ProductDetails';
+import ProductVariants from './components/ProductVariants';
 
 const tabListNoTitle = [
   {
@@ -26,7 +27,7 @@ const tabListNoTitle = [
 
 const contentListNoTitle: Record<string, React.ReactNode> = {
   details: <ProductDetails />,
-  variants: <p>variants content</p>,
+  variants: <ProductVariants />,
   reviews: <p>reviews content</p>,
   stock: <p>stock content</p>,
 };
