@@ -1,4 +1,5 @@
-import { Button, List, Typography } from 'antd';
+import { httpClient } from '@utils/httpClient';
+import { Button, List, message, Popconfirm, Typography } from 'antd';
 import { useProductVariants } from 'hooks/api/useProductVariants';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -39,7 +40,27 @@ const ProductVariants = () => {
         bordered
         dataSource={data.variants || []}
         renderItem={item => (
-          <List.Item>
+          <List.Item
+            actions={[
+              <Popconfirm
+                key="1"
+                title="Sure to delete?"
+                onConfirm={async () => {
+                  try {
+                    await httpClient.delete(`api/admin/products/${productId}/remove-variant/${item.variantId}`);
+                    await mutate();
+                    message.success('Product has been deleted!');
+                  } catch (error) {
+                    message.error('Something went wrong!');
+                  }
+                }}
+              >
+                <Button danger size="small">
+                  Delete
+                </Button>
+              </Popconfirm>,
+            ]}
+          >
             <Typography.Text>{item.variantId}.</Typography.Text> {item.color}
           </List.Item>
         )}
