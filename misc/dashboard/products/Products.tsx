@@ -47,7 +47,7 @@ const ProductsPage = () => {
             precision={2}
             valueStyle={{ color: discount > 0 ? '#3f8600' : '' }}
             prefix={discount > 0 ? <ArrowDownOutlined /> : null}
-            suffix={discount > 0 ? '%' : undefined}
+            suffix={discount > 0 ? '$' : undefined}
             className={classes.statistics}
           />
         ),
