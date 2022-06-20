@@ -1,5 +1,5 @@
 import { httpClient } from '@utils/httpClient';
-import { Button, List, message, Popconfirm, Typography } from 'antd';
+import { Button, Col, List, message, Popconfirm, Row, Statistic, Typography } from 'antd';
 import { useProductStock } from 'hooks/api/useProductStock';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -36,34 +36,39 @@ const ProductStock = () => {
         bordered
         dataSource={data?.data || []}
         renderItem={item => (
-          <List.Item
-            actions={[
-              <Popconfirm
-                key="1"
-                title="Sure to delete?"
-                onConfirm={async () => {
-                  try {
-                    await httpClient.delete(`api/admin/stocks/${item.sizes[0].stockId}/remove`);
-                    await mutate();
-                    message.success('Stock has been deleted!');
-                  } catch (error) {
-                    message.error('Something went wrong!');
-                  }
-                }}
-              >
-                <Button danger size="small">
-                  Delete
-                </Button>
-              </Popconfirm>,
-            ]}
-          >
+          <List.Item>
             <List.Item.Meta
-              title={`Variant: ${item.color}`}
+              title={<Typography.Title level={3}>{item.color}</Typography.Title>}
               description={item.sizes.map(item => (
                 <React.Fragment key={item.stockId}>
-                  <Typography.Text>Size: {item.size}</Typography.Text>
-                  <br />
-                  <Typography.Text> Amount: {item.amount}</Typography.Text>
+                  <Row gutter={16}>
+                    <Col span={1}>
+                      <Statistic title="Size" value={item.size} />
+                    </Col>
+                    <Col span={21}>
+                      <Statistic title="Amount" value={item.amount} />
+                    </Col>
+                    <Col span={1}>
+                      <Popconfirm
+                        key="1"
+                        title="Sure to delete?"
+                        onConfirm={async () => {
+                          try {
+                            // TODO not working delete for multiple stocks
+                            await httpClient.delete(`api/admin/stocks/${item.stockId}/remove`);
+                            await mutate();
+                            message.success('Stock has been deleted!');
+                          } catch (error) {
+                            message.error('Something went wrong!');
+                          }
+                        }}
+                      >
+                        <Button danger size="small">
+                          Delete
+                        </Button>
+                      </Popconfirm>
+                    </Col>
+                  </Row>
                 </React.Fragment>
               ))}
             />
