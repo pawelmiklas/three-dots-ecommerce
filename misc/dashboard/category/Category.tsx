@@ -51,6 +51,7 @@ const Category = () => {
             >
               <a>Delete</a>
             </Popconfirm>
+            {/* TODO add view for all products in category */}
             <a
               onClick={() => {
                 setModalCategory({ ...item });

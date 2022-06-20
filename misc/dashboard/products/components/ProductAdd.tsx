@@ -32,6 +32,7 @@ const ProductAdd = ({ isModalVisible, onCancel }: ProductAddProps) => {
         layout="vertical"
         onFinish={async values => {
           try {
+            // TODO check if imageUrl field doesn't have character limit anymore
             await httpClient.post('api/admin/products/create', {
               categoryId: values.category,
               name: values.name,
