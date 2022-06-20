@@ -1,9 +1,8 @@
 import { httpClient } from '@utils/httpClient';
-import { Button, InputNumber, Form, Input, Modal, Select, message } from 'antd';
+import { Button, Form, Input, InputNumber, message, Modal, Select } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import { addMonths } from 'date-fns';
 import { useCategories } from 'hooks/api/useCategories';
-import React from 'react';
 
 interface ProductAddProps {
   isModalVisible: boolean;
@@ -38,7 +37,7 @@ const ProductAdd = ({ isModalVisible, onCancel }: ProductAddProps) => {
               name: values.name,
               price: values.price,
               description: values.description,
-              imgUrl: '',
+              imgUrl: JSON.stringify(values.images),
               ...(values.discount && {
                 discount: values.discount,
                 discountExpirationDate: addMonths(new Date(), 6),
@@ -128,6 +127,18 @@ const ProductAdd = ({ isModalVisible, onCancel }: ProductAddProps) => {
               </Select.Option>
             ))}
           </Select>
+        </Form.Item>
+        <Form.Item
+          name="images"
+          label="Images"
+          rules={[
+            {
+              required: true,
+              message: 'Please input image!',
+            },
+          ]}
+        >
+          <Select mode="tags" />
         </Form.Item>
         <Form.Item {...tailFormItemLayout} style={{ marginBottom: 0 }}>
           <Button type="primary" htmlType="submit">
