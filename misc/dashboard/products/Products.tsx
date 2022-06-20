@@ -9,10 +9,12 @@ import ProductAdd from './components/ProductAdd';
 import { useProducts } from 'hooks/api/useProducts';
 import { httpClient } from '@utils/httpClient';
 import { useRouter } from 'next/router';
+import ProductVariantAdd from './components/ProductVariantAdd';
 
 const ProductsPage = () => {
   const router = useRouter();
-  const [isProductFormVisible, setIsProductFormVisible] = useState(false);
+  const [isProductAdd, setIsProductAdd] = useState(false);
+  const [isProductVariantAdd, setIsProductVariantAdd] = useState<boolean | number>(false);
   const [filter, setFilter] = useState('');
   const { data, mutate } = useProducts();
 
@@ -71,6 +73,13 @@ const ProductsPage = () => {
             </Popconfirm>
             <a
               onClick={() => {
+                setIsProductVariantAdd(item.productId);
+              }}
+            >
+              Add variant
+            </a>
+            <a
+              onClick={() => {
                 router.push(`/dashboard/products/${item.productId}/view`);
               }}
             >
@@ -85,11 +94,21 @@ const ProductsPage = () => {
 
   return (
     <>
-      {isProductFormVisible && (
+      {isProductAdd && (
         <ProductAdd
-          isModalVisible={isProductFormVisible}
+          isModalVisible={isProductAdd}
           onCancel={() => {
-            setIsProductFormVisible(false);
+            setIsProductAdd(false);
+            mutate();
+          }}
+        />
+      )}
+      {!!isProductVariantAdd && (
+        <ProductVariantAdd
+          isModalVisible={!!isProductVariantAdd}
+          productId={typeof isProductVariantAdd === 'number' ? isProductVariantAdd : 0}
+          onCancel={() => {
+            setIsProductVariantAdd(false);
             mutate();
           }}
         />
@@ -102,7 +121,7 @@ const ProductsPage = () => {
             </Typography.Title>
           </Col>
           <Col span={8} className="actionButton">
-            <Button type="primary" onClick={() => setIsProductFormVisible(true)}>
+            <Button type="primary" onClick={() => setIsProductAdd(true)}>
               Add product
             </Button>
             <Input
