@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ProductDetails from './components/ProductDetails';
 import ProductReviews from './components/ProductReviews';
+import ProductStock from './components/ProductStock';
 import ProductVariants from './components/ProductVariants';
 
 const tabListNoTitle = [
@@ -30,7 +31,7 @@ const contentListNoTitle: Record<string, React.ReactNode> = {
   details: <ProductDetails />,
   variants: <ProductVariants />,
   reviews: <ProductReviews />,
-  stock: <p>stock content</p>,
+  stock: <ProductStock />,
 };
 
 const Product = () => {
