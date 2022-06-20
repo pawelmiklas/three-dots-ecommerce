@@ -80,7 +80,7 @@ const ProductsPage = () => {
             </a>
             <a
               onClick={() => {
-                router.push(`/dashboard/products/${item.productId}/view`);
+                router.push(`/dashboard/products/${item.productId}`);
               }}
             >
               View
