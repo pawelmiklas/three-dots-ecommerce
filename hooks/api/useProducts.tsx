@@ -5,7 +5,6 @@ export interface Product {
   categoryId: number;
   name: string;
   description: string;
-  imageUrl: string;
   price: number;
   discount: number;
   discountExpirationDate: string;

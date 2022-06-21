@@ -1,5 +1,5 @@
 import { httpClient } from '@utils/httpClient';
-import { Button, List, message, Popconfirm, Typography } from 'antd';
+import { Button, List, message, Popconfirm, Typography, Image } from 'antd';
 import { useProductVariants } from 'hooks/api/useProductVariants';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -39,31 +39,48 @@ const ProductVariants = () => {
       <List
         bordered
         dataSource={data.variants || []}
-        renderItem={item => (
-          <List.Item
-            actions={[
-              <Popconfirm
-                key="1"
-                title="Sure to delete?"
-                onConfirm={async () => {
-                  try {
-                    await httpClient.delete(`api/admin/products/${productId}/remove-variant/${item.variantId}`);
-                    await mutate();
-                    message.success('Product has been deleted!');
-                  } catch (error) {
-                    message.error('Something went wrong!');
-                  }
-                }}
-              >
-                <Button danger size="small">
-                  Delete
-                </Button>
-              </Popconfirm>,
-            ]}
-          >
-            <Typography.Text>{item.variantId}.</Typography.Text> {item.color}
-          </List.Item>
-        )}
+        renderItem={item => {
+          const imageUrls = item?.imageUrl ? JSON.parse(item?.imageUrl) : [];
+
+          return (
+            <List.Item
+              actions={[
+                <Popconfirm
+                  key="1"
+                  title="Sure to delete?"
+                  onConfirm={async () => {
+                    try {
+                      await httpClient.delete(`api/admin/products/${productId}/remove-variant/${item.variantId}`);
+                      await mutate();
+                      message.success('Product has been deleted!');
+                    } catch (error) {
+                      message.error('Something went wrong!');
+                    }
+                  }}
+                >
+                  <Button danger size="small">
+                    Delete
+                  </Button>
+                </Popconfirm>,
+              ]}
+            >
+              <List.Item.Meta
+                title={
+                  <Typography.Title level={3}>
+                    {item.variantId}. {item.color}
+                  </Typography.Title>
+                }
+                description={
+                  <Image.PreviewGroup>
+                    {(imageUrls || []).map((item: string) => (
+                      <Image key={item} width={200} src={item} />
+                    ))}
+                  </Image.PreviewGroup>
+                }
+              />
+            </List.Item>
+          );
+        }}
       />
     </>
   );

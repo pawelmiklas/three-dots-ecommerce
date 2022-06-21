@@ -26,7 +26,6 @@ const ProductAdd = ({ isModalVisible, onCancel }: ProductAddProps) => {
           name: '',
           price: '',
           description: '',
-          imgUrl: '',
           discount: '',
         }}
         layout="vertical"
@@ -37,7 +36,6 @@ const ProductAdd = ({ isModalVisible, onCancel }: ProductAddProps) => {
               name: values.name,
               price: values.price,
               description: values.description,
-              imgUrl: JSON.stringify(values.images),
               ...(values.discount && {
                 discount: values.discount,
                 discountExpirationDate: addMonths(new Date(), 6),
@@ -127,18 +125,6 @@ const ProductAdd = ({ isModalVisible, onCancel }: ProductAddProps) => {
               </Select.Option>
             ))}
           </Select>
-        </Form.Item>
-        <Form.Item
-          name="images"
-          label="Images"
-          rules={[
-            {
-              required: true,
-              message: 'Please input image!',
-            },
-          ]}
-        >
-          <Select mode="tags" />
         </Form.Item>
         <Form.Item {...tailFormItemLayout} style={{ marginBottom: 0 }}>
           <Button type="primary" htmlType="submit">

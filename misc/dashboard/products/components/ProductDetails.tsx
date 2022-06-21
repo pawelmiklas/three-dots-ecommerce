@@ -1,5 +1,5 @@
 import { ArrowDownOutlined } from '@ant-design/icons';
-import { Descriptions, Statistic, Tag, Image } from 'antd';
+import { Descriptions, Statistic, Tag } from 'antd';
 import { useCategories } from 'hooks/api/useCategories';
 import { useProduct } from 'hooks/api/useProduct';
 import { useRouter } from 'next/router';
@@ -16,8 +16,6 @@ const ProductDetails = () => {
     return null;
   }
 
-  const imageUrls = JSON.parse(data?.imageUrl);
-
   return (
     <Descriptions bordered>
       <Descriptions.Item label="Id" span={3}>
@@ -28,19 +26,6 @@ const ProductDetails = () => {
       </Descriptions.Item>
       <Descriptions.Item label="Description" span={3}>
         {data?.description}
-      </Descriptions.Item>
-      <Descriptions.Item label="Images" span={3}>
-        {imageUrls && imageUrls.length ? (
-          <>
-            <Image.PreviewGroup>
-              {imageUrls.map((item: string) => (
-                <Image key={item} width={200} height={200} src={item} />
-              ))}
-            </Image.PreviewGroup>
-          </>
-        ) : (
-          '-'
-        )}
       </Descriptions.Item>
       <Descriptions.Item label="Price">
         <NumberFormat value={data?.price} displayType="text" thousandSeparator prefix="$" />

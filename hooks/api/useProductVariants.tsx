@@ -7,6 +7,7 @@ interface ProductVariant {
   variants: {
     variantId: number;
     color: string;
+    imageUrl: string;
   }[];
 }
 
