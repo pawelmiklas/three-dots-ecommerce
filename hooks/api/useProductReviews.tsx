@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 
 interface ProductReview {
+  id: number;
   content: string;
   rating: 1 | 2 | 3 | 4;
 }

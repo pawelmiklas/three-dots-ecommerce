@@ -1,4 +1,4 @@
-// import { httpClient } from '@utils/httpClient';
+import { httpClient } from '@utils/httpClient';
 import { Button, List, message, Popconfirm, Rate, Typography } from 'antd';
 import { useProductReviews } from 'hooks/api/useProductReviews';
 import { useRouter } from 'next/router';
@@ -21,8 +21,7 @@ const ProductReviews = () => {
                 title="Sure to delete?"
                 onConfirm={async () => {
                   try {
-                    // TODO
-                    // await httpClient.delete(`api/admin/products/${productId}/reviews/delete/${item.reviewId}`);
+                    await httpClient.delete(`api/admin/products/${productId}/reviews/delete/${item.id}`);
                     await mutate();
                     message.success('Review has been deleted!');
                   } catch (error) {

@@ -54,7 +54,6 @@ const ProductStock = () => {
                         title="Sure to delete?"
                         onConfirm={async () => {
                           try {
-                            // TODO not working delete for multiple stocks
                             await httpClient.delete(`api/admin/stocks/${item.stockId}/remove`);
                             await mutate();
                             message.success('Stock has been deleted!');
