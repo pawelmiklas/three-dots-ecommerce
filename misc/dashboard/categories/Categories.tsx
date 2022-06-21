@@ -6,8 +6,10 @@ import React, { useMemo, useState } from 'react';
 import CategoryAddEdit from './components/CategoryAddEdit';
 import { useCategories } from 'hooks/api/useCategories';
 import { httpClient } from '@utils/httpClient';
+import { useRouter } from 'next/router';
 
-const Category = () => {
+const Categories = () => {
+  const router = useRouter();
   const [filter, setFilter] = useState('');
   const [isCategoryFormVisible, setIsCategoryFormVisible] = useState<'add' | 'edit' | false>(false);
   const [modalCategory, setModalCategory] = useState<{ name: string } | undefined>(undefined);
@@ -51,7 +53,6 @@ const Category = () => {
             >
               <a>Delete</a>
             </Popconfirm>
-            {/* TODO add view for all products in category */}
             <a
               onClick={() => {
                 setModalCategory({ ...item });
@@ -59,6 +60,13 @@ const Category = () => {
               }}
             >
               Edit
+            </a>
+            <a
+              onClick={() => {
+                router.push(`/dashboard/categories/${item.id}`);
+              }}
+            >
+              View
             </a>
           </Space>
         ),
@@ -105,4 +113,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default Categories;

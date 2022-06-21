@@ -1,5 +1,5 @@
 import { UserRoles } from '@constants/userRoles';
-import Category from '@misc/dashboard/category/Category';
+import Category from '@misc/dashboard/categories/Categories';
 import { withAuth } from '@utils/withAuth';
 
 const CategoryPage = () => {

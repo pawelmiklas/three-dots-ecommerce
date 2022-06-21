@@ -9,7 +9,7 @@ const dashboardRoutes = [
   {
     name: 'Categories',
     icon: <ContainerOutlined />,
-    route: '/dashboard/category',
+    route: '/dashboard/categories',
   },
   {
     name: 'Sizes',
