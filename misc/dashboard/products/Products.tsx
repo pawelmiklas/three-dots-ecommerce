@@ -30,7 +30,7 @@ const ProductsPage = () => {
         render: (text: string) => text,
       },
       {
-        title: 'Price',
+        title: 'Base price',
         dataIndex: 'price',
         key: 'price',
         render: (price: string) => <NumberFormat value={price} displayType="text" thousandSeparator prefix="$" />,
@@ -48,6 +48,13 @@ const ProductsPage = () => {
             suffix={discount > 0 ? '$' : undefined}
             className={classes.statistics}
           />
+        ),
+      },
+      {
+        title: 'Final price',
+        key: 'finalPrice',
+        render: (item: any) => (
+          <NumberFormat value={item.price - item.discount} displayType="text" thousandSeparator prefix="$" />
         ),
       },
       {

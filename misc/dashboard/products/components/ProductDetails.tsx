@@ -27,10 +27,10 @@ const ProductDetails = () => {
       <Descriptions.Item label="Description" span={3}>
         {data?.description}
       </Descriptions.Item>
-      <Descriptions.Item label="Price">
+      <Descriptions.Item label="Base price">
         <NumberFormat value={data?.price} displayType="text" thousandSeparator prefix="$" />
       </Descriptions.Item>
-      <Descriptions.Item label="Discount" span={2}>
+      <Descriptions.Item label="Discount">
         <Statistic
           value={data?.discount > 0 ? data?.discount : '-'}
           precision={2}
@@ -39,6 +39,9 @@ const ProductDetails = () => {
           suffix={data?.discount > 0 ? '$' : undefined}
           className={classes.statistics}
         />
+      </Descriptions.Item>
+      <Descriptions.Item label="Final price">
+        <NumberFormat value={data?.price - data.discount} displayType="text" thousandSeparator prefix="$" />
       </Descriptions.Item>
       <Descriptions.Item label="Collection" span={3}>
         <Tag color="geekblue">{categories?.find(item => item.id === data.categoryId)?.name.toUpperCase()}</Tag>
