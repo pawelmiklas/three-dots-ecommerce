@@ -1,6 +1,11 @@
-import { UnorderedListOutlined, TeamOutlined, ContainerOutlined, TagOutlined } from '@ant-design/icons';
+import { UnorderedListOutlined, TeamOutlined, ContainerOutlined, TagOutlined, StockOutlined } from '@ant-design/icons';
 
 const dashboardRoutes = [
+  {
+    name: 'Statistics',
+    icon: <StockOutlined />,
+    route: '/dashboard/stats',
+  },
   {
     name: 'Products',
     icon: <UnorderedListOutlined />,

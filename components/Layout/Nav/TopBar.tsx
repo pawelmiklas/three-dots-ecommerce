@@ -62,7 +62,7 @@ const TopBar = () => {
           <Col span={8}>
             <Row justify="end">
               <Col>
-                <span className={classes.link} onClick={() => router.push('/dashboard/products')}>
+                <span className={classes.link} onClick={() => router.push('/dashboard/stats')}>
                   <Text code>Dashboard</Text>
                 </span>
               </Col>

@@ -31,7 +31,7 @@ const LoginPage = () => {
         maxAge: 60 * 6 * 24,
       });
       form.resetFields();
-      router.push(decodedToken?.role === UserRoles.ROLE_ADMIN ? '/dashboard/products' : '/');
+      router.push(decodedToken?.role === UserRoles.ROLE_ADMIN ? '/dashboard/stats' : '/');
     } catch (error) {
       message.error('Something went wrong!');
     }
