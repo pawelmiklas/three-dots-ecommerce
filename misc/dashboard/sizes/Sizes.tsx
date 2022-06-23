@@ -1,22 +1,20 @@
 import { SearchOutlined } from '@ant-design/icons';
 import DashboardLayout from '@components/DashboardLayout/DashboardLayout';
-import { Button, Col, Input, message, Popconfirm, Row, Space, Table, Typography } from 'antd';
-import useDebounce from 'hooks/useDebounce';
-import React, { useMemo, useState } from 'react';
-import CategoryAddEdit from './components/CategoryAddEdit';
-import { useCategories } from 'hooks/api/useCategories';
 import { httpClient } from '@utils/httpClient';
-import { useRouter } from 'next/router';
+import { Button, Col, Input, message, Popconfirm, Row, Space, Table, Typography } from 'antd';
+import { useSizes } from 'hooks/api/useSizes';
+import useDebounce from 'hooks/useDebounce';
+import { useMemo, useState } from 'react';
+import CategoryAddEdit from './components/SizesAddEdit';
 
-const Categories = () => {
-  const router = useRouter();
+const Sizes = () => {
   const [filter, setFilter] = useState('');
   const [isCategoryFormVisible, setIsCategoryFormVisible] = useState<'add' | 'edit' | false>(false);
-  const [modalCategory, setModalCategory] = useState<{ name: string } | undefined>(undefined);
-  const { data, mutate } = useCategories();
+  const [modalCategory, setModalCategory] = useState<{ sizeLabel: string } | undefined>(undefined);
+  const { data, mutate } = useSizes();
 
-  const filteredCategories = useDebounce(
-    (data || []).filter(item => item.name.toLowerCase().includes(filter.toLowerCase())),
+  const filteredSizes = useDebounce(
+    (data || []).filter(item => item.sizeLabel.toLowerCase().includes(filter.toLowerCase())),
     750,
   );
 
@@ -29,23 +27,23 @@ const Categories = () => {
         render: (id: number) => id,
       },
       {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: (name: string) => name,
+        title: 'Size',
+        dataIndex: 'sizeLabel',
+        key: 'sizeLabel',
+        render: (sizeLabel: string) => sizeLabel,
       },
       {
         title: 'Action',
         key: 'id',
-        render: (item: { id: number; name: string }) => (
+        render: (item: { id: number; sizeLabel: string }) => (
           <Space size="middle">
             <Popconfirm
               title="Sure to delete?"
               onConfirm={async () => {
                 try {
-                  await httpClient.delete(`api/admin/categories/${item.id}`);
+                  await httpClient.delete(`api/admin/sizes/${item.id}/remove`);
                   await mutate();
-                  message.success('Category has been deleted!');
+                  message.success('Size has been deleted!');
                 } catch (error) {
                   message.error('Something went wrong!');
                 }
@@ -53,21 +51,6 @@ const Categories = () => {
             >
               <a>Delete</a>
             </Popconfirm>
-            <a
-              onClick={() => {
-                setModalCategory({ ...item });
-                setIsCategoryFormVisible('edit');
-              }}
-            >
-              Edit
-            </a>
-            <a
-              onClick={() => {
-                router.push(`/dashboard/categories/${item.id}`);
-              }}
-            >
-              View
-            </a>
           </Space>
         ),
       },
@@ -79,25 +62,24 @@ const Categories = () => {
       {isCategoryFormVisible && (
         <CategoryAddEdit
           isModalVisible={!!isCategoryFormVisible}
-          category={modalCategory}
+          size={modalCategory}
           onCancel={async () => {
             setModalCategory(undefined);
             setIsCategoryFormVisible(false);
             await mutate();
           }}
-          type={isCategoryFormVisible}
         />
       )}
       <DashboardLayout>
         <Row>
           <Col span={16}>
             <Typography.Title level={3} style={{ marginBottom: 24 }}>
-              Categories
+              Sizes
             </Typography.Title>
           </Col>
           <Col span={8} className="actionButton">
             <Button type="primary" onClick={() => setIsCategoryFormVisible('add')}>
-              Add category
+              Add Size
             </Button>
             <Input
               size="middle"
@@ -107,10 +89,10 @@ const Categories = () => {
             />
           </Col>
         </Row>
-        <Table columns={columns} dataSource={filteredCategories} />
+        <Table columns={columns} dataSource={filteredSizes} />
       </DashboardLayout>
     </>
   );
 };
 
-export default Categories;
+export default Sizes;

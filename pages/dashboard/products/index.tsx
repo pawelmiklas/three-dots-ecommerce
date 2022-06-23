@@ -1,12 +1,12 @@
 import React from 'react';
-import Users from '@misc/dashboard/users/Users';
+import Products from '@misc/dashboard/products/Products';
 import { withAuth } from '@utils/withAuth';
 import { UserRoles } from '@constants/userRoles';
 
-const UsersPage = () => {
-  return <Users />;
+const ProductsPage = () => {
+  return <Products />;
 };
 
 export const getServerSideProps = withAuth({ roles: [UserRoles.ROLE_ADMIN] });
 
-export default UsersPage;
+export default ProductsPage;

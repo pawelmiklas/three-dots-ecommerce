@@ -1,7 +1,7 @@
-import { Card, Col, Row, Typography, Form, Input, Select, Checkbox, Button, message } from 'antd';
+import { httpClient } from '@utils/httpClient';
+import { Button, Card, Checkbox, Col, Form, Input, InputNumber, message, Row, Select, Typography } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -28,11 +28,27 @@ const RegistrationPage = () => {
   const router = useRouter();
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    form.resetFields();
-    message.success('Registration went succesfully, we send message to your email!');
-
-    router.push('/login');
+  const onFinish = async (values: any) => {
+    try {
+      await httpClient.post('api/public/auth/register', {
+        email: values.email,
+        username: values.nickname,
+        password: values.password,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        phoneNumber: `0${values.phone}`,
+        zipCode: `${String(values.zipCode).substring(0, 2)}-${String(values.zipCode).substring(2, 5)}`,
+        city: values.city,
+        street: values.street,
+        apartmentNumber: values.apartmentNumber,
+        buildingNumber: values.buildingNumber,
+      });
+      message.success('Registration went successfully!');
+      form.resetFields();
+      router.push('/login');
+    } catch (error: any) {
+      message.error(error?.response?.data?.[0]?.message || 'Something went wrong!');
+    }
   };
 
   const prefixSelector = (
@@ -62,6 +78,30 @@ const RegistrationPage = () => {
             onFinish={onFinish}
             validateTrigger="onBlur"
           >
+            <Form.Item
+              name="firstName"
+              label="First name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your first name!',
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="lastName"
+              label="Last Name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your last name!',
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
             <Form.Item
               name="email"
               label="E-mail"
@@ -156,7 +196,7 @@ const RegistrationPage = () => {
                 },
               ]}
             >
-              <Input />
+              <InputNumber style={{ width: '100%' }} min={10000} max={99999} />
             </Form.Item>
             <Form.Item
               name="street"
@@ -176,7 +216,19 @@ const RegistrationPage = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Please input your Building number!',
+                  message: 'Please input your building number!',
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="apartmentNumber"
+              label="Apartment number"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your apartment number!',
                 },
               ]}
             >

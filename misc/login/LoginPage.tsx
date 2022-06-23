@@ -1,33 +1,40 @@
-import { Card, Col, Row, Typography, Form, Input, Button } from 'antd';
+import { Cookies } from '@constants/cookies';
+import { UserRoles } from '@constants/userRoles';
+import { httpClient } from '@utils/httpClient';
+import { Button, Card, Col, Form, Input, message, Row, Typography } from 'antd';
+import { setCookies } from 'cookies-next';
+import jwtDecode from 'jwt-decode';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 const { Title } = Typography;
 
 const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-  },
+  labelCol: { xs: { span: 24 } },
+  wrapperCol: { xs: { span: 24 } },
 };
 
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-  },
-};
+const tailFormItemLayout = { wrapperCol: { xs: { span: 24 } } };
 
 const LoginPage = () => {
   const router = useRouter();
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    form.resetFields();
-    router.push('/dashboard/products');
+  const onFinish = async ({ nickname, password }: any) => {
+    try {
+      const response = await httpClient.post('api/public/auth/login', { username: nickname, password });
+      const decodedToken: any = jwtDecode(response.data.token);
+
+      setCookies(Cookies.THREE_DOTS_AUTH_TOKEN, response.data.token, {
+        path: '/',
+        sameSite: 'strict',
+        maxAge: 60 * 6 * 24,
+      });
+      form.resetFields();
+      router.push(decodedToken?.role === UserRoles.ROLE_ADMIN ? '/dashboard/stats' : '/');
+    } catch (error) {
+      message.error('Something went wrong!');
+    }
   };
 
   return (
@@ -41,24 +48,17 @@ const LoginPage = () => {
             {...formItemLayout}
             form={form}
             name="register"
-            initialValues={{
-              prefix: '48',
-            }}
             layout="vertical"
             onFinish={onFinish}
             validateTrigger="onBlur"
           >
             <Form.Item
-              name="email"
-              label="E-mail"
+              name="nickname"
+              label="Nickname"
               rules={[
                 {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-                {
                   required: true,
-                  message: 'Please input your E-mail!',
+                  message: 'Please input your nickname!',
                 },
               ]}
             >
@@ -78,9 +78,10 @@ const LoginPage = () => {
               <Input.Password />
             </Form.Item>
             <Form.Item {...tailFormItemLayout} style={{ marginBottom: 0 }}>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" style={{ marginRight: 8 }}>
                 Login
               </Button>
+              Or <Link href="/registration">register now!</Link>
             </Form.Item>
           </Form>
         </Card>

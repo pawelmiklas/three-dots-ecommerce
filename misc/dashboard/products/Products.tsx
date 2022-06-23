@@ -1,27 +1,23 @@
 import DashboardLayout from '@components/DashboardLayout/DashboardLayout';
 import { ArrowDownOutlined, SearchOutlined } from '@ant-design/icons';
-import { Typography, Table, Tag, Space, Popconfirm, Button, Row, Col, Statistic, message, Input } from 'antd';
+import { Typography, Table, Space, Popconfirm, Button, Row, Col, Statistic, message, Input } from 'antd';
 import React, { useMemo, useState } from 'react';
 import NumberFormat from 'react-number-format';
 import classes from './Products.module.scss';
-import { useStore } from 'store';
 import useDebounce from 'hooks/useDebounce';
-import ProductView from './components/ProductView';
-import { Product } from 'mock/products';
-import ProductAddEdit from './components/ProductAddEdit';
-import { ProductProperty } from 'mock/productProperties';
-import { Collection } from 'mock/collections';
+import ProductAdd from './components/ProductAdd';
+import { useProducts } from 'hooks/api/useProducts';
+import { httpClient } from '@utils/httpClient';
+import { useRouter } from 'next/router';
 
 const ProductsPage = () => {
-  const [modalProduct, setModalProduct] = useState<Product | undefined>(undefined);
-  const [isProductViewVisible, setIsProductViewVisible] = useState(false);
-  const [isProductFormVisible, setIsProductFormVisible] = useState<'add' | 'edit' | false>(false);
+  const router = useRouter();
+  const [isProductAdd, setIsProductAdd] = useState(false);
   const [filter, setFilter] = useState('');
-  const products = useStore(state => state.products);
-  const removeProduct = useStore(state => state.removeProduct);
+  const { data, mutate } = useProducts();
 
   const filteredProducts = useDebounce(
-    products.filter(item => item.name.includes(filter)),
+    (data || []).filter(item => item.name.toLowerCase().includes(filter.toLowerCase())),
     750,
   );
 
@@ -34,7 +30,7 @@ const ProductsPage = () => {
         render: (text: string) => text,
       },
       {
-        title: 'Price',
+        title: 'Base price',
         dataIndex: 'price',
         key: 'price',
         render: (price: string) => <NumberFormat value={price} displayType="text" thousandSeparator prefix="$" />,
@@ -49,37 +45,16 @@ const ProductsPage = () => {
             precision={2}
             valueStyle={{ color: discount > 0 ? '#3f8600' : '' }}
             prefix={discount > 0 ? <ArrowDownOutlined /> : null}
-            suffix={discount > 0 ? '%' : undefined}
+            suffix={discount > 0 ? '$' : undefined}
             className={classes.statistics}
           />
         ),
       },
       {
-        title: 'Properties',
-        key: 'properties',
-        dataIndex: 'properties',
-        render: (properties: ProductProperty[]) => (
-          <>
-            {properties.map((item: ProductProperty) => (
-              <Tag color="green" key={item.value}>
-                {item.name.toUpperCase()}
-              </Tag>
-            ))}
-          </>
-        ),
-      },
-      {
-        title: 'Collections',
-        key: 'collections',
-        dataIndex: 'collections',
-        render: (collections: Collection[]) => (
-          <>
-            {collections.map((item: Collection) => (
-              <Tag color="geekblue" key={item.id}>
-                {item.title.toUpperCase()}
-              </Tag>
-            ))}
-          </>
+        title: 'Final price',
+        key: 'finalPrice',
+        render: (item: any) => (
+          <NumberFormat value={item.price - item.discount} displayType="text" thousandSeparator prefix="$" />
         ),
       },
       {
@@ -89,25 +64,21 @@ const ProductsPage = () => {
           <Space size="middle">
             <Popconfirm
               title="Sure to delete?"
-              onConfirm={() => {
-                removeProduct(item.key);
-                message.success('Product has been deleted!');
+              onConfirm={async () => {
+                try {
+                  await httpClient.delete(`api/admin/products/${item.productId}/remove`);
+                  await mutate();
+                  message.success('Product has been deleted!');
+                } catch (error) {
+                  message.error('Something went wrong!');
+                }
               }}
             >
               <a>Delete</a>
             </Popconfirm>
             <a
               onClick={() => {
-                setModalProduct(item);
-                setIsProductFormVisible('edit');
-              }}
-            >
-              Edit
-            </a>
-            <a
-              onClick={() => {
-                setModalProduct(item);
-                setIsProductViewVisible(true);
+                router.push(`/dashboard/products/${item.productId}`);
               }}
             >
               View
@@ -121,24 +92,12 @@ const ProductsPage = () => {
 
   return (
     <>
-      {isProductFormVisible && (
-        <ProductAddEdit
-          isModalVisible={!!isProductFormVisible}
-          product={modalProduct}
+      {isProductAdd && (
+        <ProductAdd
+          isModalVisible={isProductAdd}
           onCancel={() => {
-            setModalProduct(undefined);
-            setIsProductFormVisible(false);
-          }}
-          type={isProductFormVisible}
-        />
-      )}
-      {modalProduct && (
-        <ProductView
-          isModalVisible={isProductViewVisible}
-          product={modalProduct}
-          onCancel={() => {
-            setModalProduct(undefined);
-            setIsProductViewVisible(false);
+            setIsProductAdd(false);
+            mutate();
           }}
         />
       )}
@@ -149,8 +108,8 @@ const ProductsPage = () => {
               Products
             </Typography.Title>
           </Col>
-          <Col span={8} className={classes.actionButton}>
-            <Button type="primary" onClick={() => setIsProductFormVisible('add')}>
+          <Col span={8} className="actionButton">
+            <Button type="primary" onClick={() => setIsProductAdd(true)}>
               Add product
             </Button>
             <Input

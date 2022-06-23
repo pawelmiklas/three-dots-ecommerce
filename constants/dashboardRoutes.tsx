@@ -1,28 +1,15 @@
-import {
-  UnorderedListOutlined,
-  TeamOutlined,
-  ContainerOutlined,
-  FileTextOutlined,
-  TagOutlined,
-  DollarOutlined,
-  CommentOutlined,
-} from '@ant-design/icons';
+import { UnorderedListOutlined, TeamOutlined, ContainerOutlined, TagOutlined, StockOutlined } from '@ant-design/icons';
 
 const dashboardRoutes = [
+  {
+    name: 'Statistics',
+    icon: <StockOutlined />,
+    route: '/dashboard/stats',
+  },
   {
     name: 'Products',
     icon: <UnorderedListOutlined />,
     route: '/dashboard/products',
-  },
-  {
-    name: 'Properties',
-    icon: <FileTextOutlined />,
-    route: '/dashboard/properties',
-  },
-  {
-    name: 'Collections',
-    icon: <TagOutlined />,
-    route: '/dashboard/collections',
   },
   {
     name: 'Categories',
@@ -30,19 +17,14 @@ const dashboardRoutes = [
     route: '/dashboard/categories',
   },
   {
-    name: 'Discounts',
-    icon: <DollarOutlined />,
-    route: '/dashboard/discounts',
+    name: 'Sizes',
+    icon: <TagOutlined />,
+    route: '/dashboard/sizes',
   },
   {
     name: 'Users',
     icon: <TeamOutlined />,
     route: '/dashboard/users',
-  },
-  {
-    name: 'Reviews',
-    icon: <CommentOutlined />,
-    route: '/dashboard/reviews',
   },
 ];
 

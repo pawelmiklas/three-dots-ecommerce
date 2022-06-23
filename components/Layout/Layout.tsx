@@ -20,7 +20,7 @@ const Layout = ({ children }: LayoutProps) => {
         <MainMenu />
       </Header>
       <Content
-        style={{ padding: '50px', paddingTop: '10px', minHeight: 'calc(100vh - 290px)', backgroundColor: 'white' }}
+        style={{ padding: '50px', paddingTop: '10px', minHeight: 'calc(100vh - 551px)', backgroundColor: 'white' }}
       >
         {children}
       </Content>
