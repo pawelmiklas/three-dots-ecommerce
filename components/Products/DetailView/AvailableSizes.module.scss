@@ -7,14 +7,22 @@
   display: flex;
   display: row;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 .info {
   display: flex;
   flex-direction: column;
 }
 .button_sizes {
-  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--grey-3);
+  border: 1px var(--grey-2) solid;
+  padding: 1.2rem;
+  border-radius: 0.2rem;
   &:active,
   &:hover {
     color: var(--black-1);
@@ -25,4 +33,17 @@
     border: 1px var(--black-1) solid;
     background-color: var(--black-1);
   }
+}
+
+.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--yellow-3);
+  border: 1px var(--black-1) solid;
+  background-color: var(--black-1);
+  padding: 1.2rem;
+  border-radius: 0.2rem;
 }

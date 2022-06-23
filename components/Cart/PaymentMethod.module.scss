@@ -1,0 +1,17 @@
+.container {
+  background-color: white;
+  width: 70vw;
+  display: flex;
+  flex-wrap: wrap;
+
+  > img {
+    outline-style: dotted;
+    outline-width: 1px;
+    outline-color: transparent;
+  }
+  > img:hover {
+    outline-style: dotted;
+    outline-width: 1px;
+    outline-color: var(--grey-2);
+  }
+}

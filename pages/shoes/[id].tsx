@@ -5,7 +5,7 @@ import { useStore } from 'store';
 import Layout from '@components/Layout/Layout';
 import ProductShowcase from '@components/Products/ProductShowcase';
 import classes from './ListShoes.module.scss';
-import { Product } from 'mock/products';
+import { Product, shoesSex } from 'mock/products';
 import ColorFilter from '@components/Products/Filters/ColorFilter';
 import PriceFilter from '@components/Products/Filters/PriceFilter';
 import SizeFilter from '@components/Products/Filters/SizeFilter';
@@ -28,9 +28,15 @@ const ListShoes = () => {
   const { id } = router.query;
   const [products, setProducts] = useState<Product[]>();
   useEffect(() => {
-    store.resetFilters();
-    setProducts(store.products.filter(item => item.sex === id));
+    // store.resetFilters();
+    if (id === 'men' || 'women' || 'kids') {
+      setProducts(store.products.filter(item => item.sex === id));
+    }
+    if (id?.includes('brand')) {
+      setProducts(store.products.filter(item => item.brand === (id as string).split('-')[1]));
+    }
     if (products) store.filterProduct(products);
+    console.log('Filtered products', store.filteredProducts);
   }, [id]);
 
   return (
@@ -48,7 +54,7 @@ const ListShoes = () => {
         </div>
         <div className={classes.container__products}>
           {products &&
-            (checkFilters(store.filters) ? store.filteredProducts : products).map(item => {
+            (checkFilters(store.filters) ? store.filteredProducts : store.products).map(item => {
               return <ProductShowcase item={item} currency={'EUR'} onsale={false} key={item.key} />;
             })}
         </div>

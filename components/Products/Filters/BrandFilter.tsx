@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 const BrandFilter = ({ id }: { id: string }) => {
   const store = useStore();
-  const products = store.products.filter(p => p.sex === id);
+  const products = store.products;
   const [filteredCriteria, setFilteredCriteria] = useState<FilteringCriteria>({
     price: [],
     color: [],
@@ -17,6 +17,13 @@ const BrandFilter = ({ id }: { id: string }) => {
     brand: [],
   });
 
+  // store.setupBrandFilter(['2']);
+  // console.log('store filters', store.filters);
+  // filtering(store, products);
+  // useEffect(() => {
+  // }, []);
+  // const exFil = store.filters.brand;
+  // setFilteredCriteria(exFil);
   const onChange = (e: any) => {
     setFilteredCriteria((filteredCriteria.brand = e));
     if (filteredCriteria.brand) {
@@ -28,7 +35,7 @@ const BrandFilter = ({ id }: { id: string }) => {
     <div>
       <div className={classes.main}>
         <Title level={5}>Brands:</Title>
-        <Checkbox.Group onChange={e => onChange(e)}>
+        <Checkbox.Group onChange={e => onChange(e)} defaultValue={store.filters.brand}>
           {brands.map((item, index) => {
             return (
               <Checkbox value={item.id} key={index} className={classes.group}>

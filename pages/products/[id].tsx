@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Product, shoesColors } from 'mock/products';
 import { useStore } from 'store';
-import { Row, Col, Button, Rate, Card, Form, Input, message } from 'antd';
+import { Row, Col, Button, Rate, Card, Form, Input, message, Divider } from 'antd';
 import { HeartOutlined, ShoppingOutlined } from '@ant-design/icons';
 import classes from './SelectedProduct.module.scss';
 import Title from 'antd/lib/typography/Title';
@@ -12,6 +12,7 @@ import ProductGallery from '@components/Products/DetailView/ProductGallery';
 import Layout from '@components/Layout/Layout';
 import { Brand } from 'mock/brands';
 import ProductImage from './ProductImage';
+import AvailableColors from '@components/Products/DetailView/AvailableColors';
 
 const SelectedProduct = () => {
   const store = useStore();
@@ -23,8 +24,26 @@ const SelectedProduct = () => {
   const [selectedSize, setSelectedSize] = useState<number>();
   const [selectedColor, setSelectedColor] = useState<shoesColors>();
 
+  const showDisountPrice = ({ price, discount }: { price: number; discount: number }) => {
+    return (
+      <Col>
+        <Text delete>
+          {price} {currency.toUpperCase()}
+        </Text>
+        <Divider type="vertical" />
+        <Text type="danger">
+          {(price - discount).toFixed(1)} {currency.toUpperCase()}
+        </Text>
+      </Col>
+    );
+  };
+
   const somethingMissing = (att: string) => {
-    message.error(`Please choose ${att} to add product to cart`);
+    message.error(`Please choose ${att} to add product to the cart`);
+  };
+
+  const productAdded = () => {
+    message.success(`Product has been added to the cart`);
   };
 
   useEffect(() => {
@@ -46,23 +65,14 @@ const SelectedProduct = () => {
           <Col span={6}>
             <Title level={3}>{selectedProduct.name}</Title>
             <Title level={5}>
-              {selectedProduct.price} {currency}
+              {selectedProduct.onsale
+                ? showDisountPrice({ price: selectedProduct.price, discount: selectedProduct.discount })
+                : selectedProduct.price}{' '}
+              {currency}
             </Title>
             <ProductImage url={selectedBrand.logo} />
             <AvailableSizes sizes={selectedProduct.sizes} selectSize={setSelectedSize} />
-            <div className={classes.color_container}>
-              <Title level={5}>Available colors:</Title>
-              {selectedProduct.colors.map((item, index) => {
-                return (
-                  <button
-                    key={index}
-                    style={{ backgroundColor: `${item}` }}
-                    className={classes.color}
-                    onClick={() => setSelectedColor(item)}
-                  />
-                );
-              })}
-            </div>
+            <AvailableColors colors={selectedProduct.colors} selectColor={setSelectedColor} />
             <div className={classes.buttons}>
               <Button
                 size="large"
@@ -84,6 +94,7 @@ const SelectedProduct = () => {
                     });
                     setSelectedColor(undefined);
                     setSelectedSize(undefined);
+                    productAdded();
                   } else {
                     somethingMissing(selectedSize ? 'color' : 'size');
                   }

@@ -1,3 +1,4 @@
+// import Item from 'antd/lib/list/Item';
 import { Product, shoesColors } from 'mock/products';
 import { State } from 'store';
 
@@ -50,4 +51,10 @@ export const filtering = (store: State, products: Product[]) => {
     }
   }
   store.filterProduct(sampleProducts);
+  // if(store.filters.hasOwnProperty === false) store.resetFilters();
+  const isFiltersEmpty: boolean = Object.values(store.filters).some(i => i.length > 0);
+  if (!isFiltersEmpty) {
+    store.resetFilters();
+  }
+  // console.log(Object.values(store.filters).every(console.log('a')));
 };

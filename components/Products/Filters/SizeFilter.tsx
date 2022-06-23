@@ -9,7 +9,7 @@ import { filtering, FilteringCriteria } from './helper';
 
 const SizeFilter = ({ id }: { id: string }) => {
   const store = useStore();
-  const products = store.products.filter(p => p.sex === id);
+  const products = store.products;
   const [filteredCriteria, setFilteredCriteria] = useState<FilteringCriteria>({
     price: [],
     color: [],
@@ -21,7 +21,6 @@ const SizeFilter = ({ id }: { id: string }) => {
     setFilteredCriteria((filteredCriteria.size = e));
     if (filteredCriteria.size) {
       store.setupSizeFilter(filteredCriteria.size);
-      console.log('products 111', products);
       filtering(store, products);
     }
   };

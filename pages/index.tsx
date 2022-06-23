@@ -1,14 +1,14 @@
 import NewProducts from '@components/Products/NewProducts';
-import PromotedProduct from '@components/Products/PromotedProduct';
 import SaleProducts from '@components/Products/SaleProducts';
 import Layout from '@components/Layout/Layout';
 import type { NextPage } from 'next';
+import Carousel from '@components/Products/Carousel';
 
 const Home: NextPage = () => {
   return (
     <Layout>
       <NewProducts />
-      <PromotedProduct />
+      <Carousel />
       <SaleProducts />
     </Layout>
   );

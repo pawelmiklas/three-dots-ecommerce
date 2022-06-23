@@ -9,7 +9,7 @@ import { filtering, FilteringCriteria } from './helper';
 const ColorFilter = ({ id }: { id: string }) => {
   const store = useStore();
   const colors = Object.values(shoesColors);
-  const products = store.products.filter(p => p.sex === id);
+  const products = store.products;
   const [filteredCriteria, setFilteredCriteria] = useState<FilteringCriteria>({
     price: [],
     color: [],

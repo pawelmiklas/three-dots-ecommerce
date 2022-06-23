@@ -1,0 +1,32 @@
+.color_container {
+  padding-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.color {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.2rem;
+  padding: 1rem;
+  border: 1px solid rgb(227, 227, 227);
+  &:hover {
+    border: 1px solid rgb(134, 134, 134);
+  }
+}
+
+.active {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.2rem;
+  padding: 1rem;
+  border: 2px solid var(--black-1);
+}
+
+.disabled {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.2rem;
+  padding: 1rem;
+  border: 1px solid rgb(227, 227, 227);
+  opacity: 0.5;
+}

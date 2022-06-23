@@ -4,9 +4,10 @@ import { ICart, useStore } from 'store';
 import classes from '../pages/Cart.module.scss';
 import Image from 'next/image';
 import { Divider, Button, Steps, Modal } from 'antd';
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { MinusOutlined, PlusOutlined, SmileOutlined } from '@ant-design/icons';
 import ShippingAddressForm from '@components/Forms/ShippingAddressForm';
 import { Product, shoesColors } from 'mock/products';
+import PaymentMethod from '@components/Cart/PaymentMethod';
 
 export interface ShippingAddress {
   firstname: string;
@@ -211,9 +212,20 @@ const Cart = () => {
           </div>
         );
       case 2:
-        return <></>;
+        return (
+          <div className={classes.paymentMethods}>
+            <PaymentMethod setCurrent={setCurrent} />
+          </div>
+        );
       case 3:
-        return <></>;
+        return (
+          <div className={classes.confirmation}>
+            <span>
+              Order Success <SmileOutlined />
+            </span>
+            <span> Order number: {Date.now()}</span>
+          </div>
+        );
 
       default:
         return <></>;

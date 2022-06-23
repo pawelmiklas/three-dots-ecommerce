@@ -1,8 +1,8 @@
 .container {
   background-color: var(--grey-3);
   padding-top: 3rem;
-  outline-offset: 2px;
-  outline: 1px dashed var(--grey-3);
+  // outline-offset: 2px;
+  // outline: 1px dashed var(--grey-3);
   padding: 1rem;
 }
 .ribbon {
@@ -12,12 +12,13 @@
   mix-blend-mode: darken;
 }
 .outline {
-  padding-top: 1rem;
+  padding-top: 0rem;
 }
 .row {
   padding-bottom: 1rem;
 }
 .button {
+  z-index: 10;
   color: #000;
   &:hover {
     color: var(--black-2);

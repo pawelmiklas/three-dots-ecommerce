@@ -1,28 +1,29 @@
 import { IProductSizes } from 'mock/products';
-import { Button, Typography } from 'antd';
 import classes from './AvailableSizes.module.scss';
+import { useState } from 'react';
+import SizeChart from './SizeChart';
 
 const AvailableSizes = ({ sizes, selectSize }: { sizes: IProductSizes[]; selectSize: (arg: number) => void }) => {
-  const { Text } = Typography;
+  const [selBtn, setSelBtn] = useState<number | null>(null);
+
+  // const selectedButton = useRef<HTMLButtonElement>(null);
   return (
     <div className={classes.main}>
-      <div className={classes.info}>
-        <Text>Choose your size:</Text>
-        <Text code>Check the sizes breakdown</Text>
-      </div>
+      <SizeChart />
       <div className={classes.container}>
         {sizes.map((item, index) => {
           return (
-            <Button
-              disabled={item.onstock === 0}
-              key={index}
-              type="ghost"
-              size="large"
-              className={classes.button_sizes}
-              onClick={() => selectSize(item.size)}
-            >
-              {item.size}
-            </Button>
+            <div key={index}>
+              <button
+                className={selBtn == index ? classes.active : classes.button_sizes}
+                onClick={() => {
+                  setSelBtn(index);
+                  selectSize(item.size);
+                }}
+              >
+                {item.size}
+              </button>
+            </div>
           );
         })}
       </div>
