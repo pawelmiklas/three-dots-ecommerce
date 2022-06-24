@@ -27,6 +27,7 @@ const SelectedProduct = () => {
   const [selectedColor, setSelectedColor] = useState<shoesColors>();
   const [rate, setRate] = useState<number>();
   const reviews = useReviews(id as string);
+  const [reviewsData, setReviewsData] = useState(reviews.data);
 
   const showDisountPrice = ({ price, discount }: { price: number; discount: number }) => {
     return (
@@ -42,9 +43,9 @@ const SelectedProduct = () => {
     );
   };
 
-  const submitComment = async ({ message, rating }: { message: string; rating: number }) => {
+  const submitComment = async ({ review, rating }: { review: string; rating: number }) => {
     const bodyData = {
-      content: message,
+      content: review,
       rating: rating,
     };
     JSON.stringify(bodyData);
@@ -53,7 +54,13 @@ const SelectedProduct = () => {
       body: JSON.stringify(bodyData),
       headers: { 'Content-Type': 'application/json' },
     });
-    console.log(sendComment.ok);
+    if (sendComment.ok) {
+      setReviewsData((prevState: any) => {
+        return [...prevState, { id: prevState.id++, content: review, rating: rating }];
+      });
+      return message.success('Review Added');
+    }
+    message.error('Error during operation');
   };
 
   const somethingMissing = (att: string) => {
@@ -150,7 +157,7 @@ const SelectedProduct = () => {
                     onSubmitCapture={e => {
                       if (rate) {
                         //@ts-ignore
-                        submitComment({ message: e.target[0].value, rating: rate! });
+                        submitComment({ review: e.target[0].value, rating: rate! });
                       } else {
                         message.error('Please set rate');
                       }
@@ -165,8 +172,8 @@ const SelectedProduct = () => {
                   </Form>
                   <div>
                     <span>Latest reviews:</span>
-                    {reviews.data &&
-                      reviews.data.map(
+                    {reviewsData &&
+                      reviewsData.map(
                         (
                           item: {
                             rating: number | undefined;
@@ -180,6 +187,7 @@ const SelectedProduct = () => {
                           },
                           index: React.Key | null | undefined,
                         ) => {
+                          console.log(item);
                           return (
                             <div key={index} className={classes.reviews}>
                               <Rate value={item.rating} disabled />

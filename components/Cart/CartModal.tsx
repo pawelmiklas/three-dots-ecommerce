@@ -34,9 +34,9 @@ const CartModal = ({ id }: { id: string }) => {
       });
       setSelectedColor(undefined);
       setSelectedSize(undefined);
-      message.info('Product Added');
+      message.success('Product Added');
     } else {
-      message.info('Product Not Added - missing variants');
+      message.error('Product Not Added - missing variants');
     }
     setIsModalVisible(false);
   };
