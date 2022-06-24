@@ -1964,7 +1964,7 @@ const fetchProd = async () => {
           const colors = prodVariant.variants.map((i: { color: any }) => i.color);
           console.log(colors);
           const sizes: { size: any; onstock: any }[] = [];
-          const images = prodVariant.variants[0].imageUrl.replace(/[^A-Za-z0-9.,:_/]/g, '').split(',');
+          const images = prodVariant.variants[0].imageUrl.replace(/[^A-Za-z0-9.,:_/-]/g, '').split(',');
           console.log(images);
           prodStock.data.forEach((i: { sizes: { size: any; amount: any }[] }) => {
             console.log(i.sizes);
