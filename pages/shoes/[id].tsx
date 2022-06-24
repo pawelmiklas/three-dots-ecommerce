@@ -5,7 +5,7 @@ import { useStore } from 'store';
 import Layout from '@components/Layout/Layout';
 import ProductShowcase from '@components/Products/ProductShowcase';
 import classes from './ListShoes.module.scss';
-import { Product, shoesSex } from 'mock/products';
+import { fetchProd, Product, shoesSex } from 'mock/products';
 import ColorFilter from '@components/Products/Filters/ColorFilter';
 import PriceFilter from '@components/Products/Filters/PriceFilter';
 import SizeFilter from '@components/Products/Filters/SizeFilter';

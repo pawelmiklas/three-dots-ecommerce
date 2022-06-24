@@ -1,5 +1,6 @@
 import { httpClient } from '@utils/httpClient';
-import { Button, Form, Input, message, Modal, Select } from 'antd';
+import { Button, Form, message, Modal, Select } from 'antd';
+import { shoesColors } from 'mock/products';
 
 interface ProductVariantAddProps {
   isModalVisible: boolean;
@@ -44,7 +45,13 @@ const ProductVariantAdd = ({ isModalVisible, productId, onCancel }: ProductVaria
             },
           ]}
         >
-          <Input />
+          <Select>
+            {(Object.values(shoesColors) || []).map(item => (
+              <Select.Option key={item} value={item}>
+                {item}
+              </Select.Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item
           name="images"

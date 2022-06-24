@@ -25,9 +25,8 @@ const SelectedProduct = () => {
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   const [selectedSize, setSelectedSize] = useState<number>();
   const [selectedColor, setSelectedColor] = useState<shoesColors>();
-  const [rate, setRate] = useState<number>();
+  const [rate, setRate] = useState<number>(2);
   const reviews = useReviews(id as string);
-  const [reviewsData, setReviewsData] = useState(reviews.data);
 
   const showDisountPrice = ({ price, discount }: { price: number; discount: number }) => {
     return (
@@ -55,9 +54,7 @@ const SelectedProduct = () => {
       headers: { 'Content-Type': 'application/json' },
     });
     if (sendComment.ok) {
-      setReviewsData((prevState: any) => {
-        return [...prevState, { id: prevState.id++, content: review, rating: rating }];
-      });
+      reviews.mutate();
       return message.success('Review Added');
     }
     message.error('Error during operation');
@@ -152,7 +149,7 @@ const SelectedProduct = () => {
               </div>
               <div>
                 <Card title="Rate item and leave comment">
-                  <Rate defaultValue={2} onChange={e => setRate(e)} />
+                  <Rate defaultValue={2} onChange={e => setRate(e)} count={4} />
                   <Form
                     onSubmitCapture={e => {
                       if (rate) {
@@ -172,30 +169,29 @@ const SelectedProduct = () => {
                   </Form>
                   <div>
                     <span>Latest reviews:</span>
-                    {reviewsData &&
-                      reviewsData.map(
-                        (
-                          item: {
-                            rating: number | undefined;
-                            content:
-                              | boolean
-                              | React.ReactChild
-                              | React.ReactFragment
-                              | React.ReactPortal
-                              | null
-                              | undefined;
-                          },
-                          index: React.Key | null | undefined,
-                        ) => {
-                          console.log(item);
-                          return (
-                            <div key={index} className={classes.reviews}>
-                              <Rate value={item.rating} disabled />
-                              <Text code>{item.content}</Text>
-                            </div>
-                          );
+                    {(reviews.data || []).map(
+                      (
+                        item: {
+                          rating: number | undefined;
+                          content:
+                            | boolean
+                            | React.ReactChild
+                            | React.ReactFragment
+                            | React.ReactPortal
+                            | null
+                            | undefined;
                         },
-                      )}
+                        index: React.Key | null | undefined,
+                      ) => {
+                        console.log(item);
+                        return (
+                          <div key={index} className={classes.reviews}>
+                            <Rate value={item.rating} disabled count={4} />
+                            <Text code>{item.content}</Text>
+                          </div>
+                        );
+                      },
+                    )}
                   </div>
                 </Card>
               </div>

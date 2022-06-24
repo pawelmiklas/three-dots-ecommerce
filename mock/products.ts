@@ -1948,25 +1948,22 @@ const products: Product[] = [
 ];
 
 const fetchProd = async () => {
-  console.log('here');
   const productsAll = await (await fetch(`http://localhost:8080/api/public/products/all`)).json();
-  console.log(productsAll);
+
   if (productsAll) {
-    console.log('here2');
     productsAll.forEach(async (product: { productId: any }) => {
       const prodId = product.productId;
+
       if (prodId) {
         const prod = await (await fetch(`http://localhost:8080/api/public/products/${prodId}`)).json();
         const prodStock = await (await fetch(`http://localhost:8080/api/public/stocks/product/${prodId}`)).json();
         const prodVariant = await (await fetch(`http://localhost:8080/api/public/products/${prodId}/variants`)).json();
-        console.log('variant', prodVariant);
+
         if (prodStock && prodVariant) {
           const colors = prodVariant.variants.map((i: { color: any }) => i.color);
-          console.log(colors);
           const sizes: { size: any; onstock: any }[] = [];
-          console.log('SIZES', sizes);
           const images = prodVariant.variants[0].imageUrl.replace(/[^A-Za-z0-9.,:_/-]/g, '').split(',');
-          console.log(images);
+
           prodStock.data.forEach((i: { sizes: { size: any; amount: any }[] }) => {
             console.log(i.sizes);
             i.sizes.map((element: { size: any; amount: any }) => {
@@ -1976,7 +1973,9 @@ const fetchProd = async () => {
               });
             });
           });
+
           const sex = [shoesSex.men, shoesSex.women, shoesSex.kids];
+
           const product: Product = {
             key: prod.productId.toString(),
             name: prod.name,
@@ -1996,13 +1995,12 @@ const fetchProd = async () => {
           };
 
           products.push(product);
-          // // setproducta(product);
-          console.log('new product', product);
         }
       }
     });
   }
 };
+
 fetchProd();
 
-export { products };
+export { products, fetchProd };
