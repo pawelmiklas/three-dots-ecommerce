@@ -1964,14 +1964,15 @@ const fetchProd = async () => {
           const colors = prodVariant.variants.map((i: { color: any }) => i.color);
           console.log(colors);
           const sizes: { size: any; onstock: any }[] = [];
+          console.log('SIZES', sizes);
           const images = prodVariant.variants[0].imageUrl.replace(/[^A-Za-z0-9.,:_/-]/g, '').split(',');
           console.log(images);
           prodStock.data.forEach((i: { sizes: { size: any; amount: any }[] }) => {
             console.log(i.sizes);
             i.sizes.map((element: { size: any; amount: any }) => {
               sizes.push({
-                size: element.size,
-                onstock: element.amount,
+                size: parseInt(element.size),
+                onstock: parseInt(element.amount),
               });
             });
           });
