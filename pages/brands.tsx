@@ -5,6 +5,7 @@ import { Brand } from 'mock/brands';
 import { useRouter } from 'next/router';
 import { filtering } from '@components/Products/Filters/helper';
 import { products } from 'mock/products';
+import classes from './Brand.module.scss';
 
 const Brands = () => {
   const router = useRouter();
@@ -13,22 +14,24 @@ const Brands = () => {
   console.log('brands', brands);
   return (
     <Layout>
-      <div>Brands</div>
-      {brands &&
-        brands.map(item => {
-          return (
-            <div
-              onClick={() => {
-                store.setupBrandFilter([item.id]);
-                filtering(store, products);
-                router.push(`shoes/brand-${item.id}`);
-              }}
-              key={item.id}
-            >
-              {item.name}
-            </div>
-          );
-        })}
+      <div className={classes.main}>
+        {brands &&
+          brands.map(item => {
+            return (
+              <div
+                className={classes.element}
+                onClick={() => {
+                  store.setupBrandFilter([item.id]);
+                  filtering(store, products);
+                  router.push(`shoes/brand-${item.id}`);
+                }}
+                key={item.id}
+              >
+                <img src={item.logo}></img>
+              </div>
+            );
+          })}
+      </div>
     </Layout>
   );
 };

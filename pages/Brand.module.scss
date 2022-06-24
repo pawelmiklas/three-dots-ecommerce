@@ -1,0 +1,10 @@
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.element {
+  &:hover {
+    outline: 1px dotted var(--black-1);
+  }
+}
