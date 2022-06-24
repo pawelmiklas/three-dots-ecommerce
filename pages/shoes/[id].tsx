@@ -12,6 +12,13 @@ import SizeFilter from '@components/Products/Filters/SizeFilter';
 import BrandFilter from '@components/Products/Filters/BrandFilter';
 import { FilteringCriteria } from '@components/Products/Filters/helper';
 import { useRouter } from 'next/router';
+import { useProducts } from 'hooks/api/useProducts';
+import { useProductVariants } from 'hooks/api/useProductVariants';
+import { useSizes } from 'hooks/api/useSizes';
+import { useProductStock } from 'hooks/api/useProductStock';
+import { isArray, result } from 'lodash';
+import { brands } from 'mock/brands';
+import SexFilter from '@components/Products/Filters/SexFilter';
 
 export const checkFilters = (arg: FilteringCriteria) => {
   if (!arg.price?.length && !arg.color?.length && !arg.brand?.length && !arg.size?.length) {
@@ -27,16 +34,30 @@ const ListShoes = () => {
   const router = useRouter();
   const { id } = router.query;
   const [products, setProducts] = useState<Product[]>();
+
+  // const productsAll: Product[] | any = useProducts();
+  // const [producta, setproducta] = useState();
+  // const variantTest = useProductVariants(1);
+  // const variantSize = useProductStock(1);
+
+  // useEffect(() => {
+  //   console.log(producta);
+  //   if (producta) {
+  //     store.addProduct(producta);
+  //     console.log('added');
+  //   }
+  // }, [producta]);
+
   useEffect(() => {
     // store.resetFilters();
-    if (id === 'men' || 'women' || 'kids') {
-      setProducts(store.products.filter(item => item.sex === id));
-    }
+    // if (id === 'men' || 'women' || 'kids') {
+    //   setProducts(store.products.filter(item => item.sex === id));
+    // }
     if (id?.includes('brand')) {
       setProducts(store.products.filter(item => item.brand === (id as string).split('-')[1]));
     }
-    if (products) store.filterProduct(products);
-    console.log('Filtered products', store.filteredProducts);
+    // if (products) store.filterProduct(products);
+    console.log('Filtered products22', store.filteredProducts);
   }, [id]);
 
   return (
@@ -45,6 +66,7 @@ const ListShoes = () => {
         <div className={classes.container__filters}>
           {id && (
             <>
+              <SexFilter id={id as string} />
               <PriceFilter id={id as string} />
               <ColorFilter id={id as string} />
               <SizeFilter id={id as string} />
@@ -52,11 +74,12 @@ const ListShoes = () => {
             </>
           )}
         </div>
-        <div className={classes.container__products}>
-          {products &&
-            (checkFilters(store.filters) ? store.filteredProducts : store.products).map(item => {
+        <div>
+          <div className={classes.container__products}>
+            {(store.filteredProducts ?? products).map(item => {
               return <ProductShowcase item={item} currency={'EUR'} onsale={false} key={item.key} />;
             })}
+          </div>
         </div>
       </div>
     </Layout>

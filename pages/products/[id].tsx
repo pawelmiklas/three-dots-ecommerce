@@ -6,15 +6,17 @@ import { Row, Col, Button, Rate, Card, Form, Input, message, Divider } from 'ant
 import { HeartOutlined, ShoppingOutlined } from '@ant-design/icons';
 import classes from './SelectedProduct.module.scss';
 import Title from 'antd/lib/typography/Title';
-import Text from 'antd/lib/typography/Text';
 import AvailableSizes from '@components/Products/DetailView/AvailableSizes';
 import ProductGallery from '@components/Products/DetailView/ProductGallery';
 import Layout from '@components/Layout/Layout';
 import { Brand } from 'mock/brands';
 import ProductImage from './ProductImage';
 import AvailableColors from '@components/Products/DetailView/AvailableColors';
+import { useReviews } from 'hooks/api/useReviews';
+import { Typography } from 'antd';
 
 const SelectedProduct = () => {
+  const { Text } = Typography;
   const store = useStore();
   const router = useRouter();
   const currency = 'EUR';
@@ -23,6 +25,8 @@ const SelectedProduct = () => {
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   const [selectedSize, setSelectedSize] = useState<number>();
   const [selectedColor, setSelectedColor] = useState<shoesColors>();
+  const [rate, setRate] = useState<number>();
+  const reviews = useReviews(id as string);
 
   const showDisountPrice = ({ price, discount }: { price: number; discount: number }) => {
     return (
@@ -36,6 +40,20 @@ const SelectedProduct = () => {
         </Text>
       </Col>
     );
+  };
+
+  const submitComment = async ({ message, rating }: { message: string; rating: number }) => {
+    const bodyData = {
+      content: message,
+      rating: rating,
+    };
+    JSON.stringify(bodyData);
+    const sendComment = await fetch(`http://localhost:8080/api/user/products/${id}/reviews/create/?userId=100`, {
+      method: 'POST',
+      body: JSON.stringify(bodyData),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    console.log(sendComment.ok);
   };
 
   const somethingMissing = (att: string) => {
@@ -127,8 +145,17 @@ const SelectedProduct = () => {
               </div>
               <div>
                 <Card title="Rate item and leave comment">
-                  <Rate allowHalf defaultValue={2.5} />
-                  <Form>
+                  <Rate defaultValue={2} onChange={e => setRate(e)} />
+                  <Form
+                    onSubmitCapture={e => {
+                      if (rate) {
+                        //@ts-ignore
+                        submitComment({ message: e.target[0].value, rating: rate! });
+                      } else {
+                        message.error('Please set rate');
+                      }
+                    }}
+                  >
                     <Form.Item label="Comment">
                       <Input.TextArea />
                     </Form.Item>
@@ -136,6 +163,32 @@ const SelectedProduct = () => {
                       Submit
                     </Button>
                   </Form>
+                  <div>
+                    <span>Latest reviews:</span>
+                    {reviews.data &&
+                      reviews.data.map(
+                        (
+                          item: {
+                            rating: number | undefined;
+                            content:
+                              | boolean
+                              | React.ReactChild
+                              | React.ReactFragment
+                              | React.ReactPortal
+                              | null
+                              | undefined;
+                          },
+                          index: React.Key | null | undefined,
+                        ) => {
+                          return (
+                            <div key={index} className={classes.reviews}>
+                              <Rate value={item.rating} disabled />
+                              <Text code>{item.content}</Text>
+                            </div>
+                          );
+                        },
+                      )}
+                  </div>
                 </Card>
               </div>
             </div>

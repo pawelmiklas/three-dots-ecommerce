@@ -1,14 +1,14 @@
-import classes from './PriceFilter.module.scss';
-import { Slider } from 'antd';
+import classes from './SexFilter.module.scss';
+import { Checkbox } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import { useStore } from 'store';
 import { filtering } from './helper';
 
-// const prices = [
-//   { label: '< 200', value: 200 },
-//   { label: '< 400', value: 400 },
-//   { label: '< 510', value: 510 },
-// ];
+const sex = [
+  { label: 'Mens', value: 'men' },
+  { label: 'Womens', value: 'women' },
+  { label: 'Kids', value: 'kids' },
+];
 
 const PriceFilter = ({ id }: { id: string }) => {
   const store = useStore();
@@ -24,21 +24,14 @@ const PriceFilter = ({ id }: { id: string }) => {
     // const price: number[] = [e];
     //do poprawy !!
     // setFilteredCriteria((filteredCriteria.price = [e]));
-    store.setupPriceFilter([e]);
+    store.setupSexFilter(e);
     filtering(store, products);
   };
   return (
     <div className={classes.main}>
-      <Title level={5}>Prices:</Title>
-      <Slider
-        max={500}
-        defaultValue={500}
-        value={store.filters.price![0]}
-        onChange={e => onChange(e)}
-        tooltipVisible
-        step={20}
-      />
-      {/* <Checkbox.Group options={prices} onChange={e => onChange(e)} className={classes.group} /> */}
+      <Title level={5}>Sex:</Title>
+      {/* <Slider max={500} defaultValue={30} onChange={e => onChange(e)} tooltipVisible step={20} /> */}
+      <Checkbox.Group options={sex} value={store.filters.sex} onChange={e => onChange(e)} className={classes.group} />
     </div>
   );
 };

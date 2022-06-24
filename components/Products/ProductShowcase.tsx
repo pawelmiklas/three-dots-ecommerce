@@ -53,7 +53,7 @@ const ProductShowcase = ({
         </Row>
       </div>
       <Row>
-        <CartModal />
+        <CartModal id={key} />
       </Row>
     </div>
   );

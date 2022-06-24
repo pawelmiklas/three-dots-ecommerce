@@ -1,15 +1,16 @@
 .container__main {
+  justify-content: start;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
 .container__products {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   flex-wrap: wrap;
-  gap: 2rem;
-  max-height: 38rem;
+  gap: 1rem;
 }
 .container__filters {
-  width: 30vw;
+  width: 18vw;
   display: flex;
   flex-direction: column;
 }

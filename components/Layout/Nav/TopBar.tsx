@@ -34,8 +34,8 @@ const TopBar = () => {
   return (
     <>
       <Row justify="space-between">
-        <Col span={16}>
-          <Row justify="start">
+        <Col>
+          <Row>
             <Col>
               {leftSide.map(({ name }) => (
                 <span key={name}>
@@ -45,51 +45,46 @@ const TopBar = () => {
             </Col>
           </Row>
         </Col>
-        <Rbac roles={[]}>
-          <Col span={8}>
-            <Row justify="end">
-              <Col>
-                {rightSide.map(({ name, path }) => (
-                  <span className={classes.link} key={name} onClick={() => router.push(path)}>
-                    <Text code>{name}</Text>
-                  </span>
-                ))}
-              </Col>
-            </Row>
-          </Col>
-        </Rbac>
-        <Rbac roles={[UserRoles.ROLE_ADMIN]}>
-          <Col span={8}>
-            <Row justify="end">
-              <Col>
-                <span className={classes.link} onClick={() => router.push('/dashboard/stats')}>
-                  <Text code>Dashboard</Text>
+        <Row>
+          <Rbac roles={[]}>
+            <Row>
+              {rightSide.map(({ name, path }) => (
+                <span key={name} onClick={() => router.push(path)}>
+                  <Text code className={classes.link}>
+                    {name}
+                  </Text>
                 </span>
-              </Col>
+              ))}
             </Row>
-          </Col>
-        </Rbac>
-        <Rbac roles={[UserRoles.ROLE_ADMIN, UserRoles.ROLE_CLIENT]}>
-          <Col span={8}>
-            <Row justify="end">
-              <Col>
-                <span
-                  className={classes.link}
-                  onClick={() => {
-                    removeCookies(Cookies.THREE_DOTS_AUTH_TOKEN, {
-                      path: '/',
-                      sameSite: 'strict',
-                      maxAge: 60 * 6 * 24,
-                    });
-                    router.push('/');
-                  }}
-                >
-                  <Text code>Logout</Text>
-                </span>
-              </Col>
+          </Rbac>
+          <Rbac roles={[UserRoles.ROLE_ADMIN]}>
+            <Row>
+              <span onClick={() => router.push('/dashboard/stats')}>
+                <Text code className={classes.link}>
+                  Dashboard
+                </Text>
+              </span>
             </Row>
-          </Col>
-        </Rbac>
+          </Rbac>
+          <Rbac roles={[UserRoles.ROLE_ADMIN, UserRoles.ROLE_CLIENT]}>
+            <Row>
+              <span
+                onClick={() => {
+                  removeCookies(Cookies.THREE_DOTS_AUTH_TOKEN, {
+                    path: '/',
+                    sameSite: 'strict',
+                    maxAge: 60 * 6 * 24,
+                  });
+                  router.push('/');
+                }}
+              >
+                <Text code className={classes.link}>
+                  Logout
+                </Text>
+              </span>
+            </Row>
+          </Rbac>
+        </Row>
       </Row>
     </>
   );

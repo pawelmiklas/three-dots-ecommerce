@@ -29,7 +29,7 @@ const ColorFilter = ({ id }: { id: string }) => {
     <div>
       <div className={classes.main}>
         <Title level={5}>Colors:</Title>
-        <Checkbox.Group onChange={e => onChange(e, 'color')}>
+        <Checkbox.Group onChange={e => onChange(e, 'color')} value={store.filters.color}>
           {colors.map((item, index) => {
             return (
               <Checkbox value={item} key={index} className={classes.group}>

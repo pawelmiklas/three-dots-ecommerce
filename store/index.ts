@@ -2,7 +2,7 @@ import { FilteringCriteria } from '@components/Products/Filters/helper';
 import { Brand, brands } from 'mock/brands';
 import { Collection, collections } from 'mock/collections';
 import { ProductProperty, productProperties } from 'mock/productProperties';
-import { Product, products, shoesColors } from 'mock/products';
+import { Product, products, shoesColors, shoesSex } from 'mock/products';
 import create from 'zustand';
 
 export interface ICart extends Product {
@@ -33,6 +33,7 @@ export interface State {
   setupPriceFilter: (arg: number[]) => void;
   setupSizeFilter: (arg: number[]) => void;
   setupBrandFilter: (arg: string[]) => void;
+  setupSexFilter: (arg: shoesSex[]) => void;
   resetFilters: () => void;
   addToCart: (product: ICart) => void;
   removeFromCart: (id: string) => void;
@@ -49,7 +50,7 @@ const useStore = create<State>(set => ({
   productProperties: productProperties,
   brands: brands,
   filteredProducts: [],
-  filters: { price: [], brand: [], size: [], color: [] },
+  filters: { price: [], brand: [], size: [], color: [], sex: [] },
   cart: [],
   addToCart: (product: ICart) => set(state => ({ cart: [...state.cart, product] })),
   removeFromCart: (id: string) => set(state => ({ cart: state.cart.filter(item => item.id !== id) })),
@@ -100,9 +101,14 @@ const useStore = create<State>(set => ({
     set(state => {
       state.filters['brand'] = arg;
     }),
+  setupSexFilter: arg =>
+    set(state => {
+      state.filters['sex'] = arg;
+    }),
+
   resetFilters: () =>
     set(state => {
-      filters: state.filters = { price: [], brand: [], size: [], color: [] };
+      filters: state.filters = { price: state.filters.price, brand: [], size: [], color: [], sex: [] };
     }),
   editProduct: product =>
     set(state => ({

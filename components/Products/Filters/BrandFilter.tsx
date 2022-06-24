@@ -35,7 +35,7 @@ const BrandFilter = ({ id }: { id: string }) => {
     <div>
       <div className={classes.main}>
         <Title level={5}>Brands:</Title>
-        <Checkbox.Group onChange={e => onChange(e)} defaultValue={store.filters.brand}>
+        <Checkbox.Group onChange={e => onChange(e)} value={store.filters.brand}>
           {brands.map((item, index) => {
             return (
               <Checkbox value={item.id} key={index} className={classes.group}>

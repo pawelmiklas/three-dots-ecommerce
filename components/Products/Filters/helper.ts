@@ -7,10 +7,14 @@ export interface FilteringCriteria {
   color?: shoesColors[];
   size?: number[];
   brand?: string[];
+  sex?: string[];
 }
 
 export const filtering = (store: State, products: Product[]) => {
   let sampleProducts: Product[] = [];
+  console.log('filtering');
+  console.log('filters', store.filters);
+  console.log('products', products);
   for (const filter in store.filters) {
     if (store.filters.hasOwnProperty.call(store.filters, filter)) {
       switch (filter) {
@@ -47,14 +51,33 @@ export const filtering = (store: State, products: Product[]) => {
           });
           if (store.filters.brand && store.filters.brand.length > 0) sampleProducts = prod3;
           break;
+        case 'sex':
+          let prod4: Product[] = [];
+          if (store.filters.sex) {
+            prod4 = sampleProducts.filter(i => {
+              return i.sex === store.filters.sex![0];
+            });
+          }
+          if (store.filters.sex && store.filters.sex.length > 0) sampleProducts = [...prod4];
+          break;
       }
     }
   }
   store.filterProduct(sampleProducts);
   // if(store.filters.hasOwnProperty === false) store.resetFilters();
-  const isFiltersEmpty: boolean = Object.values(store.filters).some(i => i.length > 0);
-  if (!isFiltersEmpty) {
-    store.resetFilters();
+  // const isFiltersEmpty: boolean = Object.values(store.filters).some(i => i.length > 0);
+  // console.log('is filters empty', isFiltersEmpty);
+  if (
+    store.filters.brand?.length === 0 &&
+    store.filters.color?.length === 0 &&
+    store.filters.sex?.length === 0 &&
+    store.filters.size?.length === 0 &&
+    store.filters.price![0] === 500
+  ) {
+    store.setupColorFilter([]);
+    store.setupBrandFilter([]);
+    store.setupSexFilter([]);
+    store.setupSizeFilter([]);
+    store.filterProduct(products);
   }
-  // console.log(Object.values(store.filters).every(console.log('a')));
 };

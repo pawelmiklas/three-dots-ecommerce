@@ -19,48 +19,53 @@ const validateMessages = {
 const ShippingAddressForm = ({
   shippingDetailsFilled,
   setShippingAddress,
+  address,
+  setCurrent,
 }: {
   shippingDetailsFilled: (arg: boolean) => void;
   setShippingAddress: (arg: ShippingAddress) => void;
+  address: ShippingAddress;
+  setCurrent: (arg: number) => void;
 }) => {
   const onFinish = (values: ShippingAddress) => {
+    console.log('values', values);
     setShippingAddress(values);
     shippingDetailsFilled(true);
-    shippingAddress = values;
-    console.log(values);
+    setCurrent(2);
   };
-  let shippingAddress: ShippingAddress = {
-    firstname: '',
-    lastname: '',
-    addressline1: '',
-    addressline2: '',
-    city: '',
-    postcode: '',
-    email: '',
-    phone: '',
-  };
+  console.log('AADRESS', address);
+  // const shippingAddress: ShippingAddress = {
+  //   firstname: address?.firstname,
+  //   lastname: address?.lastname,
+  //   addressline1: address?.addressline1,
+  //   addressline2: address?.addressline2,
+  //   city: address?.city,
+  //   postcode: address?.postcode,
+  //   email: address?.email,
+  //   phone: address?.phone,
+  // };
   return (
     <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
       <Form.Item name={['firstname']} label="First name" rules={[{ required: true }]}>
-        <Input value={shippingAddress?.firstname} />
+        <Input value={'misiu'} defaultValue={address?.firstname || ''} />
       </Form.Item>
       <Form.Item name={['lastname']} label="Last name" rules={[{ required: true }]}>
-        <Input value={shippingAddress?.lastname} />
+        <Input defaultValue={address?.lastname || ''} />
       </Form.Item>
-      <Form.Item name={['address1']} label="Address line 1" rules={[{ required: true }]}>
-        <Input value={shippingAddress?.addressline1} />
+      <Form.Item name={['addressline1']} label="Address line 1" rules={[{ required: true }]}>
+        <Input defaultValue={address?.addressline1 || ''} />
       </Form.Item>
-      <Form.Item name={['address2']} label="Address line 2" rules={[{ required: false }]}>
-        <Input value={shippingAddress?.addressline2} />
+      <Form.Item name={['addressline2']} label="Address line 2" rules={[{ required: false }]}>
+        <Input defaultValue={address?.addressline2 || ''} />
       </Form.Item>
       <Form.Item name={['city']} label="City" rules={[{ required: true }]}>
-        <Input value={shippingAddress?.city} />
+        <Input defaultValue={address?.city || ''} />
       </Form.Item>
       <Form.Item name={['postcode']} label="Postcode" rules={[{ required: true }]}>
-        <Input value={shippingAddress?.postcode} />
+        <Input defaultValue={address?.postcode || ''} />
       </Form.Item>
       <Form.Item name={['email']} label="Email" rules={[{ type: 'email', required: true }]}>
-        <Input value={shippingAddress?.email} />
+        <Input defaultValue={address?.email} />
       </Form.Item>
       <Form.Item
         name={['phone']}
@@ -71,7 +76,7 @@ const ShippingAddressForm = ({
           },
         ]}
       >
-        <Input value={shippingAddress?.phone} />
+        <Input defaultValue={address?.phone} />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2 }}>
         <Button type="primary" htmlType="submit">

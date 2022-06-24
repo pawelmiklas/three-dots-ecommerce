@@ -198,6 +198,9 @@ const Cart = () => {
               >
                 <RenderModal />
               </Modal>
+              <Button disabled={store.cart.length <= 0} type="primary" onClick={() => setCurrent(1)}>
+                Procceed with the order
+              </Button>
             </div>
           </>
         );
@@ -207,6 +210,8 @@ const Cart = () => {
             <ShippingAddressForm
               shippingDetailsFilled={setShippingDetailsFilled}
               setShippingAddress={setShippingAddress}
+              address={shippingAddress!}
+              setCurrent={setCurrent}
               // shippingAddress={() => shippingAddress}
             />
           </div>

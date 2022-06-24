@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Brand } from './brands';
+import { Brand, brands } from './brands';
 import { Collection, collections } from './collections';
 import { ProductProperty, productProperties } from './productProperties';
 
@@ -55,7 +55,7 @@ export interface Product {
 
 const products: Product[] = [
   {
-    key: '53',
+    key: '53c',
     name: 'Euro Trekker Super',
     price: 170.98,
     discount: 14,
@@ -160,7 +160,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '36',
+    key: '36c',
     name: 'Equalizer 4.0 Trail',
     price: 485.94,
     discount: 0,
@@ -265,7 +265,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '64',
+    key: '64c',
     name: 'Revolt Lo Tx',
     price: 407.48,
     discount: 9,
@@ -370,7 +370,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '9',
+    key: '9c',
     name: 'Evergreen',
     price: 470.52,
     discount: 23,
@@ -475,7 +475,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '1',
+    key: '1c',
     name: 'Mathilda 1d',
     price: 669.85,
     discount: 9,
@@ -581,7 +581,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '49',
+    key: '49c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 288.83,
     discount: 0,
@@ -686,7 +686,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '26',
+    key: '26c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 329.36,
     discount: 22,
@@ -791,7 +791,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '85',
+    key: '85c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 685.86,
     discount: 15,
@@ -896,7 +896,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '82',
+    key: '82c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 589.84,
     discount: 0,
@@ -1001,7 +1001,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '2',
+    key: '2c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 555.45,
     discount: 13,
@@ -1106,7 +1106,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '74',
+    key: '74c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 477.82,
     discount: 21,
@@ -1211,7 +1211,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '92',
+    key: '92c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 182.85,
     discount: 0,
@@ -1316,7 +1316,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '11',
+    key: '11c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 571.38,
     discount: 0,
@@ -1421,7 +1421,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '27',
+    key: '27c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 76.7,
     discount: 0,
@@ -1526,7 +1526,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '41',
+    key: '41c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 657.62,
     discount: 12,
@@ -1631,7 +1631,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '25',
+    key: '25c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 57.43,
     discount: 20,
@@ -1736,7 +1736,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '37',
+    key: '37c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 521.58,
     discount: 13,
@@ -1841,7 +1841,7 @@ const products: Product[] = [
     ],
   },
   {
-    key: '100',
+    key: '100c',
     name: 'Chuck 70s Court Reimagined Hi',
     price: 660.19,
     discount: 18,
@@ -1946,5 +1946,62 @@ const products: Product[] = [
     ],
   },
 ];
+
+const fetchProd = async () => {
+  console.log('here');
+  const productsAll = await (await fetch(`http://localhost:8080/api/public/products/all`)).json();
+  console.log(productsAll);
+  if (productsAll) {
+    console.log('here2');
+    productsAll.forEach(async (product: { productId: any }) => {
+      const prodId = product.productId;
+      if (prodId) {
+        const prod = await (await fetch(`http://localhost:8080/api/public/products/${prodId}`)).json();
+        const prodStock = await (await fetch(`http://localhost:8080/api/public/stocks/product/${prodId}`)).json();
+        const prodVariant = await (await fetch(`http://localhost:8080/api/public/products/${prodId}/variants`)).json();
+        console.log('variant', prodVariant);
+        if (prodStock && prodVariant) {
+          const colors = prodVariant.variants.map((i: { color: any }) => i.color);
+          console.log(colors);
+          const sizes: { size: any; onstock: any }[] = [];
+          const images = prodVariant.variants[0].imageUrl.replace(/[^A-Za-z0-9.,:_/]/g, '').split(',');
+          console.log(images);
+          prodStock.data.forEach((i: { sizes: { size: any; amount: any }[] }) => {
+            console.log(i.sizes);
+            i.sizes.map((element: { size: any; amount: any }) => {
+              sizes.push({
+                size: element.size,
+                onstock: element.amount,
+              });
+            });
+          });
+          const sex = [shoesSex.men, shoesSex.women, shoesSex.kids];
+          const product: Product = {
+            key: prod.productId.toString(),
+            name: prod.name,
+            price: prod.price,
+            discount: prod.discount,
+            collections: [],
+            properties: [],
+            image: images[0],
+            promoted: false,
+            description: prod.description,
+            onsale: false,
+            sizes: sizes,
+            detailedImages: images,
+            sex: sex[Math.floor(Math.random() * (2 - 0 + 1) + 0)],
+            colors: colors,
+            brand: brands[Math.floor(Math.random() * (5 - 0 + 1) + 0)].id,
+          };
+
+          products.push(product);
+          // // setproducta(product);
+          console.log('new product', product);
+        }
+      }
+    });
+  }
+};
+fetchProd();
 
 export { products };

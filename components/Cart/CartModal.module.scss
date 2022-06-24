@@ -8,3 +8,97 @@
     color: var(--black-2);
   }
 }
+.modalColor {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 0.5rem;
+}
+.modalColor_element {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--grey-3);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  &:hover {
+    border: 1px solid black;
+  }
+  &:focus {
+    border: #000 1px solid;
+  }
+}
+.size {
+  cursor: pointer;
+  width: 5vw;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: var(--grey-3) 1px solid;
+  margin: 0.4rem;
+  text-align: center;
+  &:hover {
+    border: var(--black-1) 1px solid;
+  }
+}
+.modalSize {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 0.5rem;
+}
+.modalSize_element {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--grey-3);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  &:hover {
+    background-color: var(--yellow-3);
+  }
+  &:focus {
+    border: #000 1px solid;
+  }
+}
+
+.modalColor_element_active {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  &:hover {
+    border: 1px solid black;
+  }
+  &:focus {
+    border: #000 1px solid;
+  }
+}
+
+.modalSize_element_active {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  &:hover {
+    background-color: var(--yellow-3);
+  }
+  &:focus {
+    border: #000 1px solid;
+  }
+}

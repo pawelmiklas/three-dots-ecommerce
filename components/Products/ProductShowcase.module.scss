@@ -9,11 +9,9 @@
   }
 }
 .product {
-  width: 20vw;
+  width: 18vw;
   &:hover {
     outline-offset: 4px;
     outline: 1px dashed var(--grey-3);
   }
-}
-.productInfo {
 }

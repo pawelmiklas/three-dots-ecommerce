@@ -27,7 +27,7 @@ const SizeFilter = ({ id }: { id: string }) => {
   return (
     <div className={classes.main}>
       <Title level={5}>Sizes:</Title>
-      <Checkbox.Group onChange={e => onChange(e)} className={classes.group}>
+      <Checkbox.Group onChange={e => onChange(e)} className={classes.group} value={store.filters.size}>
         {existingSizes.map((item, index) => {
           return (
             <Checkbox value={item} key={index}>
